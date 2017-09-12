@@ -1,0 +1,28 @@
+.table {
+    float: left;
+    border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.medium{
+	width: 20px;
+	height: 20px;
+	margin: 5px;
+}
+
+.small{
+	width: 10px;
+	height: 10px;
+	margin: 3px;
+}
+
+.green {
+  	background: #00FF00;
+}
+
+.red {
+	background: #FF0000;
+}
+
+.gray {
+    background: #D3D3D3;
+}
