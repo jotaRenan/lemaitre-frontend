@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Le Maitre</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  </head>
+  <body>
+    <div class="big-container">
+      <header>
+        <h1>Le Maître</h1>
+      </header>
+      <main class="big-box">
+        <section class="status-panel green">
+          <div class="order-box" ng-repeat="order in recentlyRequestedOrders">
+            <!-- TODO: transform into custom angular element -->
+            <div class="order-card">
+              <div class="order-item" ng-repeat="item in order.items">
+                <h2>{{item.id}} - {{item.name}}</h2>
+                <p>{{item.observation}}</p>
+              </div>
+            </div>
+            <div class="status" ng-class=" order.status === 'R' ? 'lightgreen' : ( order.status === 'P' ? 'orange' : 'ultra-red' ) "></div>
+          </div>
+          <aside class="time">
+            <p> &lt <span class="number">05</span>min</p>
+          </aside>
+        </section>
+        <section class="status-panel yellow">
+          <div class="order-box">
+            <div class="order-card">
+              <div class="">
+                <h2>Nome do pedido</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+            </div>
+            <div class="status ultra-red"></div>
+          </div><div class="order-box">
+            <div class="order-card">
+              <div class="">
+                <h2>Nome do pedido</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+            </div>
+            <div class="status ultra-red"></div>
+          </div><div class="order-box">
+            <div class="order-card">
+              <div class="">
+                <h2>Nome do pedido</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+            </div>
+            <div class="status ultra-red"></div>
+          </div>
+          <aside class="time">
+            <p> &lt <span class="number">20</span>min</p>
+          </aside>
+        </section>
+        <section class="status-panel red">
+          <div class="order-box">
+            <div class="order-card">
+              <div class="">
+                <h2>Nome do pedido</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+            </div>
+            <div class="status orange"></div>
+          </div><div class="order-box">
+            <div class="order-card">
+              <div class="">
+                <h2>Nome do pedido</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+            </div>
+            <div class="status ultra-red"></div>
+          </div>
+          <aside class="time">
+            <p> &gt <span class="number">35</span>min</p>
+          </aside>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

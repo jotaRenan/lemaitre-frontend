@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title></title>
+    <style media="screen">
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: tomato;
+      }
+      .item-display {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+      .item-display:nth-child(2n) {
+        background-color: lightgreen;
+      }
+      .item-display:nth-child(2n+1) {
+        background-color: lightblue;
+      }
+      .price::before {
+        content: 'R$';
+      }
+      .quantity::after {
+        content: 'X'
+      }
+      .circle::before {
+        border-radius: 50%;
+        content: '';
+        background-color: red;
+        height: 1em;
+        width: 1em;
+        display: inline-block;
+      }
+      .util {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+      }
+    </style>
+  </head>
+  <body>
+    <article class="">
+      <header>
+        <h1>Valor Parcial: <span class="price">{{pricesSum}}</span></h1>
+      </header>
+      <section ng-repeat="item in items" class="item-display">
+        <div class="quantity">
+          <span>{{item.quantity}}</span>
+        </div>
+        <div class="name">
+          <span>{{item.name}}</span>
+        </div>
+        <div class="image">
+          <img src="http://icons.iconarchive.com/icons/jommans/emluator/64/Pictures-icon.png"
+          ng-src="item.img"
+          alt="test photo">
+        </div>
+        <div class="util">
+          <div class="status-circle" ng-class="getItemStatus(item)">
+            <div class="circle"></div>
+          </div>
+          <div class="price">
+            <span>{{item.price}}</span>
+          </div>
+        </div>
+      </section>
+      <section ng-repeat="item in items" class="item-display">
+        <div class="quantity">
+          <span>1</span>
+        </div>
+        <div class="name">
+          <span>Suco de Laranja</span>
+        </div>
+        <div class="image">
+          <img src="http://icons.iconarchive.com/icons/jommans/emluator/64/Pictures-icon.png"
+          ng-src="item.img"
+          alt="test photo">
+        </div>
+        <div class="util">
+          <div class="status-circle" ng-class="getItemStatus(item)">
+            <div class="circle"></div>
+          </div>
+          <div class="price">
+            <span>15,00</span>
+          </div>
+        </div>
+      </section>
+    </article>
+
+  </body>
+</html>
