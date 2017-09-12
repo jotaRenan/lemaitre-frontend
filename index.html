@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="leMaitre">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <base href="/lemaitre-frontend/"></base>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="shortcut icon" href="assets/img/icon.png" />
@@ -18,8 +19,8 @@
             <a href="#" class="header__logo">Logo</a>
 
             <nav class="menu">
-              <a href="#">Home</a>
-              <a href="#">About</a>
+              <a ui-sref="home">Home {{1+2}}</a>
+              <a href="oi/#">About</a>
               <a href="#">Blog</a>
               <a href="#">Contact</a>
             </nav>
@@ -39,7 +40,7 @@
         <div class="site-cache" id="site-cache"></div>
       </div> <!-- END site-pusher -->
     </div> <!-- END site-container -->
-
+    <script src="./app/app.js" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="./assets/js/main.js" charset="utf-8"></script>
   </body>
