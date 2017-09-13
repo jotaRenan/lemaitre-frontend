@@ -9,6 +9,7 @@ angular.module("leMaitre", ["ui.router"]).config(function($locationProvider, $ur
 	    .state('acompanhar-pedido', {
 	      url: '/acompanhar-pedido',
 	      templateUrl: 'app/components/client/acompanhar-pedido/acompanhar-pedido.html',
+        controller: 'AcompanharPedidoCtrl',
 	    })
 	    //Rota para a página Finalizar Pedido
 	    .state('finalizar-pedido', {

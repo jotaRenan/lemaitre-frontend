@@ -12,7 +12,7 @@
     </div>
     <div class="image">
       <img src="http://icons.iconarchive.com/icons/jommans/emluator/64/Pictures-icon.png"
-      ng-src="item.img"
+      ng-src="{{item.img}}"
       alt="test photo">
     </div>
     <div class="util">
@@ -21,27 +21,6 @@
       </div>
       <div class="price">
         <span>{{item.price}}</span>
-      </div>
-    </div>
-  </section>
-  <section ng-repeat="item in [1,2,3,4]" class="item-display">
-    <div class="quantity">
-      <span>1</span>
-    </div>
-    <div class="name">
-      <span>Suco de Laranja</span>
-    </div>
-    <div class="image">
-      <img src="http://icons.iconarchive.com/icons/jommans/emluator/64/Pictures-icon.png"
-      ng-src="item.img"
-      alt="test photo">
-    </div>
-    <div class="util">
-      <div class="status-circle" ng-class="getItemStatus(item)">
-        <div class="circle"></div>
-      </div>
-      <div class="price">
-        <span>15,00</span>
       </div>
     </div>
   </section>
