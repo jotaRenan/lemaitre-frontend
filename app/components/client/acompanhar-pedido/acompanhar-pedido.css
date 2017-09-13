@@ -1,0 +1,38 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: tomato;
+}
+.item-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex: 1;
+}
+.item-display:nth-child(2n) {
+  background-color: lightgreen;
+}
+.item-display:nth-child(2n+1) {
+  background-color: lightblue;
+}
+.price::before {
+  content: 'R$';
+}
+.quantity::after {
+  content: 'X'
+}
+.circle::before {
+  border-radius: 50%;
+  content: '';
+  background-color: red;
+  height: 1em;
+  width: 1em;
+  display: inline-block;
+}
+.util {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}

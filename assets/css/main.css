@@ -143,3 +143,17 @@ a {
     background-color: rgba(0, 0, 0, 0.6);
   }
 }
+
+/* UI-VIEW */
+
+site-container {
+  display: flex;
+  flex-direction: column;
+}
+
+main-container  div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
