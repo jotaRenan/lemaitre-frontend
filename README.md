@@ -1,5 +1,5 @@
-# Le Maìtre - Descrição:
- Le Maìtre é o trabalho prático para conclusão do 3o ano do Curso Técnico de Informática do Centro Federal de Educação Tecnológica de Minas Gerais - CEFET-MG. Esse repositório trata da camada de visão do projeto. O backend pode ser encontrado [aqui].
+# Le Maître - Descrição:
+ Le Maître é o trabalho prático para conclusão do 3o ano do Curso Técnico de Informática do Centro Federal de Educação Tecnológica de Minas Gerais - CEFET-MG. Esse repositório trata da camada de visão do projeto. O backend pode ser encontrado [aqui].
 
 # Composição:
 
