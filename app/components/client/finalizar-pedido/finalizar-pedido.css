@@ -1,0 +1,11 @@
+.outer-item {
+  display: flex;
+  align-content: space-between;
+  width: 100%;
+}
+.item {
+  flex-grow: 1;
+}
+.price::before {
+  content: 'R$ ';
+}
