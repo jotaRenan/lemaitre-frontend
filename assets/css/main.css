@@ -23,7 +23,7 @@ a {
 .main-container {
   overflow: hidden;
   *zoom: 1;
-  margin: 0 20px;
+  margin: 0;
 }
 
 .site-content {

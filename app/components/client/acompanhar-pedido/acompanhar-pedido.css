@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: space-around;
   flex: 1;
+  padding: 2%;
 }
 .item-display:nth-child(2n) {
   background-color: lightgreen;
@@ -16,6 +17,16 @@
 .item-display:nth-child(2n+1) {
   background-color: lightblue;
 }
+
+.item-display > div {
+  flex-basis: 25%;
+  text-align: center;
+}
+
+.item-display img {
+  max-width: 100%;
+}
+
 .price::before {
   content: 'R$';
 }
