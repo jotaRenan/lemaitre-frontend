@@ -25,11 +25,23 @@ header {
 .circle::before {
   border-radius: 50%;
   content: '';
-  background-color: red;
   height: 1em;
   width: 1em;
   display: inline-block;
 }
+
+.circle.status-red::before {
+  background-color: red;
+}
+
+.circle.status-green::before{
+  background-color: green;
+}
+
+.circle.status-orange::before {
+  background-color: orange;
+}
+
 .util {
   display: flex;
   flex-direction: column;

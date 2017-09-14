@@ -14,10 +14,28 @@ angular.module('leMaitre')
       img: 'http://armazemseuluiz.com.br/image/cache/catalog/BEBIDAS/Sucos%20PNG/Suco%20de%20Maca%20Integral%20Suco%20e%20So%201L-540x540.png',
       status: 'T',
       price: 6.80,
+    },
+    {
+      name: 'Suco de Pêssego',
+      quantity: 1,
+      img: 'http://armazemseuluiz.com.br/image/cache/catalog/BEBIDAS/Sucos%20PNG/Suco%20de%20Maca%20Integral%20Suco%20e%20So%201L-540x540.png',
+      status: 'R',
+      price: 6.80,
     }
   ];
-  
+
   $scope.pricesSum = $scope.items.reduce( (partialSum, item) => {
     return partialSum + item.quantity * item.price;
   }, 0).toFixed(2);
+
+  $scope.getCircleStatusClass = status => {
+    switch(status) {
+      case 'T': //todo
+        return 'red';
+      case 'D': //doing
+        return 'orange';
+      case 'R': //ready
+        return 'green';
+    }
+  };
 });

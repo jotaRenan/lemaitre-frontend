@@ -16,8 +16,8 @@
       alt="test photo">
     </div>
     <div class="util">
-      <div class="status-circle" ng-class="getItemStatus(item)">
-        <div class="circle"></div>
+      <div class="status-circle">
+        <div ng-class="'circle status-' + getCircleStatusClass(item.status)"></div>
       </div>
       <div class="price">
         <span>{{item.price}}</span>
