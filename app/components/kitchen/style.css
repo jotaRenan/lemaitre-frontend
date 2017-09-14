@@ -14,12 +14,14 @@ header {
   font-style: italic;
   color: rgba(255, 255, 255, 1);
   padding-left: 2vw;
-  /*height: 50px;*/
   padding-top: 0;
+  height: 60px;
+  display: flex;
 }
 
 header h1 {
 	margin: 0;
+  align-self: center;
 }
 
 .big-box {
@@ -141,7 +143,9 @@ header h1 {
   user-select: none;
   cursor: default;
 }
-
+aside.time p {
+  margin: 0;
+}
 .number {
   font-size: 4em;
 }
