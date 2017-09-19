@@ -11,6 +11,12 @@ angular.module("leMaitre", ["ui.router"]).config(function($locationProvider, $ur
 	      templateUrl: 'app/components/client/acompanhar-pedido/acompanhar-pedido.html',
         controller: 'AcompanharPedidoCtrl',
 	    })
+      //Rota para a página Finalizar Pedido
+	    .state('cardapio', {
+	      url: '/cardapio',
+	      templateUrl: 'app/components/client/cardapio/cardapio.html',
+        controller: 'CardapioCtrl',
+	    })
 	    //Rota para a página Finalizar Pedido
 	    .state('finalizar-pedido', {
 	      url: '/finalizar-pedido',
@@ -30,7 +36,6 @@ angular.module("leMaitre", ["ui.router"]).config(function($locationProvider, $ur
 	    .state('gerador-token', {
 	      url: '/gerador-token',
 	      templateUrl: 'app/components/manager/gerador-token/gerador-token.html',
-        controller: 'generateTokenCtrl',
 	    })
 	    //Rota para a página Gestão de Mesas
 	    .state('gestao-mesas', {

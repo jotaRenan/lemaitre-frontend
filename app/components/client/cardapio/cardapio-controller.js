@@ -17,9 +17,12 @@ $scope.categorias = [
       price: 6.80,
     }],
   }];
-/* TODO
+  
+/*TODO
 $scope.showItems = () => {
-  document.querySelector()
+  let a = document.querySelector(".categoria-cardapio").childNodes;
+  console.log(a[4]);
+  a[4].classList.toggle("show-items");
 }
 */
 });

@@ -1,11 +1,12 @@
 .categoria-cardapio{
-  display: relative;
+  display: block;
+  padding-top: 5%;
 }
 
 .categoria-cardapio > div{
   display: none;
 }
 
-.show-items {
+.show-items{
   display: block;
 }
