@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="app\components\client\cardapio\cardapio.css">
+<article class="">
+  <h1>Cardápio</h1>
+  <section>
+    <form class="" >
+      <input type="text" name="" value="" placeholder="Filtrar cardápio">
+    </form>
+    <div ng-repeat="categoria in categorias" ng-click="showItems()" class="categoria-cardapio">
+      <div ng-repeat="item in categoria.items" ng-class= "categoria.name">
+        <div class="name">
+          <span>{{item.name}}</span>
+        </div>
+        <div class="price">
+          <span>{{item.price | number:2}}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>

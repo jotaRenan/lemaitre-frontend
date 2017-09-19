@@ -1,0 +1,11 @@
+.categoria-cardapio{
+  display: relative;
+}
+
+.categoria-cardapio > div{
+  display: none;
+}
+
+.show-items {
+  display: block;
+}
