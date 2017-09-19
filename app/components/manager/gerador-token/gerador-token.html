@@ -2,15 +2,15 @@
   <h1>Gerador de Token</h1>
   <section>
     <p>Insira o nº da mesa e clique para gerar o token correspondente à ela</p>
-    <form class="">
+    <form name="form" class="" ng-submit="gerarTokens()">
       <div class="">
-        <label for="table-number">Numero da Mesa</label> <br>
-        <input id="table-number" type="number" value="" placeholder="Numero da Mesa"><br>
-        <input id="table-number" type="text" value="" placeholder="Token">
+        <label for="tables">Mesas <span class="subtitle">separadas por espaço</span></label>
+        <input id="tables" name="tables" type="text">
       </div>
       <div class="">
-        <button type="button" name="button">Gerar Token</button>
+        <button type="submit" name="button">Gerar Token</button>
       </div>
     </form>
+    <input id="table-number" ng-repeat="token in tokens" type="text" ng-value="token" readonly>
   </section>
 </article>

@@ -30,6 +30,7 @@ angular.module("leMaitre", ["ui.router"]).config(function($locationProvider, $ur
 	    .state('gerador-token', {
 	      url: '/gerador-token',
 	      templateUrl: 'app/components/manager/gerador-token/gerador-token.html',
+        controller: 'generateTokenCtrl',
 	    })
 	    //Rota para a página Gestão de Mesas
 	    .state('gestao-mesas', {
