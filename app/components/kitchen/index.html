@@ -23,7 +23,7 @@
                 <p>{{item.observation}}</p>
               </div>
             </div>
-            <div class="status" ng-class=" order.status === 'R' ? 'lightgreen' : ( order.status === 'P' ? 'orange' : 'ultra-red' ) "></div>
+            <div class="status" ng-class="getItemStatusCSSClass(item.status)"></div>
           </div>
           <aside class="time">
             <p> &lt <span class="number">05</span>min</p>
