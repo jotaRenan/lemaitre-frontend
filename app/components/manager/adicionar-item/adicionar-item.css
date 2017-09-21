@@ -1,0 +1,40 @@
+.item-name, .item-img, .item-price, .item-description {
+  padding: 3%;
+
+}
+
+.item-form > input {
+  padding-left: 3%;
+}
+
+h1 {
+  text-align: center;
+}
+
+.buttons {
+  padding: 3%;
+  text-align: center;
+}
+
+.button {
+  -moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	color: #ffffff;
+	display: inline-block;
+	cursor: pointer;
+	font-size: 14px;
+	padding: 12px 14px;
+	text-decoration: none;
+  margin: 1%;
+}
+
+.cancel {
+  border: 1px solid #cc1414;
+  background-color: #e51616;
+}
+
+.submit {
+  border: 1px solid #18ab29;
+  background-color: #44c767;
+}

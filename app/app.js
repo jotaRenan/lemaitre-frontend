@@ -11,7 +11,7 @@ angular.module("leMaitre", ["ui.router"]).config(function($locationProvider, $ur
 	      templateUrl: 'app/components/client/acompanhar-pedido/acompanhar-pedido.html',
         controller: 'AcompanharPedidoCtrl',
 	    })
-      //Rota para a página Finalizar Pedido
+      //Rota para a página Cardápio
 	    .state('cardapio', {
 	      url: '/cardapio',
 	      templateUrl: 'app/components/client/cardapio/cardapio.html',
@@ -28,6 +28,12 @@ angular.module("leMaitre", ["ui.router"]).config(function($locationProvider, $ur
 	      url: '/kitchen',
 	      templateUrl: 'app/components/kitchen/index.html',
         controller: 'KitchenCtrl',
+	    })
+      //Rota para a página Adicionar Item
+	    .state('adicionar-item', {
+	      url: '/adicionar-item',
+	      templateUrl: 'app/components/manager/adicionar-item/adicionar-item.html',
+        controller: 'AddItemCtrl',
 	    })
 	    //Rota para a página Edição de Reserva
 	    .state('edicao-reserva', {
