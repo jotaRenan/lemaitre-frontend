@@ -2,26 +2,26 @@
 <article class="">
   <h1>Adicionar item</h1>
   <section>
-    <form class="item-form">
+    <form class="item-form" ng-submit="register()">
       <div class="item-name">
         <label for="name">Nome</label>
-        <input id="name" type="text" value="" placeholder="Insira o nome">
+        <input id="name" type="text" ng-model="item.name" value="" placeholder="Insira o nome" ng-required="required">
       </div>
-      <div class="item-img">
+      <div class="item-picture">
         <label for="image">Imagem</label>
-        <input id="image" type="file" name="" value="">
+        <input id="image" type="text" ng-model="item.picture" name="" value="" placeholder="Insira imagem do item" ng-required="required">
       </div>
       <div class="item-price">
         <label for="price">Preço</label>
-        <input id="price" type="number" name="" value="" placeholder="Insira o preço">
+        <input id="price" type="number" name="" ng-model="item.price" value="" placeholder="Insira o preço" ng-required="required">
       </div>
       <div class="item-description">
         <label for="description">Descrição</label>
-        <textarea id="description" name="name" rows="4" placeholder="Insira a descrição"></textarea>
+        <textarea id="description" name="name" ng-model="item.description" rows="4" placeholder="Insira a descrição" ng-required="required"></textarea>
       </div>
       <div class="buttons">
         <button type="submit" name="button" class="button submit">Confirmar</button>
-        <button type="button" name="button" class="button cancel">Cancelar</button>
+        <button type="button" name="button" class="button cancel" ng-click="cancel()">Cancelar</button>
       </div>
     </form>
   </section>
