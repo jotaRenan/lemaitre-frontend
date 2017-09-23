@@ -4,6 +4,7 @@
   justify-content: center;
   background-color: rgba(156, 204, 101, 0.9);
 }
+
 .item-display {
   display: flex;
   align-items: center;
@@ -15,6 +16,7 @@
 .item-display:nth-child(2n) {
   background-color: rgba(224, 224, 224, 0.6);
 }
+
 .item-display:nth-child(2n+1) {
   background-color: rgba(238, 238, 238, 0.6);
 }
@@ -36,10 +38,12 @@
 .price::before {
   content: 'R$';
 }
+
 .quantity::after {
   content: 'X';
   font-size: 0.6em;
 }
+
 .circle::before {
   border-radius: 50%;
   content: '';
