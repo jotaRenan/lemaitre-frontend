@@ -5,7 +5,7 @@
     <form class="item-form" ng-submit="register()">
       <div class="item-name">
         <label for="name">Nome</label>
-        <input id="name" type="text" ng-model="item.name" value="" placeholder="Insira o nome" ng-required="required">
+        <input id="name" type="text" ng-model="item.name" value="" placeholder="Insira o nome" ng-required="required" autofocus>
       </div>
       <div class="item-picture">
         <label for="image">Imagem</label>
@@ -18,6 +18,12 @@
       <div class="item-description">
         <label for="description">Descrição</label>
         <textarea id="description" name="" ng-model="item.description" rows="4" placeholder="Insira a descrição" ng-required="required"></textarea>
+      </div>
+      <div class="">
+        <label for="category">Categoria</label>
+        <select ng-model="item.category"
+          ng-options="category as category.subcategory.name group by category.name for category in categories">
+        </select>
       </div>
       <div class="buttons">
         <button type="submit" name="submit-button" class="button submit">Confirmar</button>

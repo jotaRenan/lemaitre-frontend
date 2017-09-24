@@ -6,6 +6,7 @@ angular.module('leMaitre')
     picture: undefined,
     price: undefined,
     description: undefined,
+    category: undefined,
   };
 
   $scope.register = () => {
@@ -27,5 +28,42 @@ angular.module('leMaitre')
   $scope.cancel = () => {
     $state.go('home');
   };
+
+  $scope.categories = [
+    {name: 'bebidas', id: 1, subcategory: {name: 'refrigerantes', id: 1100} },
+    {name: 'bebidas', id: 1, subcategory: {name: 'champagnes', id: 1101} },
+    {name: 'hamburgueres', id: 2, subcategory: {name: 'veganos', id: 2100} },
+  ];
+
+  $scope.categoriesDONTUSETHISSTRUCTURE = [
+    {
+      name: 'bebidas',
+      id: 1,
+      subcategories: [
+        {
+          name: 'refrigerantes',
+          id: 1100,
+        },
+        {
+          name: 'champagnes',
+          id: 1101,
+        }
+      ]
+    },
+    {
+      name: 'hamburgueres',
+      id: 2,
+      subcategories: [
+        {
+          name: 'cheeseburguers',
+          id: 2100,
+        },
+        {
+          name: 'vegan',
+          id: 2101,
+        }
+      ]
+    }
+  ];
 
 }]);
