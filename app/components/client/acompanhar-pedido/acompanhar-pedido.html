@@ -1,8 +1,5 @@
 <link rel="stylesheet" href="app\\components\\client\\acompanhar-pedido\\acompanhar-pedido.css" />
 <article class="">
-  <section class="order-header">
-    <h1>Valor Parcial: <span class="price">{{pricesSum}}</span></h1>
-  </section>
   <section ng-repeat="item in items" class="item-display">
     <div class="quantity">
       <span>{{item.quantity}}</span>
@@ -23,5 +20,8 @@
         <span>{{item.price | number:2}}</span>
       </div>
     </div>
+  </section>
+  <section class="order-header">
+    <h1>Valor Parcial: <span class="price">{{pricesSum}}</span></h1>
   </section>
 </article>
