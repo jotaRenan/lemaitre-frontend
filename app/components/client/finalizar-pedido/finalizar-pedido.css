@@ -1,11 +1,17 @@
 .outer-item {
   display: flex;
-  align-content: space-between;
   width: 100%;
 }
 .item {
   flex-grow: 1;
+  max-width: 50%;
+  text-align: center;
 }
-.price::before {
+span.price::before {
   content: 'R$ ';
+}
+
+.important, .important::before {
+  font-weight: bolder;
+  text-transform: uppercase;
 }

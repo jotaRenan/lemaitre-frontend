@@ -2,24 +2,27 @@
 <article>
   <h1>Finalizar pedido</h1>
   <section class="items">
-    <div class="outer-item">
-      <div class="item name">
-        <span>asasa</span>
+    <div class="outer-item" ng-repeat="item in items">
+      <div class="item quantity">
+        <span>{{item.quantity}}</span>
       </div>
-      <div class="item price">
-        <span>15,00</span>
+      <div class="item name">
+        <span>{{item.name}}</span>
+      </div>
+      <div class="item">
+        <span class="price">{{item.price | number:2}}</span>
       </div>
     </div>
   </section>
   <section>
     <label for="gorjeta">Incluir 10%</label>
-    <input id="gorjeta" type="checkbox">
+    <input id="gorjeta" type="checkbox" ng-model="payTip">
     <div class="outer-item">
       <div class="item">
         <span>Total da conta</span>
       </div>
       <div class="item price">
-        <span>15,00</span>
+        <span class="price">{{total | number:2}}</span>
       </div>
     </div>
     <div class="outer-item">
@@ -27,16 +30,18 @@
         <span>Taxas</span>
       </div>
       <div class="item price">
-        <span>01,50</span>
+        <span class="price">{{taxes | number:2}}</span>
       </div>
     </div>
     <div class="outer-item">
       <div class="item">
-        <span>Total a pagar</span>
+        <span class="important">Total a pagar</span>
       </div>
-      <div class="item price">
-        <span>16,50</span>
+      <div class="item">
+        <span class="important price">{{payTip ? total + taxes : total | number:2}}</span>
       </div>
+    </div>
+    <div class="outer-item">
       <button type="button" name="button">Solicitar Garçom</button>
     </div>
   </section>
