@@ -13,13 +13,13 @@
       </div>
       <div class="item-price">
         <label for="price">Preço</label>
-        <input id="price" type="number" name="" ng-model="item.price" value="" placeholder="Insira o preço" ng-required="required">
+        <input id="price" type="number" min="0" name="" ng-model="item.price" value="" placeholder="Insira o preço" ng-required="required">
       </div>
       <div class="item-description">
         <label for="description">Descrição</label>
         <textarea id="description" name="" ng-model="item.description" rows="4" placeholder="Insira a descrição" ng-required="required"></textarea>
       </div>
-      <div class="">
+      <div class="item-category">
         <label for="category">Categoria</label>
         <select ng-model="item.category"
           ng-options="category as category.subcategory.name group by category.name for category in categories">
