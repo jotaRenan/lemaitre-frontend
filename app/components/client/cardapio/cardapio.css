@@ -1,12 +1,8 @@
-.categoria-cardapio{
+.categoria-cardapio {
   display: block;
   padding-top: 5%;
 }
 
-.categoria-cardapio > div{
+.not-displayed {
   display: none;
-}
-
-.show-items{
-  display: block;
 }

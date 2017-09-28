@@ -3,18 +3,20 @@
   <h1>Cardápio</h1>
   <section>
     <form class="" >
-      <input type="text" name="" value="" placeholder="Filtrar cardápio">
+      <input type="text" ng-model="search" name="" value="" placeholder="Filtrar cardápio">
     </form>
-    <div ng-repeat="categoria in categorias" ng-click="showItems()" class= "categoria-cardapio">
+    <div ng-repeat="categoria in categorias  | filter:{name : search}" ng-click="showItems(categoria.name)" class="categoria-cardapio">
       <span>{{categoria.name}}</span>
-      <div ng-repeat="item in categoria.items" ng-class= "item.name">
-        <div class="name">
-          <span>{{item.name}}</span>
+      <section ng-class="'not-displayed category-' + categoria.name">
+        <div ng-repeat="item in categoria.items" ng-class="item.name">
+          <div class="name">
+            <span>{{item.name}}</span>
+          </div>
+          <div class="price">
+            <span>{{item.price | number:2}}</span>
+          </div>
         </div>
-        <div class="price">
-          <span>{{item.price | number:2}}</span>
-        </div>
-      </div>
+      </section>
     </div>
   </section>
 </article>
