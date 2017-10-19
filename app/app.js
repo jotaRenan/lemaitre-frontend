@@ -3,7 +3,8 @@ angular.module("leMaitre", ["ui.router"]).config(function($locationProvider, $ur
     	// Rota para a página Login
 	    .state('home', {
 	      url: '/',
-	      templateUrl: 'app/components/shared/login.html',
+	      templateUrl: 'app/components/shared/login/login.html',
+        controller: 'LoginCtrl',
 	    })
 	    //Rota para a página Acompanhar Pedido
 	    .state('acompanhar-pedido', {

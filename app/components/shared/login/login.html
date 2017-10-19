@@ -1,0 +1,11 @@
+<article>
+
+  <h1>Seja bem-vindo!</h1>
+  <label for="token-input">Insira seu token aqui:</label>
+  <input id="token-input" type="text" name="" value="">
+  <p>ou...</p>
+  <label for="token-generator">Clique para gerar um novo:</label>
+  <button ng-click="generateToken()" type="button" name="button">Gerar!</button>
+  <input type="text" name="" value="" ng-if="hasTokenBeenGenerated" readonly>
+
+</article>
