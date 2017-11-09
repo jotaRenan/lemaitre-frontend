@@ -1,12 +1,51 @@
+.order-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2%;
+  margin: 0%;
+}
+
+.title {
+  background-color: rgba(156, 204, 101, 0.9);
+}
+
+.payment-values {
+  border-top: 2px solid;
+  border-color: rgba(205, 205, 205, 1);
+}
+
 .outer-item {
   display: flex;
-  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  flex: 1;
+  padding: 2%;
 }
+
+.outer-item:nth-child(2n) {
+  background-color: rgba(224, 224, 224, 0.6);
+}
+
+.outer-item:nth-child(2n+1) {
+  background-color: rgba(238, 238, 238, 0.6);
+}
+
+.outer-item:last-child {
+  background-color: rgba(156, 204, 101, 0.9);
+}
+
 .item {
   flex-grow: 1;
   max-width: 50%;
   text-align: center;
 }
+
+.quantity::after {
+  content: 'X';
+  font-size: 0.6em;
+}
+
 span.price::before {
   content: 'R$ ';
 }

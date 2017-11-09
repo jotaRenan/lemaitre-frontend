@@ -1,22 +1,18 @@
 <link rel="stylesheet" href="app\\components\\client\\finalizar-pedido\\finalizar-pedido.css" />
 <article>
-  <h1>Finalizar pedido</h1>
-  <section class="items">
-    <div class="outer-item" ng-repeat="item in items">
-      <div class="item quantity">
-        <span>{{item.quantity}}</span>
-      </div>
-      <div class="item name">
-        <span>{{item.name}}</span>
-      </div>
-      <div class="item">
-        <span class="price">{{item.price | number:2}}</span>
-      </div>
+  <h1 class="order-header title">Finalizar pedido</h1>
+  <section class="outer-item" ng-repeat="item in items">
+    <div class="item quantity">
+      <span>{{item.quantity}}</span>
+    </div>
+    <div class="item name">
+      <span>{{item.name}}</span>
+    </div>
+    <div class="item">
+      <span class="price">{{item.price | number:2}}</span>
     </div>
   </section>
-  <section>
-    <label for="gorjeta">Incluir 10%</label>
-    <input id="gorjeta" type="checkbox" ng-model="payTip">
+  <section class="payment-values">
     <div class="outer-item">
       <div class="item">
         <span>Total da conta</span>
@@ -42,7 +38,14 @@
       </div>
     </div>
     <div class="outer-item">
-      <button type="button" name="button">Solicitar Garçom</button>
+      <div class="item">
+        <button type="button" name="button">Solicitar Garçom</button>
+      </div>
+      <div class="item">
+        <label for="gorjeta">Incluir 10%</label>
+        <input id="gorjeta" type="checkbox" ng-model="payTip">
+      </div>
     </div>
+
   </section>
 </article>
