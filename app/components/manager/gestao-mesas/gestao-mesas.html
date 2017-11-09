@@ -3,21 +3,9 @@
   <h1>Mesa {ID da Mesa}</h1>
   <section>
     <form class="pure-form">
-      <div class="">
-        <div class="table medium red"></div>
-        <div class="table medium green"></div>
-        <div class="table medium gray"></div>
-        <br><br>
-        <div class="table medium red"></div>
-        <div class="table medium gray"></div>
-        <div class="table medium green"></div>
-        <br><br>
-        <div class="table medium gray"></div>
-        <div class="table medium red"></div>
-        <div class="table medium green"></div>
-
-
-      </div>
+      <section class="tables-exhibit">
+        <div ng-repeat="table in tables" ng-class="getTableStatusClass(table.status)">{{table.id}}</div>
+      </section>
 
       <div class="">
         <br><br><button type="button" name="reserve">Reservar Selecionados</button>
