@@ -1,10 +1,9 @@
 <link rel="stylesheet" type="text/css" href="app\components\manager\gestao-mesas\gestao-mesas.css">
 <article class="">
-  <h1>Mesa {ID da Mesa}</h1>
   <section>
     <form class="pure-form">
       <section class="tables-exhibit">
-        <div ng-repeat="table in tables" ng-class="getTableStatusClass(table.status)">{{table.id}}</div>
+        <div ng-repeat="table in tables" class="table-icon" ng-class="getTableStatusClass(table.status)">{{table.id}}uau</div>
       </section>
 
       <div class="">
