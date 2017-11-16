@@ -1,4 +1,9 @@
 <link rel="stylesheet" type="text/css" href="app\components\manager\gestao-mesas\gestao-mesas.css">
+<aside class="table-info">
+  <span class="close-icon"><i class="fa fa-times" aria-hidden="true" ng-click="closeTableInfo()"></i></span>
+  <h1>Mesa {{viewingTable.id}}</h1>
+
+</aside>
 <article class="">
   <section>
     <form class="pure-form">
@@ -21,7 +26,6 @@
         <div class="table small gray" id="mesa-reservada"></div>
         <label for="mesa-reservada">Mesa reservada</label>
       </div>
-
     </form>
   </section>
 </article>

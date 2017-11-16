@@ -14,6 +14,7 @@ angular.module('leMaitre')
   };
 
   $scope.tableBeingViewedStatus = {};
+  $scope.viewingTable = {};
 
   $scope.tables = [
     {
@@ -42,6 +43,12 @@ angular.module('leMaitre')
   $scope.openTableStatus = (tableId) => {
     $scope.isLoading = true;
     // TODO: open modal which shows the clicked table's status
+    document.querySelector('.table-info').classList.add('displayed');
+    $scope.viewingTable = tables.find( table => table.id = tableId );
   };
+
+  $scope.closeTableInfo = () => {
+    document.querySelector('.table-info').classList.remove('displayed');
+  }
 
 }]);
