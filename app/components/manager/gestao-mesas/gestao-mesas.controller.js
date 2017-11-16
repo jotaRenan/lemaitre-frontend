@@ -5,7 +5,7 @@ angular.module('leMaitre')
     tableManagementFactory.retrieveStatus(tableId)
       .then( data => {
         $scope.isLoading = false;
-        $scope.tableBeingViewedStatus = data;
+        $scope.tableBeingViewed = data;
       })
       .catch( error => {
         $scope.isLoading = false;
@@ -13,8 +13,7 @@ angular.module('leMaitre')
       });
   };
 
-  $scope.tableBeingViewedStatus = {};
-  $scope.viewingTable = {};
+  $scope.tableBeingViewed = {};
 
   $scope.tables = [
     {
@@ -42,9 +41,9 @@ angular.module('leMaitre')
 
   $scope.openTableStatus = (tableId) => {
     $scope.isLoading = true;
+    retrieveStatus(tableId);
     // TODO: open modal which shows the clicked table's status
     document.querySelector('.table-info').classList.add('displayed');
-    $scope.viewingTable = tables.find( table => table.id = tableId );
   };
 
   $scope.closeTableInfo = () => {
