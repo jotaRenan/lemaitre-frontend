@@ -7,10 +7,21 @@ angular.module('leMaitre')
         $scope.isLoading = false;
         $scope.tableBeingViewed = data;
       })
-      .catch( error => {
+      .catch( error => exhibitError(error) );
+  };
+
+  const retrieveTablesGeneralStatus = () => {
+    tableManagementFactory.retrieveTablesGeneralStatus()
+      .then ( data => {
         $scope.isLoading = false;
-        alert(`Erro: ${error}`);
-      });
+        $scope.tables = data;
+      })
+      .catch( error => exhibitError(error) );
+  };
+
+  const exhibitError = error => {
+    $scope.isLoading = false;
+    alert(`Erro ${error.status}: ${error.statusText}`);
   };
 
   $scope.tableBeingViewed = {};
@@ -41,7 +52,7 @@ angular.module('leMaitre')
 
   $scope.openTableStatus = (tableId) => {
     $scope.isLoading = true;
-    retrieveStatus(tableId);
+    retrieveTableStatus(tableId);
     // TODO: open modal which shows the clicked table's status
     document.querySelector('.table-info').classList.add('displayed');
   };

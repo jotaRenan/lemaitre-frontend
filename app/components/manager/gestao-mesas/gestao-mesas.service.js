@@ -7,6 +7,13 @@ angular.module('leMaitre')
         url: ``,
         data: {tableId: tableId}
       });
+    },
+    
+    retrieveTablesGeneralStatus: function() {
+      return $http({
+        method: 'GET',
+        url: ``
+      });
     }
   };
 }]);
