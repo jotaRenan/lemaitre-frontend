@@ -1,15 +1,15 @@
 <link rel="stylesheet" type="text/css" href="app\components\manager\gestao-mesas\gestao-mesas.css">
 <aside class="table-info">
   <span class="close-icon"><i class="fa fa-times" aria-hidden="true" ng-click="closeTableInfo()"></i></span>
-  <h1>Mesa {{viewingTable.id}}</h1>
+  <h1>Mesa {{tableBeingViewed.id}}</h1>
   <p ng-if="{{isLoading}}">Carregando...</p>
-  <div class="" ng-if=" viewingTable.status == 'O' ">
+  <div class="" ng-if=" tableBeingViewed.status == 'O' ">
     <!-- campos: fazer pedido, visualizar conta parcial, fechar conta -->
   </div>
-  <div class="" ng-if=" viewingTable.status == 'F' ">
+  <div class="" ng-if=" tableBeingViewed.status == 'F' ">
     <!-- campos: inserir token, reservar mesa. -->
   </div>
-  <div class=" " ng-if=" viewingTable.status == 'R' ">
+  <div class=" " ng-if=" tableBeingViewed.status == 'R' ">
     <!-- campos: exibir dados reserva, cancelar reserva, editar reserva -->
   </div>
 
