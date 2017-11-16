@@ -3,14 +3,16 @@
   <span class="close-icon"><i class="fa fa-times" aria-hidden="true" ng-click="closeTableInfo()"></i></span>
   <h1>Mesa {{tableBeingViewed.id}}</h1>
   <p ng-if="isLoading">Carregando...</p>
-  <div class="" ng-if=" tableBeingViewed.status == 'O' ">
-    <!-- campos: fazer pedido, visualizar conta parcial, fechar conta -->
-  </div>
-  <div class="" ng-if=" tableBeingViewed.status == 'F' ">
-    <!-- campos: inserir token, reservar mesa. -->
-  </div>
-  <div class=" " ng-if=" tableBeingViewed.status == 'R' ">
-    <!-- campos: exibir dados reserva, cancelar reserva, editar reserva -->
+  <div class="" ng-if="!isLoading">
+    <div class="" ng-if=" tableBeingViewed.status == 'O' ">
+      <!-- campos: fazer pedido, visualizar conta parcial, fechar conta -->
+    </div>
+    <div class="" ng-if=" tableBeingViewed.status == 'F' ">
+      <!-- campos: inserir token, reservar mesa. -->
+    </div>
+    <div class=" " ng-if=" tableBeingViewed.status == 'R' ">
+      <!-- campos: exibir dados reserva, cancelar reserva, editar reserva -->
+    </div>
   </div>
 
 </aside>
