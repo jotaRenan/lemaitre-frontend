@@ -2,7 +2,7 @@
 <aside class="table-info">
   <span class="close-icon"><i class="fa fa-times" aria-hidden="true" ng-click="closeTableInfo()"></i></span>
   <h1>Mesa {{tableBeingViewed.id}}</h1>
-  <p ng-if="{{isLoading}}">Carregando...</p>
+  <p ng-if="isLoading">Carregando...</p>
   <div class="" ng-if=" tableBeingViewed.status == 'O' ">
     <!-- campos: fazer pedido, visualizar conta parcial, fechar conta -->
   </div>
