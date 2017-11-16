@@ -11,13 +11,20 @@
       <!-- campos: inserir token, reservar mesa. -->
     </div>
     <div class=" " ng-if=" tableBeingViewed.status == 'R' ">
-      <!-- campos: exibir dados reserva, cancelar reserva, editar reserva -->
-      <p><span class="status-item">Nome:</span>{{tableBeingViewed.reservation.person.name}}</p>
-      <p><span class="status-item">Telefone:</span>{{tableBeingViewed.reservation.person.phone}}</p>
-      <p><span class="status-item">Data:</span>{{tableBeingViewed.reservation.date}}</p>
-      <p><span class="status-item">Horário:</span>{{tableBeingViewed.reservation.hour}}</p>
+      <p>
+        <span class="status-item">Nome:</span>
+        <a href="#" editable-text="tableBeingViewed.reservation.person.name" e-label="Nome ">{{ tableBeingViewed.reservation.person.name || 'empty' }}</a>
+      </p>
+      <p>
+        <span class="status-item">Telefone:</span>{{tableBeingViewed.reservation.person.phone}}
+      </p>
+      <p>
+        <span class="status-item">Data:</span>{{tableBeingViewed.reservation.date}}
+      </p>
+      <p>
+        <span class="status-item">Horário:</span>{{tableBeingViewed.reservation.hour}}
+      </p>
       <button type="button" name="button" ng-click="cancelReservation()">Cancelar Reserva</button>
-      <button type="button" name="button" ng-click="editReservation()">Editar Reserva</button>
     </div>
   </div>
 
