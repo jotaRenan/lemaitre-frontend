@@ -29,12 +29,12 @@ angular.module('leMaitre')
   $scope.tables = [
     {
       id: undefined,
-      status: undefined,
+      status: 'R',
       seats: undefined
     },
     {
       id: undefined,
-      status: undefined,
+      status: 'F',
       seats: undefined
     },
   ];
@@ -42,10 +42,13 @@ angular.module('leMaitre')
   $scope.getTableStatusClass = (status) => {
     switch (status) {
       case 'O': //occupied
+      case 'o':
         return 'red';
       case 'R': //reserved
+      case 'r': //reserved
         return 'orange';
-        case 'F': //free
+      case 'F': //free
+      case 'f':
         return 'green';
       }
   };
@@ -54,11 +57,7 @@ angular.module('leMaitre')
     $scope.isLoading = true;
     retrieveTableStatus(tableId);
     // TODO: open modal which shows the clicked table's status
-    document.querySelector('.table-info').classList.add('displayed');
   };
 
-  $scope.closeTableInfo = () => {
-    document.querySelector('.table-info').classList.remove('displayed');
-  }
 
 }]);
