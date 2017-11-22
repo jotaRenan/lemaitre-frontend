@@ -52,12 +52,34 @@ angular.module('leMaitre')
         return 'green';
       }
   };
-
+  
   $scope.openTableStatus = (tableId) => {
     $scope.isLoading = true;
     retrieveTableStatus(tableId);
-    // TODO: open modal which shows the clicked table's status
   };
 
+  $scope.reserveTable = (reservation) => {
+    tableManagementFactory.reserveTable(reservation)
+      .then(data => {
+        // TODO: normal flux
+      })
+      .catch(error => exhibitError(error));
+  };
+
+  $scope.editTableReservation = (reservation) => {
+    tableManagementFactory.editTableReservation(reservation)
+      .then(data => {
+        // TODO: normal flux
+      })
+      .catch(error => exhibitError(error));
+  };
+
+  $scope.cancelTableReservation = (reservation) => {
+    tableManagementFactory.cancelTableReservation(reservation)
+      .then(data => {
+        // TODO: normal flux
+      })
+      .catch(error => exhibitError(error));
+  };
 
 }]);

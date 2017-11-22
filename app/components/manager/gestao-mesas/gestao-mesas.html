@@ -49,7 +49,7 @@
           </div>
           <div class="" ng-if=" tableBeingViewed.status == 'F' ">
             <!-- campos: inserir token, reservar mesa. -->
-            <button type="button" name="button"></button>
+            <button type="button" name="button" ng-click="reserveTable(tableBeingViewed.reservation)"></button>
           </div>
           <div class=" " ng-if=" tableBeingViewed.status == 'R' ">
           <!-- <div class=" " ng-if="true"> -->
