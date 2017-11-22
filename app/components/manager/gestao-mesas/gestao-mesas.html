@@ -42,6 +42,7 @@
         <div class="" ng-if="!isLoading">
           <div class="" ng-if=" tableBeingViewed.status == 'O' ">
             <!-- campos: fazer pedido, visualizar conta parcial, fechar conta -->
+            <button type="button" name="button" ng-click="requestBill(tableBeingViewed.id)"></button>
           </div>
           <div class="" ng-if=" tableBeingViewed.status == 'F' ">
             <!-- campos: inserir token, reservar mesa. -->

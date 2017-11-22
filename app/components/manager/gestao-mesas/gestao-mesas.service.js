@@ -9,6 +9,7 @@ angular.module('leMaitre')
       });
     },
 
+    //SERVICES RELATED TO RESERVATIONS
     reserveTable: function(reservation) {
       return $http({
         method: 'POST',
@@ -30,6 +31,15 @@ angular.module('leMaitre')
         method: 'DELETE',
         url: ``,
         data: {reservation: reservation}
+      });
+    },
+
+    // SERVICES RELATED TO A BILL
+    requestBill: function(tableId) {
+      return $http({
+        method: 'GET',
+        url: ``,
+        data: {tableId: tableId}
       });
     },
 

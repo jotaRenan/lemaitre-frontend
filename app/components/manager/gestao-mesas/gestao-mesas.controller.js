@@ -52,7 +52,7 @@ angular.module('leMaitre')
         return 'green';
       }
   };
-  
+
   $scope.openTableStatus = (tableId) => {
     $scope.isLoading = true;
     retrieveTableStatus(tableId);
@@ -76,6 +76,14 @@ angular.module('leMaitre')
 
   $scope.cancelTableReservation = (reservation) => {
     tableManagementFactory.cancelTableReservation(reservation)
+      .then(data => {
+        // TODO: normal flux
+      })
+      .catch(error => exhibitError(error));
+  };
+
+  $scope.requestBill = (tableId) => {
+    tableManagementFactory.requestBill(tableId)
       .then(data => {
         // TODO: normal flux
       })
