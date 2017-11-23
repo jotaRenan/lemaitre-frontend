@@ -3,12 +3,16 @@
   <section>
     <form class="pure-form">
       <section class="tables-exhibit">
-        <div ng-repeat="table in tables" class="table-icon" ng-class="getTableStatusClass(table.status)">{{table.id}}uau</div>
+        <div class="table-icon"
+             data-toggle="modal"
+             data-target="#myModal"
+             ng-repeat="table in tables"
+             ng-class="getTableStatusClass(table.status)"
+             ng-click="openTableStatus(table.id)"
+         >
+             {{table.id}}
+         </div>
       </section>
-
-      <div class="">
-        <br><br><button type="button" name="reserve">Reservar Selecionados</button>
-      </div>
 
       <div class="">
         <h5>Legenda</h5>
@@ -21,7 +25,54 @@
         <div class="table small gray" id="mesa-reservada"></div>
         <label for="mesa-reservada">Mesa reservada</label>
       </div>
-
     </form>
   </section>
 </article>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Mesa {{tableBeingViewed.id}}</h4>
+      </div>
+      <div class="modal-body">
+        <p ng-if="isLoading">Carregando...</p>
+        <div class="" ng-if="!isLoading">
+          <div class="" ng-if=" tableBeingViewed.status == 'O' ">
+            <!-- campos: fazer pedido, visualizar conta parcial, fechar conta -->
+            <button type="button" name="button" ng-click="requestBill(tableBeingViewed.id)"></button>
+          </div>
+          <div class="" ng-if=" tableBeingViewed.status == 'F' ">
+            <!-- campos: inserir token, reservar mesa. -->
+            <button type="button" name="button" ng-click="reserveTable(tableBeingViewed.reservation)"></button>
+          </div>
+          <div class=" " ng-if=" tableBeingViewed.status == 'R' ">
+          <!-- <div class=" " ng-if="true"> -->
+            <p>
+              <span class="status-item">Nome:</span>
+              <a href="#" editable-text="tableBeingViewed.reservation.person.name">{{ tableBeingViewed.reservation.person.name || 'Vazio' }}</a>
+            </p>
+            <p>
+              <span class="status-item">Telefone:</span>
+              <a href="#" editable-text="tableBeingViewed.reservation.person.phone">{{ tableBeingViewed.reservation.person.phone || 'Vazio' }}</a>
+            </p>
+            <p>
+              <span class="status-item">Data:</span>
+              <a href="#" editable-text="tableBeingViewed.reservation.date">{{ tableBeingViewed.reservation.date || 'Vazio' }}</a>
+            </p>
+            <p>
+              <span class="status-item">Horário:</span>
+              <a href="#" editable-text="tableBeingViewed.reservation.hour">{{ tableBeingViewed.reservation.hour || 'Vazio' }}</a>
+            </p>
+            <button type="button" name="button" ng-click="cancelReservation()">Cancelar Reserva</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,8 @@
     <base href="/lemaitre-frontend/"></base>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" type="text/css" href="assets\css\forms-nr.css">
     <link rel="stylesheet" type="text/css" href="assets\css\forms.css">
@@ -15,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="assets\css\pure.css">
     <link rel="stylesheet" type="text/css" href="app/components/manager/gestao-mesas/gestao-mesas.css">
     <link rel="shortcut icon" href="assets\img\favicon.png" />
+    <link href="assets\css\xeditable.min.css" rel="stylesheet">
     <script src="./assets/libs/angular.min.js" charset="utf-8"></script>
     <script src="./assets/libs/angular-ui-router.min.js" charset="utf-8"></script>
   </head>
@@ -33,6 +36,8 @@
               <a ui-sref="gestao-mesas">Gestão de Mesas</a>
               <a ui-sref="gerador-token">Gerar Token</a>
               <a ui-sref="adicionar-item">Adicionar Item</a>
+              <a ui-sref="cardapio">Cardápio</a>
+              <a ui-sref="edicao-reserva">Edicao Reserva</a>
             </nav>
 
           </div>
@@ -53,6 +58,8 @@
     <script src="app/app.js" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="./assets/js/main.js" charset="utf-8"></script>
+    <script src="assets\libs\xeditable.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Controllers -->
     <script src="app\components\client\acompanhar-pedido\acompanhar-pedido.controller.js" charset="utf-8"></script>
@@ -70,5 +77,7 @@
 
     <!-- Services -->
     <script src="app\components\manager\gerador-token\gerador-token.service.js" charset="utf-8"></script>
+    <script src="app\components\manager\gestao-mesas\gestao-mesas.service.js" charset="utf-8"></script>
+
   </body>
 </html>
