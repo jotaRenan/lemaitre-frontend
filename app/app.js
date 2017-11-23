@@ -76,3 +76,5 @@ angular.module("leMaitre", ["ui.router", 'xeditable']).config(function($location
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
 });
+
+leMaitre.constant('apiEndpoint',  'http://localhost/lemaitre-frontend');
