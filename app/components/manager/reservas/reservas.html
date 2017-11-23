@@ -1,0 +1,51 @@
+<link rel="stylesheet" type="text/css" href="app\components\manager\reservas\reservas.css">
+<article class="">
+  <section>
+
+    <h3>Reservas</h3>
+
+  </section>
+</article>
+
+<aside>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Detalhes da reserva</h4>
+        </div>
+        <div class="modal-body">
+          <p ng-if="isLoading">Carregando...</p>
+          <div class="" ng-if="!isLoading">
+            <form class="pure-form">
+              <p>
+                <span class="status-item">Número da mesa:</span>
+                <a href="#" editable-text="reservationBeingViewed.person.name">{{ reservationBeingViewed.table.id || 'Vazio' }}</a>
+              </p>
+              <p>
+                <span class="status-item">Telefone:</span>
+                <a href="#" editable-text="reservationBeingViewed.person.name">{{ reservationBeingViewed.person.name || 'Vazio' }}</a>
+              </p>
+              <p>
+                <span class="status-item">Telefone:</span>
+                <a href="#" editable-text="tableBeingViewed.reservation.person.phone">{{ reservationBeingViewed.person.phone || 'Vazio' }}</a>
+              </p>
+              <p>
+                <span class="status-item">Data:</span>
+                <a href="#" editable-text="tableBeingViewed.reservation.date">{{ reservationBeingViewed.date || 'Vazio' }}</a>
+              </p>
+              <p>
+                <span class="status-item">Horário:</span>
+                <a href="#" editable-text="tableBeingViewed.reservation.hour">{{ reservationBeingViewed.hour || 'Vazio' }}</a>
+              </p>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+</aside>

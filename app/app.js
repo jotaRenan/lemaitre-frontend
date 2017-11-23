@@ -71,6 +71,11 @@ angular.module("leMaitre", ["ui.router"]).config(function($locationProvider, $ur
 	      url: '/status-mesa-reservada',
 	      templateUrl: 'app/components/manager/status-mesa-reservada/status-mesa-reservada.html',
         controller: 'StatusMesaReservadaCtrl',
+	    })
+      .state('reservas', {
+	      url: '/reservas',
+	      templateUrl: 'app/components/manager/reservas/reservas.html',
+        controller: 'ReservationsCtrl',
 	    });
 
     $urlRouterProvider.otherwise('/');
