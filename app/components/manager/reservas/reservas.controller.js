@@ -50,7 +50,33 @@ angular.module('leMaitre')
   };
 
   //array containing objects of reservations
-  $scope.reservations = [];
+  $scope.reservations = [
+    {
+      date: 'Nov 23, 2017 12:00:00 AM',
+      nbrOfPeople: null,
+      table: {
+        id: 2
+      },
+      person: {
+        telephone: null,
+        cellphone: '31 97110-2764',
+        name: 'Jota renan',
+      }
+    },
+
+    {
+      date: 'Nov 23, 2017 13:00:00 AM',
+      nbrOfPeople: null,
+      table: {
+        id: 1
+      },
+      person: {
+        telephone: null,
+        cellphone: '31 97110-2765',
+        name: 'Breninho',
+      }
+    }
+  ];
   // reservation to be displayed on a modal
   $scope.reservationBeingViewed = {};
   // object representing a clean reservation object
