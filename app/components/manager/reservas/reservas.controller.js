@@ -96,4 +96,6 @@ angular.module('leMaitre')
   $scope.exhibitReservation = (reservation) => {
     $scope.reservationBeingViewed = reservation;
   };
+
+  $scope.cancelTableReservation = cancelTableReservation;
 }]);
