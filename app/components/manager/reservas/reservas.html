@@ -24,12 +24,8 @@
               <a href="#" editable-text="reservationBeingViewed.person.name">{{ reservationBeingViewed.table.id || 'Vazio' }}</a>
             </p>
             <p>
-              <span class="status-item">Telefone:</span>
-              <a href="#" editable-text="reservationBeingViewed.person.name">{{ reservationBeingViewed.person.name || 'Vazio' }}</a>
-            </p>
-            <p>
-              <span class="status-item">Telefone:</span>
-              <a href="#" editable-text="tableBeingViewed.reservation.person.phone">{{ reservationBeingViewed.person.phone || 'Vazio' }}</a>
+              <span class="status-item">Numero de Pessoas:</span>
+              <a href="#" editable-text="reservationBeingViewed.nbrOfPeople">{{ reservationBeingViewed.nbrOfPeople || 'Vazio' }}</a>
             </p>
             <p>
               <span class="status-item">Data:</span>
@@ -38,6 +34,18 @@
             <p>
               <span class="status-item">Horário:</span>
               <a href="#" editable-text="tableBeingViewed.reservation.hour">{{ reservationBeingViewed.hour || 'Vazio' }}</a>
+            </p>
+            <p>
+              <span class="status-item">Nome do Cliente:</span>
+              <a href="#" editable-text="reservationBeingViewed.person.name">{{ reservationBeingViewed.person.name || 'Vazio' }}</a>
+            </p>
+            <p>
+              <span class="status-item">Telefone Fixo:</span>
+              <a href="#" editable-text="tableBeingViewed.reservation.person.telephone">{{ reservationBeingViewed.person.phone || 'Vazio' }}</a>
+            </p>
+            <p>
+              <span class="status-item">Celular:</span>
+              <a href="#" editable-text="tableBeingViewed.reservation.person.cellphone">{{ reservationBeingViewed.person.phone || 'Vazio' }}</a>
             </p>
           </div>
         </div>
