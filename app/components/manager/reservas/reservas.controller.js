@@ -92,4 +92,8 @@ angular.module('leMaitre')
       phone: null,
     }
   };
+
+  $scope.exhibitReservation = (reservation) => {
+    $scope.reservationBeingViewed = reservation;
+  };
 }]);
