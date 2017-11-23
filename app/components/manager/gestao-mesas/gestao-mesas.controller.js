@@ -28,15 +28,46 @@ angular.module('leMaitre')
 
   $scope.tables = [
     {
-      id: undefined,
+      id: 13,
       status: 'R',
       seats: undefined
     },
     {
-      id: undefined,
+      id: 14,
       status: 'F',
       seats: undefined
     },
+    {
+      id: 15,
+      status: 'o',
+      seats: undefined
+    },
+    {
+      id: 17,
+      status: 'o',
+      seats: undefined
+    },
+    {
+      id: 18,
+      status: 'o',
+      seats: undefined
+    },
+    {
+      id: 20,
+      status: 'r',
+      seats: undefined
+    },
+    {
+      id: 25,
+      status: 'o',
+      seats: undefined
+    },
+    {
+      id: 10,
+      status: 'r',
+      seats: undefined
+    },
+
   ];
 
   $scope.getTableStatusClass = (status) => {
