@@ -1,0 +1,23 @@
+.reservation-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2%;
+  margin-right: 0%;
+  margin-left: 0%;
+  margin-bottom: 0%;
+  background-color: rgba(156, 204, 101, 0.9);
+}
+
+.reservation-data {
+  align-items: center;
+  padding: 2%;
+}
+
+.reservation-data:nth-child(2n) {
+  background-color: rgba(224, 224, 224, 0.6);
+}
+
+.reservation-data:nth-child(2n+1) {
+  background-color: rgba(238, 238, 238, 0.7);
+}
