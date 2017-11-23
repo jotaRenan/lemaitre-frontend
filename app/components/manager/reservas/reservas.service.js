@@ -1,11 +1,11 @@
 angular.module('leMaitre')
-.factory('reservationFactory', ['$http', function($http){
+.factory('reservationFactory', ['$http', 'apiEndpoint', function($http, apiEndpoint){
   return {
     // CREATE
     makeReservation: function(reservation) {
       return $http({
         method: 'POST',
-        url: ``,
+        url: `${apiEndpoint}/`,
         data: {reservation: reservation}
       });
     },
@@ -13,7 +13,7 @@ angular.module('leMaitre')
     editTableReservation: function(reservation) {
       return $http({
         method: 'UPDATE',
-        url: ``,
+        url: `${apiEndpoint}/`,
         data: {reservation: reservation}
       });
     },
@@ -21,7 +21,7 @@ angular.module('leMaitre')
     cancelTableReservation: function(reservation) {
       return $http({
         method: 'DELETE',
-        url: ``,
+        url: `${apiEndpoint}/`,
         data: {reservation: reservation}
       });
     },
@@ -29,14 +29,14 @@ angular.module('leMaitre')
     retrieveNextReservations: function() {
       return $http({
         method: 'GET',
-        url: ``
+        url: `${apiEndpoint}/`
       });
     },
     // RETRIEVE BY DATE
     retrieveReservationByTate: function(date) {
       return $http({
         method: 'GET',
-        url: ``,
+        url: `${apiEndpoint}/`,
         data: {date: date}
       });
     }
