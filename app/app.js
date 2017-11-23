@@ -1,4 +1,4 @@
-angular.module("leMaitre", ["ui.router", 'xeditable']).config(function($locationProvider, $urlRouterProvider, $stateProvider){
+angular.module("leMaitre", ["ui.router", 'xeditable', 'angular.filter']).config(function($locationProvider, $urlRouterProvider, $stateProvider){
     $stateProvider
     	// Rota para a página Login
 	    .state('home', {
