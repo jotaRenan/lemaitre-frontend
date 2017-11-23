@@ -28,7 +28,7 @@ angular.module('leMaitre')
       .then() //todo
       .catch( error => exhibitError(error) );
   };
-  const retrieveReservationByTate = (date) => {
+  const retrieveReservationByDate = (date) => {
     reservationFactory.retrieveReservationByTate(date)
       .then() //todo
       .catch( error => exhibitError(error) );
@@ -96,6 +96,10 @@ angular.module('leMaitre')
   $scope.exhibitReservation = (reservation) => {
     $scope.reservationBeingViewed = reservation;
   };
-
+  // exposes functions to scope
   $scope.cancelTableReservation = cancelTableReservation;
+  $scope.makeReservation = makeReservation;
+  $scope.editTableReservation = editTableReservation;
+  $scope.retrieveNextReservations = retrieveNextReservations;
+  $scope.retrieveReservationByDate = retrieveReservationByDate;
 }]);
