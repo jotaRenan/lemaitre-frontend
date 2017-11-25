@@ -5,7 +5,7 @@ angular.module('leMaitre')
     tableManagementFactory.retrieveStatus(tableId)
       .then( response => {
         $scope.isLoading = false;
-        $scope.tableBeingViewed = tableJSONSugar(data.data.content);
+        $scope.tableBeingViewed = tableJSONSugar(response.data.content);
       })
       .catch( error => exhibitError(error) );
   };
@@ -14,7 +14,7 @@ angular.module('leMaitre')
     tableManagementFactory.retrieveTablesGeneralStatus()
       .then ( response => {
         $scope.isLoading = false;
-        $scope.tables = data.data.content.map(tableJSONSugar);
+        $scope.tables = response.data.content.map(tableJSONSugar);
       })
       .catch( error => exhibitError(error) );
   };
