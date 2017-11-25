@@ -1,5 +1,5 @@
 angular.module('leMaitre')
-.controller('GestaoMesasCtrl', ['$scope', 'tableManagementFactory', function($scope, tableManagementFactory){
+.controller('GestaoMesasCtrl', ['$scope', 'tableManagementFactory', 'reservationFactory', function($scope, tableManagementFactory, reservationFactory){
 
   const retrieveTableStatus = (tableId) => {
     tableManagementFactory.retrieveStatus(tableId)
@@ -19,6 +19,20 @@ angular.module('leMaitre')
       .catch( error => exhibitError(error) );
   };
 
+  const retrieveReservationByTableID = (tableID) => {
+    reservationFactory.retrieveReservationByTableID(tableID)
+      .then( response => {
+        $scope.isLoading = false;
+        const reservations = response.data.content
+          .map(reservationFactory.reservationJSONSugar)
+          .map(reservation => {
+            delete reservation.table.id; // unnecessary attribute, since the reservation object is nested inside a table object
+            return reservation;
+          });
+        $scope.tableBeingViewed.reservations = reservations;
+      })
+      .catch( error => exhibitError(error) );
+  };
   const tableJSONSugar = (oldTable) => {
     let newTable = {};
     newTable.status = oldTable.idtStatus;
@@ -56,9 +70,10 @@ angular.module('leMaitre')
       }
   };
 
-  $scope.openTableStatus = (tableId) => {
+  $scope.openTableStatus = (table) => {
     $scope.isLoading = true;
-    retrieveTableStatus(tableId);
+    $scope.tableBeingViewed = table;
+    retrieveReservationByTableID(table.id);
   };
 
 
