@@ -1,4 +1,4 @@
-angular.module('leMaitre')
+angular.module('leMaitre-kitchen')
 .controller('KitchenCtrl', function($scope){
 
   let orders;

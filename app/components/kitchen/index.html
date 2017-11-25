@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="leMaitre-kitchen">
   <head>
     <meta charset="utf-8">
     <title>Le Maitre</title>
+    <base href=""></base>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="../../../assets/libs/angular.min.js" charset="utf-8"></script>
+    <script src="kitchen-app.js" charset="utf-8"></script>
+    <script src=".\kitchen.controller.js" charset="utf-8"></script>
   </head>
   <body>
-    <div class="big-container">
+    <div class="big-container" ng-controller="KitchenCtrl">
       <header>
         <h1>Le Maître</h1>
       </header>
@@ -40,7 +44,7 @@
             <div class="status" ng-class="getItemStatusCSSClass(item.status)"></div>
           </div>
           <aside class="time">
-            <p> <span class="number">20</span>min</p>
+            <p> &lt <span class="number">20</span>min</p>
           </aside>
         </section>
         <section class="status-panel red">
@@ -59,5 +63,8 @@
         </section>
       </main>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
 </html>
