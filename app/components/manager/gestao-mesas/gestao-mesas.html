@@ -60,7 +60,11 @@
 
           <div class="" ng-if=" tableBeingViewed.status == 'F' ">
             <!-- campos: inserir token, reservar mesa. -->
-            <button type="button" name="button" ng-click="reserveTable(tableBeingViewed.reservation)"></button>
+            <form class="pure-form">
+              <button class="btn btn-success" type="submit" name="button" ng-click="reserveTable(tableBeingViewed.reservation)">Associar Token</button>
+              <input type="text" name="" value="" ng-model="insertedToken" required>
+            </form>
+
           </div>
 
           <div class=" " ng-if=" tableBeingViewed.status == 'R' ">
