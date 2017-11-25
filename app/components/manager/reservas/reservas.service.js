@@ -51,6 +51,21 @@ angular.module('leMaitre')
         method: 'GET',
         url: `${apiEndpoint}/${tableID}`
       });
+    },
+
+    // converts reservation json structure into a better one to be used
+    reservationJSONSugar: function(badSyntax) {
+      let reservation, person, table;
+      table.id = badSyntax.codIDTable;
+      person.name = badSyntax.txtContactName;
+      person.cellphone = badSyntax.txtCellphone;
+      person.telephone = badSyntax.txtTelephone;
+      reservation.date = badSyntax.datReservation;
+      reservation.hour = badSyntax.darHourReservation;
+      reservation.nbrOfPeople = badSyntax.nroPersons;
+      reservation.person = person;
+      reservation.table = table;
+      return reservation;
     }
   };
 }]);
