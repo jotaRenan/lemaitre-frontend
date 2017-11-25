@@ -1,40 +1,49 @@
-.item-name, .item-img, .item-price, .item-description {
-  padding: 3%;
-
-}
-
-.item-form > input {
-  padding-left: 3%;
-}
-
 h1 {
   text-align: center;
+  background-color: rgba(156, 204, 101, 0.6);
+  padding: 3%;
+  margin: 1%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.add-item-container {
+  background-color: rgba(224, 224, 224, 0.7);
+  padding: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  margin: 1%;
+  margin-top: 0;
+}
+
+.item-name, .item-picture, .item-price, .item-description {
+  margin-bottom: 3%;
 }
 
 .buttons {
-  padding: 3%;
+  padding-left: 3%;
+  padding-right: 3%;
   text-align: center;
 }
 
-.button {
-  -moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	color: #ffffff;
-	display: inline-block;
-	cursor: pointer;
-	font-size: 14px;
-	padding: 12px 14px;
-	text-decoration: none;
-  margin: 1%;
+.submit, .cancel {
+  margin: 3%;
+  margin-bottom: 0;
+  font-size: 18px;
 }
 
-.cancel {
-  border: 1px solid #cc1414;
-  background-color: #e51616;
-}
+@media only screen and (max-width: 480px) {
+  h1 {
+    padding: 5%;
+    margin-top: 1%;
+  }
 
-.submit {
-  border: 1px solid #18ab29;
-  background-color: #44c767;
+  .item-form > div {
+    margin-bottom: 5%;
+  }
+
+  .submit, .cancel {
+    font-size: 16px;
+    margin: 4%;
+  }
 }
