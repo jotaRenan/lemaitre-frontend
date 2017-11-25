@@ -44,6 +44,13 @@ angular.module('leMaitre')
         url: `${apiEndpoint}/`,
         data: {date: date}
       });
+    },
+    // RETRIEVE BY TABLE ID
+    retrieveReservationByTableID: function(tableID) {
+      return $http({
+        method: 'GET',
+        url: `${apiEndpoint}/${tableID}`
+      });
     }
   };
 }]);

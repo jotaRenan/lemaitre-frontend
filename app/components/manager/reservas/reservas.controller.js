@@ -28,6 +28,11 @@ angular.module('leMaitre')
       .then() //todo
       .catch( error => exhibitError(error) );
   };
+  const retrieveReservationByTableID = (tableId) => {
+    reservationFactory.retrieveReservationByTableID()
+      .then() // todo
+      .catch( error => exhibitError(error) );
+  };
   const retrieveReservationByDate = (date) => {
     reservationFactory.retrieveReservationByDate(date)
       .then() //todo
@@ -102,4 +107,5 @@ angular.module('leMaitre')
   $scope.editTableReservation = editTableReservation;
   $scope.retrieveNextReservations = retrieveNextReservations;
   $scope.retrieveReservationByDate = retrieveReservationByDate;
+  $scope.retrieveReservationByTableID = retrieveReservationByTableID;
 }]);
