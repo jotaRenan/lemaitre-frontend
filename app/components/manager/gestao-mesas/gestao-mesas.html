@@ -49,7 +49,7 @@
               </div>
             </section>
             <section ng-if="!isCategoryMenuBeingExhibited" class="flex-container">
-              <div class="flex-item" ng-repeat="category in categories" ng-click="orderItem(item)">
+              <div class="flex-item content-icon item" ng-repeat="item in items" ng-click="orderItem(item)">
                 {{item.name}}
               </div>
             </section>

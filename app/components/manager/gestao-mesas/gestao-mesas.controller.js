@@ -1,5 +1,5 @@
 angular.module('leMaitre')
-.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory){
+.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory){
 
   const retrieveTableStatus = (tableId) => {
     tableManagementFactory.retrieveStatus(tableId)
@@ -103,8 +103,9 @@ angular.module('leMaitre')
     $scope.isCategoryMenuBeingExhibited = false;
     categoryManagementFactory.getItemsFromCategory(category.id)
       .then( response => {
+        $scope.items = response.data.content.map(itemManagementFactory.itemJSONSyntaxSugar);
       })
-      .catch();
+      .catch(error => exhibitError(error));
   };
   // BEGINS EXECUTION
   retrieveTablesGeneralStatus();

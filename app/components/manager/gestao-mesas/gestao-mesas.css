@@ -109,10 +109,17 @@
   justify-content: center;
   margin: 0.5%;
   box-sizing: border-box;
+  text-align: center;
 }
 
 .category {
   background-color: lightgrey;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+.item {
+  background-color: darkgrey;
   font-weight: bolder;
   text-transform: uppercase;
 }
