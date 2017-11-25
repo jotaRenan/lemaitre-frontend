@@ -55,7 +55,7 @@ angular.module('leMaitre')
 
     // converts reservation json structure into a better one to be used
     reservationJSONSugar: function(badSyntax) {
-      let reservation, person, table;
+      let reservation = {}, person = {}, table = {};
       table.id = badSyntax.codIDTable;
       person.name = badSyntax.txtContactName;
       person.cellphone = badSyntax.txtCellphone;
