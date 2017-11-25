@@ -24,10 +24,14 @@
   background-color: rgba(249, 249, 255, 0.6);
   padding: 5%;
   font-size: 1.1em;
+  border-bottom: 2px solid;
+  border-color: rgba(224, 224, 224, 0.5);
 }
 
 .categoria-cardapio > section {
   padding: 7%;
+  border-bottom: 2px solid;
+  border-color: rgba(224, 224, 224, 0.5);
 }
 
 .categoria-cardapio > section > div {
