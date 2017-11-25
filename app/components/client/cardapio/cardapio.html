@@ -1,12 +1,14 @@
   <link rel="stylesheet" href="app\\components\\client\\cardapio\\cardapio.css">
 <article class="">
-  <h1>Cardápio</h1>
-  <section>
-    <form class="" >
-      <input type="text" ng-model="search" name="" value="" placeholder="Filtrar cardápio">
+  <h1 class="title">Cardápio</h1>
+  <section class="menu-container">
+    <form class="pure-form" >
+      <input type="text" id="search-filter" ng-model="search" name="" value="" placeholder="Filtrar cardápio">
     </form>
     <div ng-repeat="categoria in categorias  | filter:{name : search}" ng-click="showItems(categoria.name)" class="categoria-cardapio">
-      <span>{{categoria.name}}</span>
+      <div class="category-name">
+        <span>{{categoria.name}}</span>
+      </div>
       <section ng-class="'not-displayed category-' + categoria.name">
         <div ng-repeat="item in categoria.items" ng-class="item.name">
           <div class="name">

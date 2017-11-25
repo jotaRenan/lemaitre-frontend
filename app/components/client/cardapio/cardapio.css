@@ -1,8 +1,56 @@
 .categoria-cardapio {
   display: block;
-  padding-top: 5%;
+  background-color: rgba(239, 239, 255, 0.5);
 }
 
 .not-displayed {
   display: none;
+}
+
+#search-filter {
+  margin-bottom: 5%;
+}
+
+.menu-container {
+  background-color: rgba(224, 224, 224, 0.7);
+  padding: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  margin: 1%;
+  margin-top: 0;
+}
+
+.category-name {
+  background-color: rgba(249, 249, 255, 0.7);
+  padding: 5%;
+  font-size: 1.1em;
+}
+
+.categoria-cardapio > section {
+  padding: 7%;
+}
+
+.categoria-cardapio > section > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex: 1;
+    padding: 2%;
+}
+
+.title {
+  text-align: center;
+  background-color: rgba(156, 204, 101, 0.6);
+  padding: 3%;
+  margin: 1%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+@media only screen and (max-width: 480px) {
+  .title {
+    padding: 5%;
+    margin-top: 1%;
+  }
 }
