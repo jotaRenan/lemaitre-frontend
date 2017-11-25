@@ -29,7 +29,7 @@ angular.module('leMaitre')
       .catch( error => exhibitError(error) );
   };
   const retrieveReservationByDate = (date) => {
-    reservationFactory.retrieveReservationByTate(date)
+    reservationFactory.retrieveReservationByDate(date)
       .then() //todo
       .catch( error => exhibitError(error) );
   };
