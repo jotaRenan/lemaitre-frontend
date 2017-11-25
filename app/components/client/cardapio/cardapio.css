@@ -12,7 +12,7 @@
 }
 
 .menu-container {
-  background-color: rgba(224, 224, 224, 0.7);
+  background-color: rgba(224, 224, 224, 0.5);
   padding: 5%;
   padding-left: 10%;
   padding-right: 10%;
@@ -21,7 +21,7 @@
 }
 
 .category-name {
-  background-color: rgba(249, 249, 255, 0.7);
+  background-color: rgba(249, 249, 255, 0.6);
   padding: 5%;
   font-size: 1.1em;
 }
