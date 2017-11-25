@@ -36,6 +36,7 @@ angular.module('leMaitre')
       category.name = badSyntax.nomCategory;
       category.id = badSyntax.seqCategory;
       category.subcategories = [];
+      return category;
     }
   };
 }]);
