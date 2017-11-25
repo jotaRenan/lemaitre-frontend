@@ -30,6 +30,12 @@ angular.module('leMaitre')
         method: 'GET',
         url: `${categoryBaseURL}/${categoryID}/items`,
       });
+    },
+    categoryJSONSyntaxSugar: function(badSyntax) {
+      let category = {};
+      category.name = badSyntax.nomCategory;
+      category.id = badSyntax.seqCategory;
+      category.subcategories = [];
     }
   };
 }]);
