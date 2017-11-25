@@ -1,11 +1,9 @@
 <link rel="stylesheet" type="text/css" href="app\components\manager\reservas\reservas.css">
 <article class="">
+  <h1>Reservas</h1>
   <section>
-
-    <h3>Reservas</h3>
-
     <ul ng-repeat="(key, value) in reservations | groupBy: 'date'">
-      <h4>Reservas para {{key}}</h4>
+      <h4 class="reservations">Reservas para {{key}}</h4>
       <li ng-repeat="reservation in value"
           data-toggle="modal"
           data-target="#myModal"
