@@ -3,18 +3,34 @@ angular.module('leMaitre')
 
   const retrieveTableStatus = (tableId) => {
     tableManagementFactory.retrieveStatus(tableId)
-      .then( data => {
+      .then( response => {
         $scope.isLoading = false;
-        $scope.tableBeingViewed = data;
+        $scope.tableBeingViewed = tableJSONSugar(data.data.content);
       })
       .catch( error => exhibitError(error) );
   };
 
   const retrieveTablesGeneralStatus = () => {
     tableManagementFactory.retrieveTablesGeneralStatus()
-      .then ( data => {
+      .then ( response => {
         $scope.isLoading = false;
-        $scope.tables = data;
+        $scope.tables = data.data.content.map(tableJSONSugar);
+      })
+      .catch( error => exhibitError(error) );
+  };
+
+  const tableJSONSugar = (oldTable) => {
+    let newTable = {};
+    newTable.status = oldTable.idtStatus;
+    newTable.id = oldTable.codID;
+    newTable.nbrOfSeats = oldTable.nroSeat;
+    return newTable;
+  };
+
+  const insertTable = (table) => {
+    tableManagementFactory.insertTable(table)
+      .then ( response => {
+        $scope.isLoading = false;
       })
       .catch( error => exhibitError(error) );
   };
@@ -25,50 +41,6 @@ angular.module('leMaitre')
   };
 
   $scope.tableBeingViewed = {};
-
-  $scope.tables = [
-    {
-      id: 13,
-      status: 'R',
-      seats: undefined
-    },
-    {
-      id: 14,
-      status: 'F',
-      seats: undefined
-    },
-    {
-      id: 15,
-      status: 'o',
-      seats: undefined
-    },
-    {
-      id: 17,
-      status: 'o',
-      seats: undefined
-    },
-    {
-      id: 18,
-      status: 'o',
-      seats: undefined
-    },
-    {
-      id: 20,
-      status: 'r',
-      seats: undefined
-    },
-    {
-      id: 25,
-      status: 'o',
-      seats: undefined
-    },
-    {
-      id: 10,
-      status: 'r',
-      seats: undefined
-    },
-
-  ];
 
   $scope.getTableStatusClass = (status) => {
     switch (status) {
@@ -121,4 +93,6 @@ angular.module('leMaitre')
       .catch(error => exhibitError(error));
   };
 
+  // BEGINS EXECUTION
+  retrieveTablesGeneralStatus();
 }]);
