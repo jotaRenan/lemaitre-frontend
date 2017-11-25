@@ -39,15 +39,30 @@
       </div>
       <div class="modal-body">
         <p ng-if="isLoading">Carregando...</p>
-        <div class="" ng-if="!isLoading">
+        <div class="">
+
           <div class="" ng-if=" tableBeingViewed.status == 'O' ">
             <!-- campos: fazer pedido, visualizar conta parcial, fechar conta -->
-            <button type="button" name="button" ng-click="requestBill(tableBeingViewed.id)"></button>
+            <section class="flex-container">
+              <div ng-if="isCategoryMenuBeingExhibited" class="flex-item content-icon category" ng-repeat="category in categories" ng-click="exhibitItems(category)">
+                {{category.name}}
+              </div>
+            </section>
+            <section ng-if="!isCategoryMenuBeingExhibited" class="flex-container">
+              <div class="flex-item" ng-repeat="category in categories" ng-click="orderItem(item)">
+                {{item.name}}
+              </div>
+            </section>
+
+            <button type="button" class="btn btn-primary" name="button" ng-click="requestBill(tableBeingViewed.id)">Fechar conta</button>
+
           </div>
+
           <div class="" ng-if=" tableBeingViewed.status == 'F' ">
             <!-- campos: inserir token, reservar mesa. -->
             <button type="button" name="button" ng-click="reserveTable(tableBeingViewed.reservation)"></button>
           </div>
+
           <div class=" " ng-if=" tableBeingViewed.status == 'R' ">
           <!-- <div class=" " ng-if="true"> -->
             <div ng-repeat="reservation in tableBeingViewed.reservations">
@@ -79,7 +94,7 @@
             </div>
             <button type="button" class="btn btn-default" name="button" data-dismiss="modal" ng-click="editReservations()">Editar Reservas</button>
           </div>
-        </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>

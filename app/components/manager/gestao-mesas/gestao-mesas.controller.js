@@ -1,5 +1,5 @@
 angular.module('leMaitre')
-.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', function($scope, $state, tableManagementFactory, reservationFactory){
+.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory){
 
   const retrieveTableStatus = (tableId) => {
     tableManagementFactory.retrieveStatus(tableId)
@@ -54,6 +54,14 @@ angular.module('leMaitre')
     alert(`Erro ${error.status}: ${error.statusText}`);
   };
 
+  const retrieveCategories = () => {
+    categoryManagementFactory.retrieveCategories()
+      .then( response => {
+        $scope.categories = response.data.content.map(categoryManagementFactory.categoryJSONSyntaxSugar);
+      })
+      .catch();
+  };
+
   $scope.tableBeingViewed = {};
 
   $scope.getTableStatusClass = (status) => {
@@ -73,7 +81,9 @@ angular.module('leMaitre')
   $scope.openTableStatus = (table) => {
     $scope.isLoading = true;
     $scope.tableBeingViewed = table;
-    retrieveReservationByTableID(table.id);
+    if (table.status === 'R' || 'r' === table.status){
+      retrieveReservationByTableID(table.id);
+    }
   };
 
 
@@ -89,6 +99,15 @@ angular.module('leMaitre')
     $state.go('edicao-reserva');
   };
 
+  $scope.exhibitItems = (category) => {
+    $scope.isCategoryMenuBeingExhibited = false;
+    categoryManagementFactory.getItemsFromCategory(category.id)
+      .then( response => {
+      })
+      .catch();
+  };
   // BEGINS EXECUTION
   retrieveTablesGeneralStatus();
+  retrieveCategories();
+  $scope.isCategoryMenuBeingExhibited = true;
 }]);
