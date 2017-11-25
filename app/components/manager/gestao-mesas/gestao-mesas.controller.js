@@ -55,8 +55,10 @@ angular.module('leMaitre')
   };
 
   const retrieveCategories = () => {
+    $scope.isLoading = true;
     categoryManagementFactory.retrieveCategories()
       .then( response => {
+        $scope.isLoading = false;
         $scope.categories = response.data.content.map(categoryManagementFactory.categoryJSONSyntaxSugar);
       })
       .catch();
@@ -79,7 +81,7 @@ angular.module('leMaitre')
   };
 
   $scope.openTableStatus = (table) => {
-    $scope.isLoading = true;
+    $scope.isCategoryMenuBeingExhibited = true;
     $scope.tableBeingViewed = table;
     if (table.status === 'R' || 'r' === table.status){
       retrieveReservationByTableID(table.id);
@@ -100,9 +102,11 @@ angular.module('leMaitre')
   };
 
   $scope.exhibitItems = (category) => {
+    $scope.isLoading = true;
     $scope.isCategoryMenuBeingExhibited = false;
     categoryManagementFactory.getItemsFromCategory(category.id)
       .then( response => {
+        $scope.isLoading = false;
         $scope.items = response.data.content.map(itemManagementFactory.itemJSONSyntaxSugar);
       })
       .catch(error => exhibitError(error));
