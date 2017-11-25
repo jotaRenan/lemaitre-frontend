@@ -1,13 +1,14 @@
+<link rel="stylesheet" href="app\components\manager\gerador-token\gerador-token.css">
 <article class="">
   <h1>Gerador de Token</h1>
-  <section>
+  <section class="generator-container">
     <p>Insira o nº da mesa e clique para gerar o token correspondente à ela</p>
     <form name="form" class="pure-form" ng-submit="gerarTokens()">
       <div class="">
-        <label for="tables">Mesas <span class="subtitle">separadas por espaço</span></label>
-        <input id="tables" name="tables" type="text">
+        <label for="tables">Mesa</label>
+        <input id="tables" name="tables" type="text" placeholder="Ex.: 11">
       </div>
-      <div class="">
+      <div class="generate-button">
         <button type="submit" name="button">Gerar Token</button>
       </div>
     </form>

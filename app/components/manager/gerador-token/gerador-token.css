@@ -1,0 +1,33 @@
+h1 {
+  text-align: center;
+  background-color: rgba(156, 204, 101, 0.6);
+  padding: 3%;
+  margin: 1%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.generator-container {
+  background-color: rgba(224, 224, 224, 0.5);
+  padding: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  margin: 1%;
+  margin-top: 0;
+}
+
+.generator-container > p {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.generate-button {
+  margin-top: 5%;
+}
+
+@media only screen and (max-width: 480px) {
+  h1 {
+    padding: 5%;
+    margin-top: 1%;
+  }
+}
