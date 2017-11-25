@@ -54,30 +54,30 @@
 
               <p>
                 <span class="status-item">Nome:</span>
-                <a href="#" editable-text="reservation.person.name">{{ reservation.person.name || 'Vazio' }}</a>
+                {{ reservation.person.name || 'Vazio' }}
               </p>
               <p>
                 <span class="status-item">Numero de Pessoas:</span>
-                <a href="#" editable-text="reservation.nbrOfPeople">{{ reservation.nbrOfPeople || 'Vazio' }}</a>
+                {{ reservation.nbrOfPeople || 'Vazio' }}
               </p>
               <p>
                 <span class="status-item">Telefone fixo:</span>
-                <a href="#" editable-text="reservation.person.phone">{{ reservation.person.telephone || 'Vazio' }}</a>
+                {{ reservation.person.telephone || 'Vazio' }}
               </p>
               <p>
                 <span class="status-item">Celular:</span>
-                <a href="#" editable-text="reservation.person.cellphone">{{ reservation.person.cellphone || 'Vazio' }}</a>
+                {{ reservation.person.cellphone || 'Vazio' }}
               </p>
               <p>
                 <span class="status-item">Data:</span>
-                <a href="#" editable-text="reservation.date">{{ reservation.date || 'Vazio' }}</a>
+                {{ reservation.date || 'Vazio' }}
               </p>
               <p>
                 <span class="status-item">Horário:</span>
-                <a href="#" editable-text="reservation.hour">{{ reservation.hour || 'Vazio' }}</a>
+                {{ reservation.hour || 'Vazio' }}
               </p>
-              <button type="button" name="button" ng-click="cancelReservation()">Cancelar Reserva</button>
             </div>
+            <button type="button" class="btn btn-default" name="button" data-dismiss="modal" ng-click="editReservations()">Editar Reservas</button>
           </div>
         </div>
       </div>

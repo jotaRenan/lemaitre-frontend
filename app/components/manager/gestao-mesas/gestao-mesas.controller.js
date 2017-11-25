@@ -1,5 +1,5 @@
 angular.module('leMaitre')
-.controller('GestaoMesasCtrl', ['$scope', 'tableManagementFactory', 'reservationFactory', function($scope, tableManagementFactory, reservationFactory){
+.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', function($scope, $state, tableManagementFactory, reservationFactory){
 
   const retrieveTableStatus = (tableId) => {
     tableManagementFactory.retrieveStatus(tableId)
@@ -83,6 +83,10 @@ angular.module('leMaitre')
         // TODO: normal flux
       })
       .catch(error => exhibitError(error));
+  };
+
+  $scope.editReservations = () => {
+    $state.go('edicao-reserva');
   };
 
   // BEGINS EXECUTION
