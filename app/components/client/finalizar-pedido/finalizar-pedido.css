@@ -7,7 +7,7 @@
 }
 
 .title {
-  background-color: rgba(156, 204, 101, 0.9);
+  background-color: rgba(156, 204, 101, 0.6);
 }
 
 .payment-values {
@@ -32,7 +32,8 @@
 }
 
 .outer-item:last-child {
-  background-color: rgba(156, 204, 101, 0.9);
+  background-color: rgba(156, 204, 101, 0.6);
+  padding: 3%;
 }
 
 .item {
@@ -53,4 +54,11 @@ span.price::before {
 .important, .important::before {
   font-weight: bolder;
   text-transform: uppercase;
+}
+
+@media only screen and (max-width: 480px) {
+  .title {
+    margin-top: 1%;
+    margin-bottom: 0;
+  }
 }
