@@ -1,5 +1,5 @@
 angular.module('leMaitre')
-.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory){
+.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory){
 
   const retrieveTableStatus = (tableId) => {
     tableManagementFactory.retrieveStatus(tableId)
@@ -61,7 +61,15 @@ angular.module('leMaitre')
         $scope.isLoading = false;
         $scope.categories = response.data.content.map(categoryManagementFactory.categoryJSONSyntaxSugar);
       })
-      .catch();
+      .catch( error => exhibitError(error) );
+  };
+
+  const retrieveSubcategoryItems = (categoryID, subcategoryID) => {
+    subcategoryManagementFactory.retrieveSubcategoryItems(categoryID, subcategoryID)
+      .then(response => {
+
+      })
+      .catch( error => exhibitError(error) );
   };
 
   $scope.tableBeingViewed = {};
@@ -87,7 +95,6 @@ angular.module('leMaitre')
       retrieveReservationByTableID(table.id);
     }
   };
-
 
   $scope.requestBill = (tableId) => {
     tableManagementFactory.requestBill(tableId)
