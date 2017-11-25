@@ -30,6 +30,20 @@ angular.module('leMaitre')
         method: 'GET',
         url: `${itemImageBaseURL}/${itemID}`,
       });
+    },
+    // SYNTAX SUGAAR
+    itemJSONSyntaxSugar: function(badSyntax) {
+      let item = {}, category = {};
+      item.name = badSyntax.nomItem;
+      item.id = badSyntax.codItem;
+      item.description = badSyntax.desItem;
+      item.isAvailable = badSyntax.isAvaliable;
+      item.price = badSyntax.vlrPrice;
+      category.id = badSyntax.seqCategory;
+      category.subcategory = {};
+      category.subcategory.id = badSyntax.seqSubcategory;
+      item.category = category;
+      return item;
     }
   };
 }]);
