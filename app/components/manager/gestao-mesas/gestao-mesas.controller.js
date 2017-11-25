@@ -61,29 +61,6 @@ angular.module('leMaitre')
     retrieveTableStatus(tableId);
   };
 
-  $scope.reserveTable = (reservation) => {
-    tableManagementFactory.reserveTable(reservation)
-      .then(data => {
-        // TODO: normal flux
-      })
-      .catch(error => exhibitError(error));
-  };
-
-  $scope.editTableReservation = (reservation) => {
-    tableManagementFactory.editTableReservation(reservation)
-      .then(data => {
-        // TODO: normal flux
-      })
-      .catch(error => exhibitError(error));
-  };
-
-  $scope.cancelTableReservation = (reservation) => {
-    tableManagementFactory.cancelTableReservation(reservation)
-      .then(data => {
-        // TODO: normal flux
-      })
-      .catch(error => exhibitError(error));
-  };
 
   $scope.requestBill = (tableId) => {
     tableManagementFactory.requestBill(tableId)
