@@ -61,7 +61,7 @@ angular.module('leMaitre')
       person.cellphone = badSyntax.txtCellphone;
       person.telephone = badSyntax.txtTelephone;
       reservation.date = badSyntax.datReservation;
-      reservation.hour = badSyntax.darHourReservation;
+      reservation.hour = badSyntax.datHourReservation;
       reservation.nbrOfPeople = badSyntax.nroPersons;
       reservation.person = person;
       reservation.table = table;
