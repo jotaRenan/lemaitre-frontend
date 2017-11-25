@@ -1,23 +1,24 @@
-<article class="">
-  <h1>Reserva de Mesas</h1>
-  <section>
+<link rel="stylesheet" type="text/css" href="app\components\manager\edicao-reserva\edicao-reserva.css">
+<article>
+  <h1 class="title" >Reserva de Mesas</h1>
+  <section class="reservation-container">
     <form class="pure-form">
-      <div class="">
+      <div class="reservation-data">
         <label for="table">Mesas escolhidas:</label> <br>
         <input id="table" type="text" value="" placeholder="Mesa ID=1"><br>
         <input id="table" type="text" value="" placeholder="Mesa ID=2">
       </div>
-      <div class="">
+      <div class="reservation-data">
         <label for="client">Dados do cliente:</label> <br>
         <input id="client" type="text" value="" placeholder="Nome do reservante"><br>
         <input id="client" type="text" value="" placeholder="Telefone">
       </div>
-      <div class="">
+      <div class="reservation-time">
         <label for="time">Horário de Reserva</label> <br>
-        <input id="time" type="date" value=""><br>
-        <input id="time" type="time" value="" placeholder="Horário">
+        <input class="date-field" id="time" type="date" value="">
+        <input class="time-field" id="time" type="time" value="" placeholder="Horário">
       </div>
-      <div class="">
+      <div class="reservation-buttons">
         <button type="submit" name="button">Confirmar Reserva</button>
         <button type="button" name="button">Cancelar</button>
       </div>

@@ -15,7 +15,6 @@
     <link rel="stylesheet" type="text/css" href="assets\css\forms.css">
     <link rel="stylesheet" type="text/css" href="assets\css\pure-nr.css">
     <link rel="stylesheet" type="text/css" href="assets\css\pure.css">
-    <link rel="stylesheet" type="text/css" href="app/components/manager/gestao-mesas/gestao-mesas.css">
     <link rel="shortcut icon" href="assets\img\favicon.png" />
     <link href="assets\css\xeditable.min.css" rel="stylesheet">
     <script src="./assets/libs/angular.min.js" charset="utf-8"></script>
@@ -38,6 +37,7 @@
               <a ui-sref="adicionar-item">Adicionar Item</a>
               <a ui-sref="cardapio">Cardápio</a>
               <a ui-sref="edicao-reserva">Edicao Reserva</a>
+              <a ui-sref="reservas">Reservas</a>
             </nav>
 
           </div>
@@ -60,6 +60,7 @@
     <script src="./assets/js/main.js" charset="utf-8"></script>
     <script src="assets\libs\xeditable.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="assets\libs\angular-filter.min.js" charset="utf-8"></script>
 
     <!-- Controllers -->
     <script src="app\components\client\acompanhar-pedido\acompanhar-pedido.controller.js" charset="utf-8"></script>
@@ -74,10 +75,13 @@
     <script src="app\components\manager\status-mesa-ocupada\status-mesa-ocupada.controller.js" charset="utf-8"></script>
     <script src="app\components\manager\status-mesa-reservada\status-mesa-reservada.controller.js" charset="utf-8"></script>
     <script src="app\components\shared\login\login.controller.js" charset="utf-8"></script>
-
+    <script src="app\components\manager\reservas\reservas.controller.js" charset="utf-8"></script>
     <!-- Services -->
     <script src="app\components\manager\gerador-token\gerador-token.service.js" charset="utf-8"></script>
+    <script src="app\components\manager\reservas\reservas.service.js" charset="utf-8"></script>
     <script src="app\components\manager\gestao-mesas\gestao-mesas.service.js" charset="utf-8"></script>
-
+    <script src="app\components\manager\adicionar-item\category.service.js" charset="utf-8"></script>
+    <script src="app\components\manager\adicionar-item\subcategory.service.js" charset="utf-8"></script>
+    <script src="app\components\manager\adicionar-item\items.service.js" charset="utf-8"></script>
   </body>
 </html>

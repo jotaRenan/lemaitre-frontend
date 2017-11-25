@@ -8,7 +8,7 @@
              data-target="#myModal"
              ng-repeat="table in tables"
              ng-class="getTableStatusClass(table.status)"
-             ng-click="openTableStatus(table.id)"
+             ng-click="openTableStatus(table)"
          >
              {{table.id}}
          </div>
@@ -39,36 +39,66 @@
       </div>
       <div class="modal-body">
         <p ng-if="isLoading">Carregando...</p>
-        <div class="" ng-if="!isLoading">
+        <div class="">
+
           <div class="" ng-if=" tableBeingViewed.status == 'O' ">
             <!-- campos: fazer pedido, visualizar conta parcial, fechar conta -->
-            <button type="button" name="button" ng-click="requestBill(tableBeingViewed.id)"></button>
+            <section class="flex-container">
+              <div ng-if="isCategoryMenuBeingExhibited" class="flex-item content-icon category" ng-repeat="category in categories" ng-click="exhibitItems(category)">
+                {{category.name}}
+              </div>
+            </section>
+            <section ng-if="!isCategoryMenuBeingExhibited" class="flex-container">
+              <div class="flex-item content-icon item" ng-repeat="item in items" ng-click="orderItem(item)">
+                {{item.id}} - {{item.name}}
+              </div>
+            </section>
+
+            <button type="button" class="btn btn-primary" name="button" ng-click="requestBill(tableBeingViewed.id)">Fechar conta</button>
+
           </div>
+
           <div class="" ng-if=" tableBeingViewed.status == 'F' ">
             <!-- campos: inserir token, reservar mesa. -->
-            <button type="button" name="button" ng-click="reserveTable(tableBeingViewed.reservation)"></button>
+            <form class="pure-form">
+              <button class="btn btn-success" type="submit" name="button" ng-click="reserveTable(tableBeingViewed.reservation)">Associar Token</button>
+              <input type="text" name="" value="" ng-model="insertedToken" required>
+            </form>
+
           </div>
+
           <div class=" " ng-if=" tableBeingViewed.status == 'R' ">
           <!-- <div class=" " ng-if="true"> -->
-            <p>
-              <span class="status-item">Nome:</span>
-              <a href="#" editable-text="tableBeingViewed.reservation.person.name">{{ tableBeingViewed.reservation.person.name || 'Vazio' }}</a>
-            </p>
-            <p>
-              <span class="status-item">Telefone:</span>
-              <a href="#" editable-text="tableBeingViewed.reservation.person.phone">{{ tableBeingViewed.reservation.person.phone || 'Vazio' }}</a>
-            </p>
-            <p>
-              <span class="status-item">Data:</span>
-              <a href="#" editable-text="tableBeingViewed.reservation.date">{{ tableBeingViewed.reservation.date || 'Vazio' }}</a>
-            </p>
-            <p>
-              <span class="status-item">Horário:</span>
-              <a href="#" editable-text="tableBeingViewed.reservation.hour">{{ tableBeingViewed.reservation.hour || 'Vazio' }}</a>
-            </p>
-            <button type="button" name="button" ng-click="cancelReservation()">Cancelar Reserva</button>
+            <div ng-repeat="reservation in tableBeingViewed.reservations">
+
+              <p>
+                <span class="status-item">Nome:</span>
+                {{ reservation.person.name || 'Vazio' }}
+              </p>
+              <p>
+                <span class="status-item">Numero de Pessoas:</span>
+                {{ reservation.nbrOfPeople || 'Vazio' }}
+              </p>
+              <p>
+                <span class="status-item">Telefone fixo:</span>
+                {{ reservation.person.telephone || 'Vazio' }}
+              </p>
+              <p>
+                <span class="status-item">Celular:</span>
+                {{ reservation.person.cellphone || 'Vazio' }}
+              </p>
+              <p>
+                <span class="status-item">Data:</span>
+                {{ reservation.date || 'Vazio' }}
+              </p>
+              <p>
+                <span class="status-item">Horário:</span>
+                {{ reservation.hour || 'Vazio' }}
+              </p>
+            </div>
+            <button type="button" class="btn btn-default" name="button" data-dismiss="modal" ng-click="editReservations()">Editar Reservas</button>
           </div>
-        </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>

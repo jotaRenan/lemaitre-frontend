@@ -1,20 +1,50 @@
 angular.module('leMaitre')
-.controller('GestaoMesasCtrl', ['$scope', 'tableManagementFactory', function($scope, tableManagementFactory){
+.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory){
 
   const retrieveTableStatus = (tableId) => {
     tableManagementFactory.retrieveStatus(tableId)
-      .then( data => {
+      .then( response => {
         $scope.isLoading = false;
-        $scope.tableBeingViewed = data;
+        $scope.tableBeingViewed = tableJSONSugar(response.data.content);
       })
       .catch( error => exhibitError(error) );
   };
 
   const retrieveTablesGeneralStatus = () => {
     tableManagementFactory.retrieveTablesGeneralStatus()
-      .then ( data => {
+      .then ( response => {
         $scope.isLoading = false;
-        $scope.tables = data;
+        $scope.tables = response.data.content.map(tableJSONSugar);
+      })
+      .catch( error => exhibitError(error) );
+  };
+
+  const retrieveReservationByTableID = (tableID) => {
+    reservationFactory.retrieveReservationByTableID(tableID)
+      .then( response => {
+        $scope.isLoading = false;
+        const reservations = response.data.content
+          .map(reservationFactory.reservationJSONSugar)
+          .map(reservation => {
+            delete reservation.table.id; // unnecessary attribute, since the reservation object is nested inside a table object
+            return reservation;
+          });
+        $scope.tableBeingViewed.reservations = reservations;
+      })
+      .catch( error => exhibitError(error) );
+  };
+  const tableJSONSugar = (oldTable) => {
+    let newTable = {};
+    newTable.status = oldTable.idtStatus;
+    newTable.id = oldTable.codID;
+    newTable.nbrOfSeats = oldTable.nroSeat;
+    return newTable;
+  };
+
+  const insertTable = (table) => {
+    tableManagementFactory.insertTable(table)
+      .then ( response => {
+        $scope.isLoading = false;
       })
       .catch( error => exhibitError(error) );
   };
@@ -24,51 +54,25 @@ angular.module('leMaitre')
     alert(`Erro ${error.status}: ${error.statusText}`);
   };
 
+  const retrieveCategories = () => {
+    $scope.isLoading = true;
+    categoryManagementFactory.retrieveCategories()
+      .then( response => {
+        $scope.isLoading = false;
+        $scope.categories = response.data.content.map(categoryManagementFactory.categoryJSONSyntaxSugar);
+      })
+      .catch( error => exhibitError(error) );
+  };
+
+  const retrieveSubcategoryItems = (categoryID, subcategoryID) => {
+    subcategoryManagementFactory.retrieveSubcategoryItems(categoryID, subcategoryID)
+      .then(response => {
+
+      })
+      .catch( error => exhibitError(error) );
+  };
+
   $scope.tableBeingViewed = {};
-
-  $scope.tables = [
-    {
-      id: 13,
-      status: 'R',
-      seats: undefined
-    },
-    {
-      id: 14,
-      status: 'F',
-      seats: undefined
-    },
-    {
-      id: 15,
-      status: 'o',
-      seats: undefined
-    },
-    {
-      id: 17,
-      status: 'o',
-      seats: undefined
-    },
-    {
-      id: 18,
-      status: 'o',
-      seats: undefined
-    },
-    {
-      id: 20,
-      status: 'r',
-      seats: undefined
-    },
-    {
-      id: 25,
-      status: 'o',
-      seats: undefined
-    },
-    {
-      id: 10,
-      status: 'r',
-      seats: undefined
-    },
-
-  ];
 
   $scope.getTableStatusClass = (status) => {
     switch (status) {
@@ -84,33 +88,12 @@ angular.module('leMaitre')
       }
   };
 
-  $scope.openTableStatus = (tableId) => {
-    $scope.isLoading = true;
-    retrieveTableStatus(tableId);
-  };
-
-  $scope.reserveTable = (reservation) => {
-    tableManagementFactory.reserveTable(reservation)
-      .then(data => {
-        // TODO: normal flux
-      })
-      .catch(error => exhibitError(error));
-  };
-
-  $scope.editTableReservation = (reservation) => {
-    tableManagementFactory.editTableReservation(reservation)
-      .then(data => {
-        // TODO: normal flux
-      })
-      .catch(error => exhibitError(error));
-  };
-
-  $scope.cancelTableReservation = (reservation) => {
-    tableManagementFactory.cancelTableReservation(reservation)
-      .then(data => {
-        // TODO: normal flux
-      })
-      .catch(error => exhibitError(error));
+  $scope.openTableStatus = (table) => {
+    $scope.isCategoryMenuBeingExhibited = true;
+    $scope.tableBeingViewed = table;
+    if (table.status === 'R' || 'r' === table.status){
+      retrieveReservationByTableID(table.id);
+    }
   };
 
   $scope.requestBill = (tableId) => {
@@ -121,4 +104,22 @@ angular.module('leMaitre')
       .catch(error => exhibitError(error));
   };
 
+  $scope.editReservations = () => {
+    $state.go('edicao-reserva');
+  };
+
+  $scope.exhibitItems = (category) => {
+    $scope.isLoading = true;
+    $scope.isCategoryMenuBeingExhibited = false;
+    categoryManagementFactory.getItemsFromCategory(category.id)
+      .then( response => {
+        $scope.isLoading = false;
+        $scope.items = response.data.content.map(itemManagementFactory.itemJSONSyntaxSugar);
+      })
+      .catch(error => exhibitError(error));
+  };
+  // BEGINS EXECUTION
+  retrieveTablesGeneralStatus();
+  retrieveCategories();
+  $scope.isCategoryMenuBeingExhibited = true;
 }]);

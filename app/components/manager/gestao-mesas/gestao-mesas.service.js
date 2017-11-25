@@ -1,36 +1,37 @@
 angular.module('leMaitre')
-.factory('tableManagementFactory', ['$http', function($http){
+.factory('tableManagementFactory', ['$http', 'apiEndpoint', function($http, apiEndpoint){
+
+  const tableBaseURL = `${apiEndpoint}/webresources/table`;
+
   return {
+    // SERVICES RELATED TO TABLES' STATUS
     retrieveStatus: function(tableId) {
       return $http({
         method: 'GET',
-        url: ``,
-        data: {tableId: tableId}
+        url: `${tableBaseURL}/${tableId}`,
       });
     },
 
-    //SERVICES RELATED TO RESERVATIONS
-    reserveTable: function(reservation) {
+    retrieveTablesGeneralStatus: function() {
       return $http({
-        method: 'POST',
-        url: ``,
-        data: {reservation: reservation}
+        method: 'GET',
+        url: `${tableBaseURL}`
       });
     },
 
-    editTableReservation: function(reservation) {
-      return $http({
-        method: 'UPDATE',
-        url: ``,
-        data: {reservation: reservation}
-      });
-    },
-
-    cancelTableReservation: function(reservation) {
+    // SERVICES RELATED TO TABLE CRUD
+    deleteTable: function(tableId) {
       return $http({
         method: 'DELETE',
-        url: ``,
-        data: {reservation: reservation}
+        url: `${tableBaseURL}/${tableId}`
+      });
+    },
+
+    insertTable: function(table) {
+      return $http({
+        method: 'POST',
+        url: `${apiEndpoint}/TableCreate}`,
+        data: {codID: table.id, idtStatus: table.status, nroSeat: table.seats}
       });
     },
 
@@ -38,16 +39,10 @@ angular.module('leMaitre')
     requestBill: function(tableId) {
       return $http({
         method: 'GET',
-        url: ``,
+        url: `${apiEndpoint}`,
         data: {tableId: tableId}
       });
-    },
-
-    retrieveTablesGeneralStatus: function() {
-      return $http({
-        method: 'GET',
-        url: ``
-      });
     }
+
   };
 }]);
