@@ -31,6 +31,14 @@ angular.module('leMaitre')
         url: `${categoryBaseURL}/${categoryID}/items`,
       });
     },
+    // RETRIEVES ALL SUBCATEGORIES GIVEN A CATEGORY
+    getSubcategoriesFromCategory: function(categoryID) {
+      return $http({
+        method: 'GET',
+        url: `${categoryBaseURL}/subcategories/${categoryID}`,
+      });
+    },
+
     categoryJSONSyntaxSugar: function(badSyntax) {
       let category = {};
       category.name = badSyntax.nomCategory;
