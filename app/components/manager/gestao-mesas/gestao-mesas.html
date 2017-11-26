@@ -58,7 +58,7 @@
             <section ng-if="!(isCategoryMenuBeingExhibited || isSubcategoryMenuBeingExhibited)" class="flex-container">
               <div class="flex-item content-icon item"
                    ng-repeat="item in items"
-                   ng-click="orderItem(item)"
+                   ng-click="!item.isAvailable || orderItem(item)"
                    ng-class=" item.isAvailable ? 'available' : 'unavailable' ">
                 {{item.id}} - {{item.name}}
               </div>

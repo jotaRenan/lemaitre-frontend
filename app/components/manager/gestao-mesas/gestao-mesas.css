@@ -129,8 +129,11 @@
 }
 
 .unavailable {
-  background-color: tomato;
+  background-color: firebrick;
   color: white;
+}
+
+.unavailable:hover {
   cursor: not-allowed;
 }
 
