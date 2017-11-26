@@ -39,7 +39,7 @@
       </div>
       <div class="modal-body">
         <p ng-if="isLoading">Carregando...</p>
-        <div class="">
+        <div ng-if="!isLoading" class="">
 
           <div class="unselectable" ng-if=" tableBeingViewed.status == 'O' ">
             <!-- campos: fazer pedido, visualizar conta parcial, fechar conta -->
@@ -62,7 +62,16 @@
               </ul>
               <button type="button" class="btn btn-success" name="button" ng-click="placeOrder(itemsBeingOrdered)">Confirmar</button>
             </section>
-            <button type="button" class="btn btn-default" name="button" ng-click="retrieveBill(token)">Visualizar Pedidos</button>
+            <p>{{afterPlacementMessage}}</p>
+            <button type="button" class="btn btn-default" name="button" ng-click="retrieveBill('teste4321')">Visualizar Pedidos</button>
+
+            <div ng-if="areBillItemsBeingExhibited" class="">
+              <h5>Pedidos até agora:</h5>
+              <ul>
+                <li ng-repeat="item in itemsOrderedSoFar" >{{item.name}}</li>
+              </ul>
+              <p>Preço parcial: {{bill.price}}</p>
+            </div>
             <button type="button" class="btn btn-primary" name="button" ng-click="requestBill(tableBeingViewed.id)">Fechar conta</button>
 
           </div>

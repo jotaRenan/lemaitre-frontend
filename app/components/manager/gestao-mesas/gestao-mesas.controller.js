@@ -1,5 +1,7 @@
 angular.module('leMaitre')
-.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', 'orderManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory, orderManagementFactory){
+.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', 'orderManagementFactory', 'billManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory, orderManagementFactory, billManagementFactory){
+
+  let tokenBeingExhibited;
 
   const retrieveTableStatus = (tableId) => {
     tableManagementFactory.retrieveStatus(tableId)
@@ -44,7 +46,7 @@ angular.module('leMaitre')
 
   const exhibitError = error => {
     $scope.isLoading = false;
-    alert(`Erro ${error.status}: ${error.statusText}`);
+    alert(`Erro ${error.status || error.name}: ${error.statusText || error.message}`);
   };
 
   const retrieveCategories = () => {
@@ -65,6 +67,15 @@ angular.module('leMaitre')
       .catch( error => exhibitError(error) );
   };
 
+  const resetView = () => {
+    $scope.isLoading = true;
+    $scope.isCategoryMenuBeingExhibited = true;
+    $scope.isSeeOrderActivated = false;
+    $scope.itemsBeingOrdered = [];
+    $scope.afterPlacementMessage = null;
+    $scope.areBillItemsBeingExhibited = false;
+  };
+
   $scope.tableBeingViewed = {};
 
   $scope.getTableStatusClass = (status) => {
@@ -80,11 +91,10 @@ angular.module('leMaitre')
         return 'green';
       }
   };
-
-  $scope.openTableStatus = (table) => {
-    $scope.isCategoryMenuBeingExhibited = true;
-    $scope.isSeeOrderActivated = false;
-    $scope.itemsBeingOrdered = [];
+  $scope.openTableStatus = async (table) => {
+    resetView();
+    await retrieveTokenByTableId(table.id);
+    $scope.isLoading = false;
     $scope.tableBeingViewed = table;
     if (table.status === 'R' || 'r' === table.status){
       retrieveReservationByTableID(table.id);
@@ -142,15 +152,48 @@ angular.module('leMaitre')
   };
 
   $scope.placeOrder = (order) => {
+    $scope.afterPlacementMessage = 'Carregando...';
     orderManagementFactory.placeOrder(order)
       .then(response => {
-        alert(response.data.content);
+        $scope.itemsBeingOrdered = [];
+        $scope.isSeeOrderActivated = false;
+        $scope.afterPlacementMessage = 'Pedido efetuado!';
       })
       .catch(error => exhibitError(error));
   };
 
+  const retrieveTokenByTableId = (tableId) => {
+    tableManagementFactory.retrieveToken(tableId)
+      .then( response => {
+        tokenBeingExhibited = response.data.content.codToken;
+      })
+      .catch(error => exhibitError(error));
+  };
+
+  const retrievetokenwithdelay = (tableId) => {
+    setTimeout( retrieveTokenByTableId(tableId) , 3000);
+  };
+
+  $scope.itemsOrderedSoFar = [];
+
+  $scope.retrieveBill = (token) => {
+    billManagementFactory.retrieveBill(token)
+      .then( response => {
+        $scope.areBillItemsBeingExhibited = true;
+        const bill = billManagementFactory.billJSONSugar(response.data.content);
+        bill.orders = bill.orders.map(orderManagementFactory.orderJSONSugar);
+        bill.orders.forEach(order => order.item = itemManagementFactory.itemJSONSyntaxSugar(order.item));
+        $scope.itemsOrderedSoFar = bill.orders.reduce( (arr, order) => {
+          arr.push(order.item);
+          return arr;
+        }, []);
+        bill.price = bill.orders.reduce( (total, order) => total + order.price, 0);
+        $scope.bill = bill;
+      })
+      .catch(error => exhibitError(error));
+  }; //dar um jeito de pegar a token associada à mesa
+
   // BEGINS EXECUTION
   retrieveTablesGeneralStatus();
   retrieveCategories();
-  $scope.isCategoryMenuBeingExhibited = true;
 }]);

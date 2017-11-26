@@ -4,6 +4,13 @@ angular.module('leMaitre')
   const tableBaseURL = `${apiEndpoint}/webresources/table`;
 
   return {
+    // RETRIEVE TOKEN BY TABLE ID
+    retrieveToken: function(tableId) {
+      return $http({
+        method: 'GET',
+        url: `${apiEndpoint}/webresources/billTable/table/${tableId}`,
+      });
+    },
     // SERVICES RELATED TO TABLES' STATUS
     retrieveStatus: function(tableId) {
       return $http({
