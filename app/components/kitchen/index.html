@@ -22,7 +22,10 @@
           <div class="order-box" ng-repeat="order in recentlyRequestedOrders">
             <!-- TODO: transform into custom angular element -->
             <div class="order-card">
-              <div class="order-item" ng-repeat="item in order.items">
+              <!-- <div class="order-item" ng-repeat="item in order.items"> -->
+              <div class="order-item">
+                {{item}}
+                {{order.item.id}}
                 <h2>{{item.id}} - {{item.name}}</h2>
                 <p>{{item.observation}}</p>
               </div>
@@ -35,6 +38,7 @@
         </section>
         <section class="status-panel yellow">
           <div class="order-box" ng-repeat="order in moderatelyRequestedOrders">
+            {{order.item.id}}
             <div class="order-card">
               <div class="order-item" ng-repeat="item in order.items">
                 <h2>{{item.id}} - {{item.name}}</h2>
@@ -49,6 +53,7 @@
         </section>
         <section class="status-panel red">
           <div class="order-box" ng-repeat="order in longAgoRequestedOrders">
+            {{order.item.id}}
             <div class="order-card">
               <div class="order-item" ng-repeat="item in order.items">
                 <h2>{{item.id}} - {{item.name}}</h2>
@@ -66,5 +71,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Services -->
+    <script src="order-kitchen.service.js" charset="utf-8"></script>
   </body>
 </html>
