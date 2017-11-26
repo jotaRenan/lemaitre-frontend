@@ -14,9 +14,9 @@ angular.module('leMaitre')
     placeOrder: function(order) {
       return $http({
         method: 'POST',
-        url: `${apiEndpoint}/OrderCreate`,
+        url: `${apiEndpoint}/OrdersCreate`,
         // data: {codToken: $localStorage.token, items: order.items}
-        data: {codToken: 'teste4321', items: order.items}
+        data: {codToken: 'teste4321', items: order}
       });
     }
   };
