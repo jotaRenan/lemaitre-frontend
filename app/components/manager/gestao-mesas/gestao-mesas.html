@@ -39,7 +39,7 @@
       </div>
       <div class="modal-body">
         <p ng-if="isLoading">Carregando...</p>
-        <div class="">
+        <div ng-if="!isLoading" class="">
 
           <div class="unselectable" ng-if=" tableBeingViewed.status == 'O' ">
             <!-- campos: fazer pedido, visualizar conta parcial, fechar conta -->

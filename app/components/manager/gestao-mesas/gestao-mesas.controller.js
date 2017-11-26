@@ -1,6 +1,8 @@
 angular.module('leMaitre')
 .controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', 'orderManagementFactory', 'billManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory, orderManagementFactory, billManagementFactory){
 
+  let tokenBeingExhibited;
+
   const retrieveTableStatus = (tableId) => {
     tableManagementFactory.retrieveStatus(tableId)
       .then( response => {
@@ -66,6 +68,7 @@ angular.module('leMaitre')
   };
 
   const resetView = () => {
+    $scope.isLoading = true;
     $scope.isCategoryMenuBeingExhibited = true;
     $scope.isSeeOrderActivated = false;
     $scope.itemsBeingOrdered = [];
@@ -88,9 +91,10 @@ angular.module('leMaitre')
         return 'green';
       }
   };
-
-  $scope.openTableStatus = (table) => {
+  $scope.openTableStatus = async (table) => {
     resetView();
+    await retrieveTokenByTableId(table.id);
+    $scope.isLoading = false;
     $scope.tableBeingViewed = table;
     if (table.status === 'R' || 'r' === table.status){
       retrieveReservationByTableID(table.id);
@@ -157,7 +161,21 @@ angular.module('leMaitre')
       })
       .catch(error => exhibitError(error));
   };
+
+  const retrieveTokenByTableId = (tableId) => {
+    tableManagementFactory.retrieveToken(tableId)
+      .then( response => {
+        tokenBeingExhibited = response.data.content.codToken;
+      })
+      .catch(error => exhibitError(error));
+  };
+
+  const retrievetokenwithdelay = (tableId) => {
+    setTimeout( retrieveTokenByTableId(tableId) , 3000);
+  };
+
   $scope.itemsOrderedSoFar = [];
+
   $scope.retrieveBill = (token) => {
     billManagementFactory.retrieveBill(token)
       .then( response => {
