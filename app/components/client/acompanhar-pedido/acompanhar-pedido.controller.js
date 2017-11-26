@@ -1,36 +1,29 @@
-angular.module('leMaitre').controller('AcompanharPedidoCtrl', ['$scope', 'orderManagementFactory', function($scope, orderManagementFactory) {
-  $scope.items = [
-    {
-      name: 'Suco de Acerola',
-      quantity: 3,
-      img:
-        'http://www.polpaideal.com.br/wp-content/uploads/2013/11/acerola.png',
-      status: 'D',
-      price: 5.9
-    },
-    {
-      name: 'Suco de Maçã',
-      quantity: 1,
-      img:
-        'http://armazemseuluiz.com.br/image/cache/catalog/BEBIDAS/Sucos%20PNG/Suco%20de%20Maca%20Integral%20Suco%20e%20So%201L-540x540.png',
-      status: 'T',
-      price: 6.8
-    },
-    {
-      name: 'Suco de Pêssego',
-      quantity: 1,
-      img:
-        'http://armazemseuluiz.com.br/image/cache/catalog/BEBIDAS/Sucos%20PNG/Suco%20de%20Maca%20Integral%20Suco%20e%20So%201L-540x540.png',
-      status: 'R',
-      price: 6.8
-    }
-  ];
+angular.module('leMaitre').controller('AcompanharPedidoCtrl', ['$scope', 'orderManagementFactory', 'billManagementFactory', 'itemManagementFactory',
+ function($scope, orderManagementFactory, billManagementFactory, itemManagementFactory) {
 
-  $scope.pricesSum = $scope.items
-    .reduce((partialSum, item) => {
-      return partialSum + item.quantity * item.price;
-    }, 0)
-    .toFixed(2);
+  const exhibitError = error => {
+    $scope.isLoading = false;
+    alert(`Erro ${error.status || error.name}: ${error.statusText || error.message}`);
+  };
+
+  const retrieveBill = (token) => {
+    billManagementFactory.retrieveBill(token)
+      .then( response => {
+        const bill = billManagementFactory.billJSONSugar(response.data.content);
+        bill.orders = bill.orders.map(orderManagementFactory.orderJSONSugar);
+        bill.orders.forEach(order => {
+          order.item = itemManagementFactory.itemJSONSyntaxSugar(order.item);
+          order.item.quantity = order.quantity;
+        });
+        $scope.items = bill.orders.reduce( (arr, order) => {
+          arr.push(order.item);
+          return arr;
+        }, []);
+        bill.price = bill.orders.reduce( (total, order) => total + order.price, 0);
+        $scope.bill = bill;
+      })
+      .catch(error => exhibitError(error));
+  };
 
   $scope.getCircleStatusClass = status => {
     switch (status) {
@@ -42,4 +35,6 @@ angular.module('leMaitre').controller('AcompanharPedidoCtrl', ['$scope', 'orderM
         return 'green';
     }
   };
+
+  retrieveBill('teste4321');
 }]);
