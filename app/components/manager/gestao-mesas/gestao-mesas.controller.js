@@ -1,5 +1,5 @@
 angular.module('leMaitre')
-.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', 'orderManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory, orderManagementFactory){
+.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', 'orderManagementFactory', 'billManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory, orderManagementFactory, billManagementFactory){
 
   const retrieveTableStatus = (tableId) => {
     tableManagementFactory.retrieveStatus(tableId)
@@ -44,7 +44,7 @@ angular.module('leMaitre')
 
   const exhibitError = error => {
     $scope.isLoading = false;
-    alert(`Erro ${error.status}: ${error.statusText}`);
+    alert(`Erro ${error.status || error.name}: ${error.statusText || error.message}`);
   };
 
   const retrieveCategories = () => {
@@ -87,6 +87,7 @@ angular.module('leMaitre')
     $scope.itemsBeingOrdered = [];
     $scope.afterPlacementMessage = null;
     $scope.tableBeingViewed = table;
+    $scope.areBillItemsBeingExhibited = false;
     if (table.status === 'R' || 'r' === table.status){
       retrieveReservationByTableID(table.id);
     }
@@ -152,8 +153,23 @@ angular.module('leMaitre')
       })
       .catch(error => exhibitError(error));
   };
-
-  $scope.retrieveBill = () => {}; //dar um jeito de pegar a token associada à mesa
+  $scope.itemsOrderedSoFar = [];
+  $scope.retrieveBill = (token) => {
+    billManagementFactory.retrieveBill(token)
+      .then( response => {
+        $scope.areBillItemsBeingExhibited = true;
+        const bill = billManagementFactory.billJSONSugar(response.data.content);
+        bill.orders = bill.orders.map(orderManagementFactory.orderJSONSugar);
+        bill.orders.forEach(order => order.item = itemManagementFactory.itemJSONSyntaxSugar(order.item));
+        $scope.itemsOrderedSoFar = bill.orders.reduce( (arr, order) => {
+          arr.push(order.item);
+          return arr;
+        }, []);
+        bill.price = bill.orders.reduce( (total, order) => total + order.price, 0);
+        $scope.bill = bill;
+      })
+      .catch(error => exhibitError(error));
+  }; //dar um jeito de pegar a token associada à mesa
 
   // BEGINS EXECUTION
   retrieveTablesGeneralStatus();
