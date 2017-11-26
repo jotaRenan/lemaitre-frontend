@@ -153,6 +153,8 @@ angular.module('leMaitre')
       .catch(error => exhibitError(error));
   };
 
+  $scope.retrieveBill = () => {}; //dar um jeito de pegar a token associada à mesa
+
   // BEGINS EXECUTION
   retrieveTablesGeneralStatus();
   retrieveCategories();
