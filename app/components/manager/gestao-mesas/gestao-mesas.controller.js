@@ -128,6 +128,19 @@ angular.module('leMaitre')
     }
   };
 
+  $scope.removeItemFromOrder = (item) => {
+    $scope.isSeeOrderActivated = $scope.itemsBeingOrdered.length !== 0;
+    if (!$scope.itemsBeingOrdered.includes(item)) {
+      return;
+    }
+    const index = $scope.itemsBeingOrdered.findIndex(itemInside => itemInside.id === item.id);
+    if ($scope.itemsBeingOrdered[index].quantity === 1) {
+      $scope.itemsBeingOrdered.splice(index, 1);
+    } else {
+      $scope.itemsBeingOrdered[index].quantity--;
+    }
+  };
+
   $scope.placeOrder = (order) => {
     orderManagementFactory.placeOrder(order)
       .then(response => {
