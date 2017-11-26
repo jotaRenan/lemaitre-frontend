@@ -42,16 +42,24 @@
         <div ng-if="!isLoading" class="">
 
           <div class="unselectable" ng-if=" tableBeingViewed.status == 'O' ">
-            <!-- campos: fazer pedido, visualizar conta parcial, fechar conta -->
-            <section class="flex-container">
-              <div ng-if="isCategoryMenuBeingExhibited" class="flex-item content-icon category" ng-repeat="category in categories" ng-click="exhibitItems(category)">
+            <!-- categorias -->
+            <section ng-if="isCategoryMenuBeingExhibited" class="flex-container">
+              <div class="flex-item content-icon category" ng-repeat="category in categories" ng-click="retrieveSubcategories(category.id)">
                 {{category.name}}
               </div>
             </section>
-            <section ng-if="!isCategoryMenuBeingExhibited" class="flex-container">
+            <!-- subcategorias -->
+            <section ng-if="!isCategoryMenuBeingExhibited && isSubcategoryMenuBeingExhibited" class="flex-container">
+              <div class="flex-item content-icon subcategory" ng-repeat="subcategory in subcategories" ng-click="exhibitItems(subcategory.id)">
+                {{subcategory.name}}
+              </div>
+            </section>
+            <!-- itens -->
+            <section ng-if="!(isCategoryMenuBeingExhibited || isSubcategoryMenuBeingExhibited)" class="flex-container">
               <div class="flex-item content-icon item"
                    ng-repeat="item in items"
-                   ng-click="orderItem(item)" >
+                   ng-click="orderItem(item)"
+                   ng-class=" item.isAvailable ? 'available' : 'unavailable' ">
                 {{item.id}} - {{item.name}}
               </div>
             </section>

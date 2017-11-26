@@ -111,18 +111,27 @@
   box-sizing: border-box;
   text-align: center;
   padding: 1%;
+  font-weight: bolder;
+  text-transform: uppercase;
 }
 
 .category {
   background-color: lightgrey;
-  font-weight: bolder;
-  text-transform: uppercase;
 }
 
-.item {
+.subcategory {
   background-color: darkgrey;
-  font-weight: bolder;
-  text-transform: uppercase;
+}
+
+.available {
+  background-color: lightgreen;
+
+}
+
+.unavailable {
+  background-color: tomato;
+  color: white;
+  cursor: not-allowed;
 }
 
 .unselectable {
