@@ -11,6 +11,13 @@ angular.module('leMaitre')
       });
     },
 
+    retrieveOpenOrders: function() {
+      return $http({
+        method: 'GET',
+        url: `${orderBaseURL}`,
+      });
+    },
+
     placeOrder: function(order, token = $localStorage.token ) {
       return $http({
         method: 'POST',
