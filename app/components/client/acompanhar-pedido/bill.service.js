@@ -26,7 +26,6 @@ angular.module('leMaitre')
       bill.date = badSyntax.datUse;
       bill.status = badSyntax.idtStatus;
       bill.orders = badSyntax.orders;
-      bill.price = bill.orders.reduce((price, order ) => price + order.price , 0);
       return bill;
     }
   };
