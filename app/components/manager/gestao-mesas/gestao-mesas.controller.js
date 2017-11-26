@@ -1,5 +1,5 @@
 angular.module('leMaitre')
-.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory){
+.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', 'orderManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory, orderManagementFactory){
 
   const retrieveTableStatus = (tableId) => {
     tableManagementFactory.retrieveStatus(tableId)
@@ -67,7 +67,7 @@ angular.module('leMaitre')
   const retrieveSubcategoryItems = (categoryID, subcategoryID) => {
     subcategoryManagementFactory.retrieveSubcategoryItems(categoryID, subcategoryID)
       .then(response => {
-
+        $scope.subcategories = response.data.content.map(subcategoryManagementFactory.subcategoryJSONSyntaxSugar); // TODO: implement this sugar
       })
       .catch( error => exhibitError(error) );
   };
@@ -90,6 +90,8 @@ angular.module('leMaitre')
 
   $scope.openTableStatus = (table) => {
     $scope.isCategoryMenuBeingExhibited = true;
+    $scope.isSeeOrderActivated = false;
+    $scope.itemsBeingOrdered = [];
     $scope.tableBeingViewed = table;
     if (table.status === 'R' || 'r' === table.status){
       retrieveReservationByTableID(table.id);
@@ -118,6 +120,29 @@ angular.module('leMaitre')
       })
       .catch(error => exhibitError(error));
   };
+
+  // array of items
+  $scope.itemsBeingOrdered = [];
+
+  $scope.orderItem = (item) => {
+    $scope.isSeeOrderActivated = true;
+    if (!$scope.itemsBeingOrdered.includes(item)) {
+      item.quantity = 1;
+      $scope.itemsBeingOrdered.push(item);
+    } else {
+      const index = $scope.itemsBeingOrdered.findIndex(itemInside => itemInside.id === item.id);
+      $scope.itemsBeingOrdered[index].quantity++;
+    }
+  };
+
+  $scope.placeOrder = (order) => {
+    orderManagementFactory.placeOrder(order)
+      .then(response => {
+        alert(response.data.content);
+      })
+      .catch(error => exhibitError(error));
+  };
+
   // BEGINS EXECUTION
   retrieveTablesGeneralStatus();
   retrieveCategories();

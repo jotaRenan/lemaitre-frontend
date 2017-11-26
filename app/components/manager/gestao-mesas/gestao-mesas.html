@@ -53,7 +53,14 @@
                 {{item.id}} - {{item.name}}
               </div>
             </section>
-
+            <section ng-if="isSeeOrderActivated">
+              <h5>A serem pedidos:</h5>
+              <ul>
+                <li ng-repeat="item in itemsBeingOrdered">{{item.quantity}} {{item.name}}</li>
+              </ul>
+              <button type="button" class="btn btn-success" name="button" ng-click="placeOrder(itemsBeingOrdered)">Confirmar</button>
+            </section>
+            <button type="button" class="btn btn-default" name="button" ng-click="retrieveBill(token)">Visualizar Pedidos</button>
             <button type="button" class="btn btn-primary" name="button" ng-click="requestBill(tableBeingViewed.id)">Fechar conta</button>
 
           </div>
