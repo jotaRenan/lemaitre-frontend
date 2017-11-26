@@ -1,4 +1,4 @@
-angular.module('leMaitre').controller('AcompanharPedidoCtrl', function($scope) {
+angular.module('leMaitre').controller('AcompanharPedidoCtrl', ['$scope', 'orderManagementFactory', function($scope, orderManagementFactory) {
   $scope.items = [
     {
       name: 'Suco de Acerola',
@@ -42,4 +42,4 @@ angular.module('leMaitre').controller('AcompanharPedidoCtrl', function($scope) {
         return 'green';
     }
   };
-});
+}]);

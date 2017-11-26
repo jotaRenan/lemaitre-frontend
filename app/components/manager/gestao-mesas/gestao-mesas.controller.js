@@ -1,11 +1,14 @@
 angular.module('leMaitre')
-.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory){
+.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', 'orderManagementFactory', 'billManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory, orderManagementFactory, billManagementFactory){
+
+  let tokenBeingExhibited;
+  $scope.tokenBeingExhibited = tokenBeingExhibited;
 
   const retrieveTableStatus = (tableId) => {
     tableManagementFactory.retrieveStatus(tableId)
       .then( response => {
         $scope.isLoading = false;
-        $scope.tableBeingViewed = tableJSONSugar(response.data.content);
+        $scope.tableBeingViewed = tableManagementFactory.tableJSONSugar(response.data.content);
       })
       .catch( error => exhibitError(error) );
   };
@@ -14,7 +17,7 @@ angular.module('leMaitre')
     tableManagementFactory.retrieveTablesGeneralStatus()
       .then ( response => {
         $scope.isLoading = false;
-        $scope.tables = response.data.content.map(tableJSONSugar);
+        $scope.tables = response.data.content.map(tableManagementFactory.tableJSONSugar);
       })
       .catch( error => exhibitError(error) );
   };
@@ -33,13 +36,6 @@ angular.module('leMaitre')
       })
       .catch( error => exhibitError(error) );
   };
-  const tableJSONSugar = (oldTable) => {
-    let newTable = {};
-    newTable.status = oldTable.idtStatus;
-    newTable.id = oldTable.codID;
-    newTable.nbrOfSeats = oldTable.nroSeat;
-    return newTable;
-  };
 
   const insertTable = (table) => {
     tableManagementFactory.insertTable(table)
@@ -51,7 +47,7 @@ angular.module('leMaitre')
 
   const exhibitError = error => {
     $scope.isLoading = false;
-    alert(`Erro ${error.status}: ${error.statusText}`);
+    alert(`Erro ${error.status || error.name}: ${error.statusText || error.message}`);
   };
 
   const retrieveCategories = () => {
@@ -67,9 +63,18 @@ angular.module('leMaitre')
   const retrieveSubcategoryItems = (categoryID, subcategoryID) => {
     subcategoryManagementFactory.retrieveSubcategoryItems(categoryID, subcategoryID)
       .then(response => {
-
+        $scope.subcategories = response.data.content.map(subcategoryManagementFactory.subcategoryJSONSyntaxSugar); // TODO: implement this sugar
       })
       .catch( error => exhibitError(error) );
+  };
+
+  const resetView = () => {
+    $scope.isLoading = true;
+    $scope.isCategoryMenuBeingExhibited = true;
+    $scope.isSeeOrderActivated = false;
+    $scope.itemsBeingOrdered = [];
+    $scope.afterPlacementMessage = null;
+    $scope.areBillItemsBeingExhibited = false;
   };
 
   $scope.tableBeingViewed = {};
@@ -87,9 +92,12 @@ angular.module('leMaitre')
         return 'green';
       }
   };
-
-  $scope.openTableStatus = (table) => {
-    $scope.isCategoryMenuBeingExhibited = true;
+  $scope.openTableStatus = async (table) => {
+    resetView();
+    if (table.status === 'O' || 'o' === table.status){
+      await retrieveTokenByTableId(table.id);
+    }
+    $scope.isLoading = false;
     $scope.tableBeingViewed = table;
     if (table.status === 'R' || 'r' === table.status){
       retrieveReservationByTableID(table.id);
@@ -118,8 +126,78 @@ angular.module('leMaitre')
       })
       .catch(error => exhibitError(error));
   };
+
+  // array of items
+  $scope.itemsBeingOrdered = [];
+
+  $scope.orderItem = (item) => {
+    $scope.isSeeOrderActivated = true;
+    if (!$scope.itemsBeingOrdered.includes(item)) {
+      item.quantity = 1;
+      $scope.itemsBeingOrdered.push(item);
+    } else {
+      const index = $scope.itemsBeingOrdered.findIndex(itemInside => itemInside.id === item.id);
+      $scope.itemsBeingOrdered[index].quantity++;
+    }
+  };
+
+  $scope.removeItemFromOrder = (item) => {
+    $scope.isSeeOrderActivated = $scope.itemsBeingOrdered.length !== 0;
+    if (!$scope.itemsBeingOrdered.includes(item)) {
+      return;
+    }
+    const index = $scope.itemsBeingOrdered.findIndex(itemInside => itemInside.id === item.id);
+    if ($scope.itemsBeingOrdered[index].quantity === 1) {
+      $scope.itemsBeingOrdered.splice(index, 1);
+    } else {
+      $scope.itemsBeingOrdered[index].quantity--;
+    }
+  };
+
+  $scope.placeOrder = (order) => {
+    $scope.afterPlacementMessage = 'Carregando...';
+    orderManagementFactory.placeOrder(order, tokenBeingExhibited)
+      .then(response => {
+        $scope.itemsBeingOrdered = [];
+        $scope.isSeeOrderActivated = false;
+        $scope.afterPlacementMessage = 'Pedido efetuado!';
+      })
+      .catch(error => exhibitError(error));
+  };
+
+  const retrieveTokenByTableId = (tableId) => {
+    tableManagementFactory.retrieveToken(tableId)
+      .then( response => {
+        tokenBeingExhibited = response.data.content.filter( bill => bill.idtStatus === 'O' )[0].codToken;
+        $scope.tokenBeingExhibited = tokenBeingExhibited;
+      })
+      .catch(error => exhibitError(error));
+  };
+
+  const retrievetokenwithdelay = (tableId) => {
+    setTimeout( retrieveTokenByTableId(tableId) , 3000);
+  };
+
+  $scope.itemsOrderedSoFar = [];
+
+  $scope.retrieveBill = (token) => {
+    billManagementFactory.retrieveBill(token)
+      .then( response => {
+        $scope.areBillItemsBeingExhibited = true;
+        const bill = billManagementFactory.billJSONSugar(response.data.content);
+        bill.orders = bill.orders.map(orderManagementFactory.orderJSONSugar);
+        bill.orders.forEach(order => order.item = itemManagementFactory.itemJSONSyntaxSugar(order.item));
+        $scope.itemsOrderedSoFar = bill.orders.reduce( (arr, order) => {
+          arr.push(order.item);
+          return arr;
+        }, []);
+        bill.price = bill.orders.reduce( (total, order) => total + order.price, 0);
+        $scope.bill = bill;
+      })
+      .catch(error => exhibitError(error));
+  };
+
   // BEGINS EXECUTION
   retrieveTablesGeneralStatus();
   retrieveCategories();
-  $scope.isCategoryMenuBeingExhibited = true;
 }]);
