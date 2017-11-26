@@ -65,6 +65,14 @@ angular.module('leMaitre')
       .catch( error => exhibitError(error) );
   };
 
+  const resetView = () => {
+    $scope.isCategoryMenuBeingExhibited = true;
+    $scope.isSeeOrderActivated = false;
+    $scope.itemsBeingOrdered = [];
+    $scope.afterPlacementMessage = null;
+    $scope.areBillItemsBeingExhibited = false;
+  };
+
   $scope.tableBeingViewed = {};
 
   $scope.getTableStatusClass = (status) => {
@@ -82,12 +90,8 @@ angular.module('leMaitre')
   };
 
   $scope.openTableStatus = (table) => {
-    $scope.isCategoryMenuBeingExhibited = true;
-    $scope.isSeeOrderActivated = false;
-    $scope.itemsBeingOrdered = [];
-    $scope.afterPlacementMessage = null;
+    resetView();
     $scope.tableBeingViewed = table;
-    $scope.areBillItemsBeingExhibited = false;
     if (table.status === 'R' || 'r' === table.status){
       retrieveReservationByTableID(table.id);
     }
@@ -174,5 +178,4 @@ angular.module('leMaitre')
   // BEGINS EXECUTION
   retrieveTablesGeneralStatus();
   retrieveCategories();
-  $scope.isCategoryMenuBeingExhibited = true;
 }]);
