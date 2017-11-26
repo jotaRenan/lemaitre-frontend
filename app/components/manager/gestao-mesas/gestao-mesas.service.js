@@ -42,6 +42,14 @@ angular.module('leMaitre')
         url: `${apiEndpoint}`,
         data: {tableId: tableId}
       });
+    },
+
+    tableJSONSugar: function(badSyntax) {
+      let table = {};
+      table.status = badSyntax.idtStatus;
+      table.id = badSyntax.codID;
+      table.nbrOfSeats = badSyntax.nroSeat;
+      return table;
     }
 
   };

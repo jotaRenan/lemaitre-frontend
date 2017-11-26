@@ -5,7 +5,7 @@ angular.module('leMaitre')
     tableManagementFactory.retrieveStatus(tableId)
       .then( response => {
         $scope.isLoading = false;
-        $scope.tableBeingViewed = tableJSONSugar(response.data.content);
+        $scope.tableBeingViewed = tableManagementFactory.tableJSONSugar(response.data.content);
       })
       .catch( error => exhibitError(error) );
   };
@@ -14,7 +14,7 @@ angular.module('leMaitre')
     tableManagementFactory.retrieveTablesGeneralStatus()
       .then ( response => {
         $scope.isLoading = false;
-        $scope.tables = response.data.content.map(tableJSONSugar);
+        $scope.tables = response.data.content.map(tableManagementFactory.tableJSONSugar);
       })
       .catch( error => exhibitError(error) );
   };
@@ -32,13 +32,6 @@ angular.module('leMaitre')
         $scope.tableBeingViewed.reservations = reservations;
       })
       .catch( error => exhibitError(error) );
-  };
-  const tableJSONSugar = (oldTable) => {
-    let newTable = {};
-    newTable.status = oldTable.idtStatus;
-    newTable.id = oldTable.codID;
-    newTable.nbrOfSeats = oldTable.nroSeat;
-    return newTable;
   };
 
   const insertTable = (table) => {
