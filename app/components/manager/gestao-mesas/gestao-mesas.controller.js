@@ -3,7 +3,7 @@ angular.module('leMaitre')
 
   let tokenBeingExhibited;
   $scope.tokenBeingExhibited = tokenBeingExhibited;
-  
+
   const retrieveTableStatus = (tableId) => {
     tableManagementFactory.retrieveStatus(tableId)
       .then( response => {
@@ -169,6 +169,7 @@ angular.module('leMaitre')
     tableManagementFactory.retrieveToken(tableId)
       .then( response => {
         tokenBeingExhibited = response.data.content.filter( bill => bill.idtStatus === 'O' )[0].codToken;
+        $scope.tokenBeingExhibited = tokenBeingExhibited;
       })
       .catch(error => exhibitError(error));
   };
