@@ -5,6 +5,7 @@
     <form class="pure-form" >
       <input type="text" id="search-filter" ng-model="search" name="" value="" placeholder="Filtrar cardápio">
     </form>
+    <button type="button" ng-click="tst()">asasasa</button>
     <div ng-repeat="categoria in categorias  | filter:{name : search}" ng-click="showItems(categoria.name)" class="categoria-cardapio">
       <div class="category-name">
         <span>{{categoria.name}}</span>
