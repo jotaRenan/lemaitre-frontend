@@ -2,7 +2,8 @@ angular.module('leMaitre')
 .controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', 'orderManagementFactory', 'billManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory, orderManagementFactory, billManagementFactory){
 
   let tokenBeingExhibited;
-
+  $scope.tokenBeingExhibited = tokenBeingExhibited;
+  
   const retrieveTableStatus = (tableId) => {
     tableManagementFactory.retrieveStatus(tableId)
       .then( response => {
@@ -93,7 +94,9 @@ angular.module('leMaitre')
   };
   $scope.openTableStatus = async (table) => {
     resetView();
-    await retrieveTokenByTableId(table.id);
+    if (table.status === 'O' || 'o' === table.status){
+      await retrieveTokenByTableId(table.id);
+    }
     $scope.isLoading = false;
     $scope.tableBeingViewed = table;
     if (table.status === 'R' || 'r' === table.status){
@@ -153,7 +156,7 @@ angular.module('leMaitre')
 
   $scope.placeOrder = (order) => {
     $scope.afterPlacementMessage = 'Carregando...';
-    orderManagementFactory.placeOrder(order)
+    orderManagementFactory.placeOrder(order, tokenBeingExhibited)
       .then(response => {
         $scope.itemsBeingOrdered = [];
         $scope.isSeeOrderActivated = false;
@@ -165,7 +168,7 @@ angular.module('leMaitre')
   const retrieveTokenByTableId = (tableId) => {
     tableManagementFactory.retrieveToken(tableId)
       .then( response => {
-        tokenBeingExhibited = response.data.content.codToken;
+        tokenBeingExhibited = response.data.content.filter( bill => bill.idtStatus === 'O' )[0].codToken;
       })
       .catch(error => exhibitError(error));
   };
@@ -191,7 +194,7 @@ angular.module('leMaitre')
         $scope.bill = bill;
       })
       .catch(error => exhibitError(error));
-  }; //dar um jeito de pegar a token associada à mesa
+  };
 
   // BEGINS EXECUTION
   retrieveTablesGeneralStatus();
