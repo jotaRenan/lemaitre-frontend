@@ -20,7 +20,7 @@ angular.module('leMaitre-kitchen')
       .then(response => {
         const orders = response.data.content.map(orderManagementFactory.orderJSONSugar);
         $scope.recentlyRequestedOrders = orders.filter(order => calcMinutesOfAge(order.timestamp) < ordersTime.RECENTLY);
-        $scope.moderatelyRequestedOrders = orders.filter(order => calcMinutesOfAge(order.timestamp) < ordersTime.MODERATELY);
+        $scope.moderatelyRequestedOrders = orders.filter(order => calcMinutesOfAge(order.timestamp) < ordersTime.MODERATELY && calcMinutesOfAge(order.timestamp) >= ordersTime.RECENTLY);
         $scope.longAgoRequestedOrders = orders.filter(order => calcMinutesOfAge(order.timestamp) >= ordersTime.LONG_AGO);
       })
       .catch();
