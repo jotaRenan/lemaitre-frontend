@@ -20,50 +20,36 @@
       <main class="big-box">
         <section class="status-panel green">
           <div class="order-box" ng-repeat="order in recentlyRequestedOrders">
-            <!-- TODO: transform into custom angular element -->
             <div class="order-card">
-              <!-- <div class="order-item" ng-repeat="item in order.items"> -->
-              <div class="order-item">
-                {{item}}
-                {{order.item.id}}
-                <h2>{{item.id}} - {{item.name}}</h2>
-                <p>{{item.observation}}</p>
-              </div>
+              <h2>{{order.item.id}} ({{order.item.name}})</h2>
             </div>
-            <div class="status" ng-class="getItemStatusCSSClass(item.status)"></div>
+            <div class="status" ng-class="getItemStatusCSSClass(order.status)"></div>
           </div>
           <aside class="time">
-            <p> &lt <span class="number">05</span>min</p>
+            <p> < <span class="number">05</span>min</p>
           </aside>
         </section>
         <section class="status-panel yellow">
           <div class="order-box" ng-repeat="order in moderatelyRequestedOrders">
-            {{order.item.id}}
             <div class="order-card">
-              <div class="order-item" ng-repeat="item in order.items">
-                <h2>{{item.id}} - {{item.name}}</h2>
-                <p>{{item.observation}}</p>
-              </div>
+              <h2>{{order.item.id}} ({{order.item.name}})</h2>
             </div>
-            <div class="status" ng-class="getItemStatusCSSClass(item.status)"></div>
+            <div class="status" ng-class="getItemStatusCSSClass(order.status)"></div>
           </div>
           <aside class="time">
-            <p> &lt <span class="number">20</span>min</p>
+            <p> < <span class="number">20</span>min</p>
           </aside>
         </section>
         <section class="status-panel red">
           <div class="order-box" ng-repeat="order in longAgoRequestedOrders">
-            {{order.item.id}}
+            <!-- <div class="order-card" ng-dblclick="improveOrderStatus(order)"> -->
             <div class="order-card">
-              <div class="order-item" ng-repeat="item in order.items">
-                <h2>{{item.id}} - {{item.name}}</h2>
-                <p>{{item.observation}}</p>
-              </div>
+              <h2>{{order.item.id}} ({{order.item.name}})</h2>
             </div>
-            <div class="status" ng-class="getItemStatusCSSClass(item.status)"></div>
+            <div class="status" ng-class="getItemStatusCSSClass(order.status)"></div>
           </div>
           <aside class="time">
-            <p> &gt <span class="number">35</span>min</p>
+            <p> > <span class="number">35</span>min</p>
           </aside>
         </section>
       </main>
@@ -74,5 +60,6 @@
 
     <!-- Services -->
     <script src="order-kitchen.service.js" charset="utf-8"></script>
+    <script src="items-kitchen.service.js" charset="utf-8"></script>
   </body>
 </html>

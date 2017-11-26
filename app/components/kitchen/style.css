@@ -107,7 +107,8 @@ header h1 {
   content: '';
   width: 100%;
   display: block;
-  height: 1em;
+  height: .7em;
+  border-radius: 0 0 5px 5px;
 }
 
 .order-card h2 {
