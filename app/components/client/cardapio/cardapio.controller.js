@@ -4,43 +4,6 @@ function($scope, categoryManagementFactory, subcategoryManagementFactory, itemMa
 
   $scope.menu = [];
 
-  $scope.categorias = [
-    {
-      name: 'bebidas',
-      items: [
-        {
-          name: 'Suco de Acerola',
-          price: 5.90,
-        },
-        {
-          name: 'Suco de Maçã',
-          price: 6.80,
-        },
-        {
-          name: 'Suco de Pêssego',
-          price: 6.80,
-        }
-      ],
-    },
-    {
-      name: 'drinks',
-      items: [
-        {
-          name: 'Suco de Acerola',
-          price: 5.90,
-        },
-        {
-          name: 'Suco de Maçã',
-          price: 6.80,
-        },
-        {
-          name: 'Suco de Pêssego',
-          price: 6.80,
-        }
-      ],
-    },
-  ];
-
   const exhibitError = error => {
     alert(`Erro ${error.status || error.name}: ${error.statusText || error.message}`);
   };
@@ -74,12 +37,12 @@ function($scope, categoryManagementFactory, subcategoryManagementFactory, itemMa
       .catch(error => exhibitError(error));
   };
 
-  $scope.tst = () => {
-    console.table($scope.menu);
+  $scope.showSubcategories = (category) => {
+    document.querySelector(`.category-${category}`).classList.toggle('not-displayed');
   };
 
-  $scope.showItems = (category) => {
-    document.querySelector(`.category-${category}`).classList.toggle('not-displayed');
+  $scope.showItems = (subcategory) => {
+    document.querySelector(`.subcategory-${subcategory}`).classList.toggle('not-displayed');
   };
 
   retrieveCategories();
