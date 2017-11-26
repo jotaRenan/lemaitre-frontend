@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="leMaitre-kitchen">
   <head>
     <meta charset="utf-8">
     <title>Le Maitre</title>
+    <base href="/lemaitre-frontend/app/components/kitchen/"></base>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="../../../assets/libs/angular.min.js" charset="utf-8"></script>
+    <script src="kitchen-app.js" charset="utf-8"></script>
+    <script src=".\kitchen.controller.js" charset="utf-8"></script>
   </head>
   <body>
-    <div class="big-container">
+    <div class="big-container" ng-controller="KitchenCtrl">
       <header>
         <h1>Le Maître</h1>
       </header>
@@ -18,7 +22,10 @@
           <div class="order-box" ng-repeat="order in recentlyRequestedOrders">
             <!-- TODO: transform into custom angular element -->
             <div class="order-card">
-              <div class="order-item" ng-repeat="item in order.items">
+              <!-- <div class="order-item" ng-repeat="item in order.items"> -->
+              <div class="order-item">
+                {{item}}
+                {{order.item.id}}
                 <h2>{{item.id}} - {{item.name}}</h2>
                 <p>{{item.observation}}</p>
               </div>
@@ -31,6 +38,7 @@
         </section>
         <section class="status-panel yellow">
           <div class="order-box" ng-repeat="order in moderatelyRequestedOrders">
+            {{order.item.id}}
             <div class="order-card">
               <div class="order-item" ng-repeat="item in order.items">
                 <h2>{{item.id}} - {{item.name}}</h2>
@@ -40,11 +48,12 @@
             <div class="status" ng-class="getItemStatusCSSClass(item.status)"></div>
           </div>
           <aside class="time">
-            <p> <span class="number">20</span>min</p>
+            <p> &lt <span class="number">20</span>min</p>
           </aside>
         </section>
         <section class="status-panel red">
           <div class="order-box" ng-repeat="order in longAgoRequestedOrders">
+            {{order.item.id}}
             <div class="order-card">
               <div class="order-item" ng-repeat="item in order.items">
                 <h2>{{item.id}} - {{item.name}}</h2>
@@ -59,5 +68,11 @@
         </section>
       </main>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Services -->
+    <script src="order-kitchen.service.js" charset="utf-8"></script>
   </body>
 </html>

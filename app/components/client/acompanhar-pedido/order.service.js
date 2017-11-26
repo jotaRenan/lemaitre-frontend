@@ -11,12 +11,18 @@ angular.module('leMaitre')
       });
     },
 
-    placeOrder: function(order) {
+    retrieveOpenOrders: function() {
+      return $http({
+        method: 'GET',
+        url: `${orderBaseURL}`,
+      });
+    },
+
+    placeOrder: function(order, token = $localStorage.token ) {
       return $http({
         method: 'POST',
         url: `${apiEndpoint}/OrdersCreate`,
-        // data: {codToken: $localStorage.token, items: order.items}
-        data: {codToken: 'teste4321', items: order}
+        data: {codToken: token, items: order}
       });
     },
     // ORDER SUGAR SYNTAX
