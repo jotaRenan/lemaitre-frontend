@@ -41,7 +41,7 @@
         <p ng-if="isLoading">Carregando...</p>
         <div class="">
 
-          <div class="" ng-if=" tableBeingViewed.status == 'O' ">
+          <div class="unselectable" ng-if=" tableBeingViewed.status == 'O' ">
             <!-- campos: fazer pedido, visualizar conta parcial, fechar conta -->
             <section class="flex-container">
               <div ng-if="isCategoryMenuBeingExhibited" class="flex-item content-icon category" ng-repeat="category in categories" ng-click="exhibitItems(category)">
@@ -49,14 +49,16 @@
               </div>
             </section>
             <section ng-if="!isCategoryMenuBeingExhibited" class="flex-container">
-              <div class="flex-item content-icon item" ng-repeat="item in items" ng-click="orderItem(item)">
+              <div class="flex-item content-icon item"
+                   ng-repeat="item in items"
+                   ng-click="orderItem(item)" >
                 {{item.id}} - {{item.name}}
               </div>
             </section>
             <section ng-if="isSeeOrderActivated">
               <h5>A serem pedidos:</h5>
               <ul>
-                <li ng-repeat="item in itemsBeingOrdered">{{item.quantity}} {{item.name}}</li>
+                <li ng-repeat="item in itemsBeingOrdered" ng-click="removeItemFromOrder(item)">{{item.quantity}} {{item.name}}</li>
               </ul>
               <button type="button" class="btn btn-success" name="button" ng-click="placeOrder(itemsBeingOrdered)">Confirmar</button>
             </section>
