@@ -85,6 +85,7 @@ angular.module('leMaitre')
     $scope.isCategoryMenuBeingExhibited = true;
     $scope.isSeeOrderActivated = false;
     $scope.itemsBeingOrdered = [];
+    $scope.afterPlacementMessage = null;
     $scope.tableBeingViewed = table;
     if (table.status === 'R' || 'r' === table.status){
       retrieveReservationByTableID(table.id);
@@ -142,9 +143,12 @@ angular.module('leMaitre')
   };
 
   $scope.placeOrder = (order) => {
+    $scope.afterPlacementMessage = 'Carregando...';
     orderManagementFactory.placeOrder(order)
       .then(response => {
-        alert(response.data.content);
+        $scope.itemsBeingOrdered = [];
+        $scope.isSeeOrderActivated = false;
+        $scope.afterPlacementMessage = 'Pedido efetuado!';
       })
       .catch(error => exhibitError(error));
   };
