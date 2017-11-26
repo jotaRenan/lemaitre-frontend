@@ -60,10 +60,12 @@ angular.module('leMaitre')
       .catch( error => exhibitError(error) );
   };
 
-  const retrieveSubcategoryItems = (categoryID, subcategoryID) => {
-    subcategoryManagementFactory.retrieveSubcategoryItems(categoryID, subcategoryID)
-      .then(response => {
-        $scope.subcategories = response.data.content.map(subcategoryManagementFactory.subcategoryJSONSyntaxSugar); // TODO: implement this sugar
+  $scope.retrieveSubcategories = (categoryID) => {
+    categoryManagementFactory.getSubcategoriesFromCategory(categoryID)
+      .then( response => {
+        $scope.isSubcategoryMenuBeingExhibited = true;
+        $scope.isCategoryMenuBeingExhibited = false;
+        $scope.subcategories = response.data.content.map(subcategoryManagementFactory.subcategoryJSONSyntaxSugar);
       })
       .catch( error => exhibitError(error) );
   };
@@ -71,6 +73,7 @@ angular.module('leMaitre')
   const resetView = () => {
     $scope.isLoading = true;
     $scope.isCategoryMenuBeingExhibited = true;
+    $scope.isSubcategoryMenuBeingExhibited = false;
     $scope.isSeeOrderActivated = false;
     $scope.itemsBeingOrdered = [];
     $scope.afterPlacementMessage = null;
@@ -116,10 +119,11 @@ angular.module('leMaitre')
     $state.go('edicao-reserva');
   };
 
-  $scope.exhibitItems = (category) => {
+  $scope.exhibitItems = (subcategoryID) => {
     $scope.isLoading = true;
     $scope.isCategoryMenuBeingExhibited = false;
-    categoryManagementFactory.getItemsFromCategory(category.id)
+    $scope.isSubcategoryMenuBeingExhibited = false;
+    categoryManagementFactory.getItemsFromSubcategory(subcategoryID)
       .then( response => {
         $scope.isLoading = false;
         $scope.items = response.data.content.map(itemManagementFactory.itemJSONSyntaxSugar);
