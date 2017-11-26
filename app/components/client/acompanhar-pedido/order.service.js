@@ -13,7 +13,7 @@ angular.module('leMaitre')
 
     placeOrder: function(order) {
       return $http({
-        method: 'GET',
+        method: 'POST',
         url: `${apiEndpoint}/OrderCreate`,
         // data: {codToken: $localStorage.token, items: order.items}
         data: {codToken: 'teste4321', items: order.items}
