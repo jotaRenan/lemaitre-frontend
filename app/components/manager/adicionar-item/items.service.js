@@ -39,6 +39,7 @@ angular.module('leMaitre')
       item.description = badSyntax.desItem;
       item.isAvailable = badSyntax.isAvaliable;
       item.price = badSyntax.vlrPrice;
+      item.quantity = badSyntax.qtdItem;
       category.id = badSyntax.seqCategory;
       category.subcategory = {};
       category.subcategory.id = badSyntax.seqSubcategory;

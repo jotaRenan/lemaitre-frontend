@@ -33,6 +33,7 @@ angular.module('leMaitre')
       order.status = badSyntax.idtStatus;
       order.price = badSyntax.vlrPrice * badSyntax.qtdItem;
       order.item = badSyntax.item;
+      order.quantity = badSyntax.qtdItem;
       return order;
     }
   };

@@ -1,11 +1,11 @@
 angular.module('leMaitre')
-.factory('billManagementFactory', ['$http', 'apiEndpoint', function($http, apiEndpoint){
+.factory('billManagementFactory', ['$http', 'apiEndpoint', '$localStorage', function($http, apiEndpoint, $localStorage){
 
   const billBaseURL = `${apiEndpoint}/webresources/bill`;
 
   return {
     //RETRIEVE BILL BY TOKEN
-    retrieveBill: function(token) {
+    retrieveBill: function(token = $localStorage.token) {
       return $http({
         method: 'GET',
         url: `${billBaseURL}/${token}`,
