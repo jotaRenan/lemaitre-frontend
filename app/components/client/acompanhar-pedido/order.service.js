@@ -18,6 +18,16 @@ angular.module('leMaitre')
         // data: {codToken: $localStorage.token, items: order.items}
         data: {codToken: 'teste4321', items: order}
       });
+    },
+    // ORDER SUGAR SYNTAX
+    orderJSONSugar: function(badSyntax) {
+      let order = {};
+      order.token = badSyntax.codToken;
+      order.timestamp = badSyntax.datOrder;
+      order.status = badSyntax.idtStatus;
+      order.price = badSyntax.vlrPrice * badSyntax.qtdItem;
+      order.item = badSyntax.item;
+      return order;
     }
   };
 }]);
