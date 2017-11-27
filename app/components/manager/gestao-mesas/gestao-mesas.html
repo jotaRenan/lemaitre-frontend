@@ -42,16 +42,24 @@
         <div ng-if="!isLoading" class="">
 
           <div class="unselectable" ng-if=" tableBeingViewed.status == 'O' ">
-            <!-- campos: fazer pedido, visualizar conta parcial, fechar conta -->
-            <section class="flex-container">
-              <div ng-if="isCategoryMenuBeingExhibited" class="flex-item content-icon category" ng-repeat="category in categories" ng-click="exhibitItems(category)">
+            <!-- categorias -->
+            <section ng-if="isCategoryMenuBeingExhibited" class="flex-container">
+              <div class="flex-item content-icon category" ng-repeat="category in categories" ng-click="retrieveSubcategories(category.id)">
                 {{category.name}}
               </div>
             </section>
-            <section ng-if="!isCategoryMenuBeingExhibited" class="flex-container">
+            <!-- subcategorias -->
+            <section ng-if="!isCategoryMenuBeingExhibited && isSubcategoryMenuBeingExhibited" class="flex-container">
+              <div class="flex-item content-icon subcategory" ng-repeat="subcategory in subcategories" ng-click="exhibitItems(subcategory.id)">
+                {{subcategory.name}}
+              </div>
+            </section>
+            <!-- itens -->
+            <section ng-if="!(isCategoryMenuBeingExhibited || isSubcategoryMenuBeingExhibited)" class="flex-container">
               <div class="flex-item content-icon item"
                    ng-repeat="item in items"
-                   ng-click="orderItem(item)" >
+                   ng-click="!item.isAvailable || orderItem(item)"
+                   ng-class=" item.isAvailable ? 'available' : 'unavailable' ">
                 {{item.id}} - {{item.name}}
               </div>
             </section>
@@ -70,7 +78,7 @@
               <ul>
                 <li ng-repeat="item in itemsOrderedSoFar" >{{item.name}}</li>
               </ul>
-              <p>Preço parcial: {{bill.price}}</p>
+              <p>Preço parcial: {{bill.price | number:2}}</p>
             </div>
             <button type="button" class="btn btn-primary" name="button" ng-click="requestBill(tableBeingViewed.id)">Fechar conta</button>
 
@@ -79,7 +87,7 @@
           <div class="" ng-if=" tableBeingViewed.status == 'F' ">
             <!-- campos: inserir token, reservar mesa. -->
             <form class="pure-form">
-              <button class="btn btn-success" type="submit" name="button" ng-click="reserveTable(tableBeingViewed.reservation)">Associar Token</button>
+              <button class="btn btn-success" type="button" name="button" ng-click="associateTableToToken(tableBeingViewed, insertedToken)">Associar Token</button>
               <input type="text" name="" value="" ng-model="insertedToken" required>
             </form>
 

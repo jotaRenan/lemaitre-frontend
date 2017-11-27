@@ -8,6 +8,13 @@ angular.module('leMaitre')
         method: 'GET',
         url: `${subcategoryBaseURL}/${categoryID}/${subcategoryID}`,
       });
+    },
+    //sugarSyntax
+    subcategoryJSONSyntaxSugar: function(badSyntax) {
+      let subcategory = {};
+      subcategory.name = badSyntax.nomSubcategory;
+      subcategory.id = badSyntax.seqCategory;
+      return subcategory;
     }
   };
 }]);

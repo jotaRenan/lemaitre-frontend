@@ -24,11 +24,11 @@ angular.module('leMaitre')
         url: `${categoryBaseURL}/${categoryID}`,
       });
     },
-    // RETRIEVES ALL ITEMS FROM A GIVEN CATEGORY
-    getItemsFromCategory: function(categoryID) {
+    // RETRIEVES ALL ITEMS FROM A GIVEN SUBCATEGORY
+    getItemsFromSubcategory: function(subcategoryID) {
       return $http({
         method: 'GET',
-        url: `${categoryBaseURL}/${categoryID}/items`,
+        url: `${categoryBaseURL}/${subcategoryID}/items`,
       });
     },
     // RETRIEVES ALL SUBCATEGORIES GIVEN A CATEGORY

@@ -1,5 +1,5 @@
 angular.module('leMaitre')
-.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', 'orderManagementFactory', 'billManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory, orderManagementFactory, billManagementFactory){
+.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', 'orderManagementFactory', 'billManagementFactory', 'tokenManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory, orderManagementFactory, billManagementFactory, tokenManagementFactory){
 
   let tokenBeingExhibited;
   $scope.tokenBeingExhibited = tokenBeingExhibited;
@@ -60,10 +60,12 @@ angular.module('leMaitre')
       .catch( error => exhibitError(error) );
   };
 
-  const retrieveSubcategoryItems = (categoryID, subcategoryID) => {
-    subcategoryManagementFactory.retrieveSubcategoryItems(categoryID, subcategoryID)
-      .then(response => {
-        $scope.subcategories = response.data.content.map(subcategoryManagementFactory.subcategoryJSONSyntaxSugar); // TODO: implement this sugar
+  $scope.retrieveSubcategories = (categoryID) => {
+    categoryManagementFactory.getSubcategoriesFromCategory(categoryID)
+      .then( response => {
+        $scope.isSubcategoryMenuBeingExhibited = true;
+        $scope.isCategoryMenuBeingExhibited = false;
+        $scope.subcategories = response.data.content.map(subcategoryManagementFactory.subcategoryJSONSyntaxSugar);
       })
       .catch( error => exhibitError(error) );
   };
@@ -71,6 +73,7 @@ angular.module('leMaitre')
   const resetView = () => {
     $scope.isLoading = true;
     $scope.isCategoryMenuBeingExhibited = true;
+    $scope.isSubcategoryMenuBeingExhibited = false;
     $scope.isSeeOrderActivated = false;
     $scope.itemsBeingOrdered = [];
     $scope.afterPlacementMessage = null;
@@ -116,10 +119,11 @@ angular.module('leMaitre')
     $state.go('edicao-reserva');
   };
 
-  $scope.exhibitItems = (category) => {
+  $scope.exhibitItems = (subcategoryID) => {
     $scope.isLoading = true;
     $scope.isCategoryMenuBeingExhibited = false;
-    categoryManagementFactory.getItemsFromCategory(category.id)
+    $scope.isSubcategoryMenuBeingExhibited = false;
+    categoryManagementFactory.getItemsFromSubcategory(subcategoryID)
       .then( response => {
         $scope.isLoading = false;
         $scope.items = response.data.content.map(itemManagementFactory.itemJSONSyntaxSugar);
@@ -193,6 +197,34 @@ angular.module('leMaitre')
         }, []);
         bill.price = bill.orders.reduce( (total, order) => total + order.price, 0);
         $scope.bill = bill;
+      })
+      .catch(error => exhibitError(error));
+  };
+
+  $scope.associateTableToToken = (table, token) => {
+    $scope.isLoading = true;
+    tokenManagementFactory.associateTableToToken(table.id, token)
+      .then( response => {
+        $scope.isLoading = false;
+        switch (response.data.status) {
+          case 'OK':
+            $scope.generatedToken = response.data.content.codToken;
+            $scope.token = $scope.generatedToken;
+            retrieveTablesGeneralStatus();
+            break;
+          case 'BAD REQUEST':
+            if (response.data.content === 'CodIDBill is not in the persistence') {
+              throw new Error('token inválido.');
+            } else if (response.data.content === 'CodIDTablem is not in the persistence') {
+              throw new Error('código de mesa inválido');
+            } else {
+              throw new Error(response.data.content);
+            }
+            break;
+          default:
+            throw new Error(response.data.status);
+        }
+
       })
       .catch(error => exhibitError(error));
   };
