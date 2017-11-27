@@ -31,6 +31,22 @@ angular.module('leMaitre')
         url: `${itemImageBaseURL}/${itemID}`,
       });
     },
+    // INSERT ITEM
+    insertItem: function(item) {
+      return $http({
+        method: 'POST',
+        url: `${apiEndpoint}/ItemCreate`,
+        data: {
+          nomItem: item.name,
+          desItem: item.description,
+          vlrPrice: item.price,
+          isAvaliable: item.isAvailable, //backend has a typo
+          seqCategory: item.category.id,
+          seqSubcategory: item.category.subcategory.id
+        },
+      });
+    },
+
     // SYNTAX SUGAAR
     itemJSONSyntaxSugar: function(badSyntax) {
       let item = {}, category = {};

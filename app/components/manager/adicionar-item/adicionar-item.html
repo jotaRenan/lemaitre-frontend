@@ -2,27 +2,43 @@
 <article class="">
   <h1>Adicionar item</h1>
   <section class="add-item-container">
-    <form class="item-form pure-form" ng-submit="register()">
+    <form class="item-form pure-form" ng-submit="insertItem(item)">
       <div class="item-name">
         <label for="name">Nome</label><br>
         <input id="name" type="text" ng-model="item.name" value="" placeholder="Insira o nome" ng-required="required" autofocus>
       </div>
       <div class="item-picture">
         <label for="image">Imagem</label><br>
-        <input id="image" type="text" ng-model="item.picture" name="" value="" placeholder="Insira imagem do item" ng-required="required">
+        <input id="image" type="text" ng-model="item.picture" name="" value="" placeholder="Insira imagem do item">
       </div>
       <div class="item-price">
         <label for="price">Preço</label><br>
-        <input id="price" type="number" min="0" name="" ng-model="item.price" value="" placeholder="Insira o preço" ng-required="required">
+        <input id="price" type="number" min="0" step="0.01" name="" ng-model="item.price" value="" placeholder="Insira o preço" ng-required="required">
       </div>
       <div class="item-description">
         <label for="description">Descrição</label><br>
         <textarea id="description" name="" ng-model="item.description" rows="4" placeholder="Insira a descrição" ng-required="required"></textarea>
       </div>
+      <div class="item-availability">
+        <label for="availability">Está disponivel</label>
+        <input id="availability" type="checkbox" name="" ng-model="item.isAvailable" ng-required="required">
+      </div>
       <div class="item-category">
         <label for="category">Categoria</label><br>
-        <select ng-model="item.category"
-          ng-options="category as category.subcategory.name group by category.name for category in categories">
+        <select id="category" ng-model="item.category.id"
+                              ng-options="category.id as category.name for category in categories"
+                              ng-change="updateSubcategories(item.category.id)"
+                              ng-required="required">
+                              <option value="" disabled>--Selecione---</option>
+        </select>
+
+      </div>
+      <div class="item-subcategory">
+        <label for="subcategory">Sub-Categoria</label><br>
+        <select id="subcategory" ng-options="subcategory.id as subcategory.name for subcategory in subcategoriesExhibited"
+                                 ng-model="item.category.subcategory.id"
+                                 ng-required="required">
+                                 <option value="">--Selecione---</option>
         </select>
       </div>
       <div class="buttons">
