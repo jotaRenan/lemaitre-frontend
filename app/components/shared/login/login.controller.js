@@ -1,5 +1,5 @@
 angular.module('leMaitre')
-.controller('LoginCtrl', ['$scope', 'loginManagementFactory', function($scope, loginManagementFactory){
+.controller('LoginCtrl', ['$scope', 'loginManagementFactory', 'tokenManagementFactory', function($scope, loginManagementFactory, tokenManagementFactory){
 
   const exhibitError = error => {
     $scope.isLoading = false;
@@ -7,7 +7,7 @@ angular.module('leMaitre')
   };
 
   $scope.generateToken = () => {
-    loginManagementFactory.generateToken()
+    tokenManagementFactory.generateToken()
       .then(response=> {
         if(response.data.status === 'OK') {
           $scope.generatedToken = response.data.content.codToken;
