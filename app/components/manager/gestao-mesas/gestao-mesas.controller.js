@@ -1,5 +1,5 @@
 angular.module('leMaitre')
-.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', 'orderManagementFactory', 'billManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory, orderManagementFactory, billManagementFactory){
+.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', 'orderManagementFactory', 'billManagementFactory', 'tokenManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory, orderManagementFactory, billManagementFactory, tokenManagementFactory){
 
   let tokenBeingExhibited;
   $scope.tokenBeingExhibited = tokenBeingExhibited;
@@ -197,6 +197,34 @@ angular.module('leMaitre')
         }, []);
         bill.price = bill.orders.reduce( (total, order) => total + order.price, 0);
         $scope.bill = bill;
+      })
+      .catch(error => exhibitError(error));
+  };
+
+  $scope.associateTableToToken = (tableID, token) => {
+    $scope.isLoading = true;
+    tokenManagementFactory.associateTableToToken(tableID, token)
+      .then( response => {
+        $scope.isLoading = false;
+        //todo update table to 'occupied' state
+        switch (response.data.status) {
+          case 'OK':
+            $scope.generatedToken = response.data.content.codToken;
+            $scope.token = $scope.generatedToken;
+            break;
+          case 'BAD REQUEST':
+            if (response.data.content === 'CodIDBill is not in the persistence') {
+              throw new Error('token inválido.');
+            } else if (response.data.content === 'CodIDTablem is not in the persistence') {
+              throw new Error('código de mesa inválido');
+            } else {
+              throw new Error(response.data.content);
+            }
+            break;
+          default:
+            throw new Error(response.data.status);
+        }
+
       })
       .catch(error => exhibitError(error));
   };
