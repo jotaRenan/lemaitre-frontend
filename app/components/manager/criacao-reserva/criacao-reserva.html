@@ -1,0 +1,32 @@
+<link rel="stylesheet" type="text/css" href="app\components\manager\criacao-reserva\criacao-reserva.css">
+<article>
+  <h1 class="title" >Reserva de Mesas</h1>
+  <section class="reservation-container">
+    <form class="pure-form" ng-submit="makeReservation(newReservation)">
+      <div class="reservation-data">
+        <label for="table">Mesa escolhida:</label> <br>
+        <input id="table" ng-model="newReservation.table.id" type="text" value="" placeholder="Mesa ID=1">
+      </div>
+      <div class="reservation-quantity">
+        <label for="quantity">Quantidade de pessoas:</label>
+        <input id="quantity" ng-model="newReservation.nbrOfPeople" type="text" value="" placeholder="4">
+      </div>
+      <div class="reservation-data">
+        <label for="client">Dados do cliente:</label> <br>
+        <input id="client" ng-model="newReservation.person.name" type="text" value="" placeholder="Nome do reservante"><br>
+        <input id="client" ng-model="newReservation.person.telephone" type="text" value="" placeholder="Telefone">
+        <input id="client" ng-model="newReservation.person.cellphone" type="text" value="" placeholder="Celular">
+      </div>
+      <div class="reservation-time">
+        <label for="time">Horário de Reserva</label> <br>
+        <input class="date-field" ng-model="newReservation.date" id="time" type="date" value="">
+        <input class="time-field" ng-model="newReservation.hour" id="time" type="time" value="" placeholder="Horário">
+      </div>
+      <div class="reservation-buttons">
+        <button type="submit" name="button">Confirmar Reserva</button>
+        <button type="button" name="button" ng-click="cancel()">Cancelar</button>
+      </div>
+      {{successMessage}}
+    </form>
+  </section>
+</article>
