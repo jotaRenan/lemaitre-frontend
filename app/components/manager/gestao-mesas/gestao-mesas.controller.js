@@ -211,6 +211,7 @@ angular.module('leMaitre')
             $scope.generatedToken = response.data.content.codToken;
             $scope.token = $scope.generatedToken;
             retrieveTablesGeneralStatus();
+            $('#myModal').modal('hide');
             break;
           case 'BAD REQUEST':
             if (response.data.content === 'CodIDBill is not in the persistence') {
@@ -225,6 +226,24 @@ angular.module('leMaitre')
             throw new Error(response.data.status);
         }
 
+      })
+      .catch(error => exhibitError(error));
+  };
+
+  $scope.toggleAreYouSureModal = () => {
+    $('#areYouSureModal').modal('toggle');
+  };
+
+  $scope.definetelyFreeTable = (table) => {
+    const editedTable = {...table}; //copies object so it isnt passed as a reference
+    editedTable.status = 'F';
+    tableManagementFactory.editTable(editedTable)
+      .then( response => {
+        if (response.data.status === 'OK') {
+          retrieveTablesGeneralStatus();
+        } else {
+          throw new Error();
+        }
       })
       .catch(error => exhibitError(error));
   };

@@ -38,7 +38,7 @@ angular.module('leMaitre')
       return $http({
         method: 'POST',
         url: `${apiEndpoint}/TableCreate}`,
-        data: {codID: table.id, idtStatus: table.status, nroSeat: table.seats}
+        data: {codID: table.id, idtStatus: table.status, nroSeat: table.nbrOfSeats}
       });
     },
 
@@ -48,6 +48,15 @@ angular.module('leMaitre')
         method: 'GET',
         url: `${apiEndpoint}`,
         data: {tableId: tableId}
+      });
+    },
+
+    // EDIT TABLE
+    editTable: function(table) {
+      return $http({
+        method: 'POST',
+        url: `${apiEndpoint}/TableUpdate`,
+        data: {codID: table.id, idtStatus: table.status, nroSeat: table.nbrOfSeats}
       });
     },
 
