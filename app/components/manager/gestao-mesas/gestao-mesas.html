@@ -94,33 +94,35 @@
           </div>
 
           <div class=" " ng-if=" tableBeingViewed.status == 'R' ">
-          <!-- <div class=" " ng-if="true"> -->
-            <div ng-repeat="reservation in tableBeingViewed.reservations">
+            <div class="flex-space-around">
+              <div ng-repeat="reservation in tableBeingViewed.reservations">
 
-              <p>
-                <span class="status-item">Nome:</span>
-                {{ reservation.person.name || 'Vazio' }}
-              </p>
-              <p>
-                <span class="status-item">Numero de Pessoas:</span>
-                {{ reservation.nbrOfPeople || 'Vazio' }}
-              </p>
-              <p>
-                <span class="status-item">Telefone fixo:</span>
-                {{ reservation.person.telephone || 'Vazio' }}
-              </p>
-              <p>
-                <span class="status-item">Celular:</span>
-                {{ reservation.person.cellphone || 'Vazio' }}
-              </p>
-              <p>
-                <span class="status-item">Data:</span>
-                {{ reservation.date || 'Vazio' }}
-              </p>
-              <p>
-                <span class="status-item">Horário:</span>
-                {{ reservation.hour || 'Vazio' }}
-              </p>
+                <p>
+                  <span class="status-item">Nome:</span>
+                  {{ reservation.person.name || 'Vazio' }}
+                </p>
+                <p>
+                  <span class="status-item">Numero de Pessoas:</span>
+                  {{ reservation.nbrOfPeople || 'Vazio' }}
+                </p>
+                <p>
+                  <span class="status-item">Telefone fixo:</span>
+                  {{ reservation.person.telephone || 'Vazio' }}
+                </p>
+                <p>
+                  <span class="status-item">Celular:</span>
+                  {{ reservation.person.cellphone || 'Vazio' }}
+                </p>
+                <p>
+                  <span class="status-item">Data:</span>
+                  {{ reservation.date || 'Vazio' }}
+                </p>
+                <p>
+                  <span class="status-item">Horário:</span>
+                  {{ reservation.hour || 'Vazio' }}
+                </p>
+              </div>
+
             </div>
             <button type="button" class="btn btn-default" name="button" data-dismiss="modal" ng-click="editReservations()">Editar Reservas</button>
           </div>
