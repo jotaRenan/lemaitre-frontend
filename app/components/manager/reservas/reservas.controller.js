@@ -4,7 +4,7 @@ angular.module('leMaitre')
   // default error logging
   const exhibitError = error => {
     $scope.isLoading = false;
-    alert(`Erro ${error.status}: ${error.statusText}`);
+    alert(`Erro ${error.status || error.name}: ${error.statusText || error.message}`);
   };
 
   // definition of functions which call services
@@ -16,8 +16,14 @@ angular.module('leMaitre')
   const editTableReservation = reservation => {
     reservationFactory.editTableReservation(reservation)
       .then( response => {
-        console.log(response.data.content.map(reservationFactory.reverseRerservationSyntaxSugar)); 
-      }) 
+        $scope.isExhibitingResponse = true;
+        if (response.data.status === 'OK') {
+          $scope.responseStatus = 'Editado com sucesso! 😃';
+        } else {
+          $scope.responseStatus = 'Não foi possivel editar 🤷';
+          throw new Error('Não foi possivel editar 🤷');
+        }
+      })
       .catch( error => exhibitError(error) );
   };
   const cancelTableReservation = reservation => {
@@ -29,7 +35,7 @@ angular.module('leMaitre')
     reservationFactory.retrieveNextReservations()
       .then( response => {
         $scope.reservations = response.data.content.map(reservationFactory.reservationJSONSugar);
-      }) 
+      })
       .catch( error => exhibitError(error) );
   };
   const retrieveReservationByTableID = (tableId) => {
@@ -62,6 +68,7 @@ angular.module('leMaitre')
   };
 
   $scope.exhibitReservation = (reservation) => {
+    $scope.isExhibitingResponse = false;
     $scope.reservationBeingViewed = reservation;
   };
   // exposes functions to scope
@@ -72,6 +79,6 @@ angular.module('leMaitre')
   $scope.retrieveReservationByDate = retrieveReservationByDate;
   $scope.retrieveReservationByTableID = retrieveReservationByTableID;
 
-  //BEGINS EXECUTION 
+  //BEGINS EXECUTION
   retrieveNextReservations();
 }]);

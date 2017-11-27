@@ -27,10 +27,10 @@
         <div class="modal-body">
           <p ng-if="isLoading">Carregando...</p>
           <!-- <div class="" ng-if="!isLoading"> TODO implement isLoading variable -->
-          <div class="" ng-if="true">
+          <div class="" ng-if="!isExhibitingResponse">
             <p>
               <span class="status-item">Número da mesa:</span>
-              <a href="#" editable-text="reservationBeingViewed.table.id">{{ reservationBeingViewed.table.id || 'Vazio' }}</a>
+              <a href="#" editable-number="reservationBeingViewed.table.id">{{ reservationBeingViewed.table.id || 'Vazio' }}</a>
             </p>
             <p>
               <span class="status-item">Numero de Pessoas:</span>
@@ -38,11 +38,11 @@
             </p>
             <p>
               <span class="status-item">Data:</span>
-              <a href="#" editable-text="tableBeingViewed.reservation.date">{{ reservationBeingViewed.date || 'Vazio' }}</a>
+              <a href="#" editable-text="reservationBeingViewed.date">{{ reservationBeingViewed.date || 'Vazio' }}</a>
             </p>
             <p>
               <span class="status-item">Horário:</span>
-              <a href="#" editable-text="tableBeingViewed.reservation.hour">{{ reservationBeingViewed.hour || 'Vazio' }}</a>
+              <a href="#" editable-text="reservationBeingViewed.hour">{{ reservationBeingViewed.hour || 'Vazio' }}</a>
             </p>
             <p>
               <span class="status-item">Nome do Cliente:</span>
@@ -50,17 +50,22 @@
             </p>
             <p>
               <span class="status-item">Telefone Fixo:</span>
-              <a href="#" editable-text="tableBeingViewed.reservation.person.telephone">{{ reservationBeingViewed.person.telephone || 'Vazio' }}</a>
+              <a href="#" editable-tel="reservationBeingViewed.person.telephone">{{ reservationBeingViewed.person.telephone || 'Vazio' }}</a>
             </p>
             <p>
               <span class="status-item">Celular:</span>
-              <a href="#" editable-text="tableBeingViewed.reservation.person.cellphone">{{ reservationBeingViewed.person.cellphone || 'Vazio' }}</a>
+              <a href="#" editable-tel="reservationBeingViewed.person.cellphone">{{ reservationBeingViewed.person.cellphone || 'Vazio' }}</a>
             </p>
+          </div>
+          <div ng-if="isExhibitingResponse">
+            <h3>{{responseStatus}}</h3>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger pull-left " ng-click="cancelTableReservation(reservationBeingViewed)">Cancelar Reserva</button>
-          <button type="button" class="btn btn-success pull-right" ng-click="editTableReservation(reservationBeingViewed)">Salvar</button>
+          <div ng-if="!isExhibitingResponse" style="display: inline;">
+            <button type="button" class="btn btn-danger pull-left " ng-click="cancelTableReservation(reservationBeingViewed)">Cancelar Reserva</button>
+            <button type="button" class="btn btn-success pull-right" ng-click="editTableReservation(reservationBeingViewed)">Salvar</button>
+          </div>
           <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
         </div>
       </div>
