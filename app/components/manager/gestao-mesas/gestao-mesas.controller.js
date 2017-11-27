@@ -201,16 +201,16 @@ angular.module('leMaitre')
       .catch(error => exhibitError(error));
   };
 
-  $scope.associateTableToToken = (tableID, token) => {
+  $scope.associateTableToToken = (table, token) => {
     $scope.isLoading = true;
-    tokenManagementFactory.associateTableToToken(tableID, token)
+    tokenManagementFactory.associateTableToToken(table.id, token)
       .then( response => {
         $scope.isLoading = false;
-        //todo update table to 'occupied' state
         switch (response.data.status) {
           case 'OK':
             $scope.generatedToken = response.data.content.codToken;
             $scope.token = $scope.generatedToken;
+            retrieveTablesGeneralStatus();
             break;
           case 'BAD REQUEST':
             if (response.data.content === 'CodIDBill is not in the persistence') {
