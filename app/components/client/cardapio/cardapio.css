@@ -66,6 +66,9 @@
   margin-bottom: 0;
 }
 
+form input[type="text"] {
+  width: 100%;
+}
 
 @media only screen and (max-width: 480px) {
   .title {
