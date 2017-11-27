@@ -1,18 +1,22 @@
 angular.module('leMaitre')
 .controller('AddItemCtrl',['$scope', '$http', '$state', 'categoryManagementFactory', 'subcategoryManagementFactory', 'itemManagementFactory', function($scope, $http, $state, categoryManagementFactory, subcategoryManagementFactory, itemManagementFactory){
 
-  $scope.item = {
-    name: undefined,
-    picture: undefined,
-    price: undefined,
-    description: undefined,
-    isAvailable: undefined,
-    category: {
-      id: undefined,
-      subcategory: {
-        id: undefined
-      }
-    },
+  $scope.item = {};
+
+  const resetItem = () => {
+    $scope.item = {
+      name: undefined,
+      picture: undefined,
+      price: undefined,
+      description: undefined,
+      isAvailable: undefined,
+      category: {
+        id: undefined,
+        subcategory: {
+          id: undefined
+        }
+      },
+    };
   };
 
   const exhibitError = error => {
@@ -22,11 +26,18 @@ angular.module('leMaitre')
 
   $scope.insertItem = (item) => {
     itemManagementFactory.insertItem(item)
-      .then()
+      .then( response => {
+        if (response.data.status === 'OK') {
+          const itemName = response.data.content.nomItem;
+          resetItem();
+          $scope.successMessage = `Item '${itemName}'' adicionado com sucesso!`;
+        }
+      })
       .catch(err => exhibitError(err));
   };
 
   $scope.cancel = () => {
+    resetItem();
     $state.go('home');
   };
 
@@ -93,5 +104,6 @@ angular.module('leMaitre')
     }
   ];
   //BEGIN EXECUTION
+  resetItem();
   retrieveCategories();
 }]);
