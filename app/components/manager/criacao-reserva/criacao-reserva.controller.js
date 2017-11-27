@@ -8,8 +8,6 @@ angular.module('leMaitre')
 
   // definition of functions which call services
   $scope.makeReservation = (reservation) => {
-    console.log(reservation.date);
-    console.log(reservation.hour);
     createReservationFactory.makeReservation(reservation)
       .then( response => {
         if (response.data.status === 'OK') {

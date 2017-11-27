@@ -39,8 +39,6 @@ angular.module('leMaitre')
       let ampm = hours < 12 ? "AM" : "PM";
       hours = (hours % 12) || 12;
       badSyntax.datHourReservation = `${hours}:${oldHour.getMinutes()}:${oldHour.getSeconds()} ${ampm}`;
-      console.log(badSyntax.datReservation);
-      console.log(badSyntax.datHourReservation);
       badSyntax.nroPersons = reservation.nbrOfPeople;
       return badSyntax;
     }
