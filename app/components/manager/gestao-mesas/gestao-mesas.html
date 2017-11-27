@@ -78,7 +78,7 @@
               <ul>
                 <li ng-repeat="item in itemsOrderedSoFar" >{{item.name}}</li>
               </ul>
-              <p>Preço parcial: {{bill.price}}</p>
+              <p>Preço parcial: {{bill.price | number:2}}</p>
             </div>
             <button type="button" class="btn btn-primary" name="button" ng-click="requestBill(tableBeingViewed.id)">Fechar conta</button>
 
