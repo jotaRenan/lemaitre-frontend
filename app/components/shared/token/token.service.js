@@ -6,6 +6,14 @@ angular.module('leMaitre')
         method: 'POST',
         url: `${apiEndpoint}/BillCreate`,
       });
+    },
+
+    associateTableToToken: function(tableID, token) {
+      return $http({
+        method: 'POST',
+        url: `${apiEndpoint}/BillTableCreate`,
+        data: {codIDBill: token, codIDTable: tableID}
+      });
     }
   };
 
