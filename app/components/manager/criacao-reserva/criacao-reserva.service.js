@@ -36,16 +36,9 @@ angular.module('leMaitre')
       badSyntax.datReservation = `${oldDate.getFullYear()}-${oldDate.getMonth()+1}-${oldDate.getDate()}`;
       const oldHour = new Date(reservation.hour);
       let hours = oldHour.getHours();
-      hours = (hours + 24) % 24;
-      let period = 'AM';
-      if(hours == 0){ //At 00 hours we need to show 12 am
-        hours = 12;
-      }
-      else if(hours > 12){
-        hours = hours % 12;
-        period='PM';
-      }
-      badSyntax.datHourReservation = `${hours}:${oldHour.getMinutes()}:${oldHour.getSeconds()} ${period}`;
+      let ampm = hours < 12 ? "AM" : "PM";
+      hours = (hours % 12) || 12;
+      badSyntax.datHourReservation = `${hours}:${oldHour.getMinutes()}:${oldHour.getSeconds()} ${ampm}`;
       console.log(badSyntax.datReservation);
       console.log(badSyntax.datHourReservation);
       badSyntax.nroPersons = reservation.nbrOfPeople;
