@@ -9,7 +9,7 @@
           data-target="#myModal"
           ng-click="exhibitReservation(reservation)"
       >
-        Mesa {{reservation.table.id}}, {{reservation.person.name}} ({{reservation.person.cellphone}})
+        Mesa {{reservation.table.id}}, {{reservation.person.name}} - {{reservation.person.cellphone}}
       </li>
     </ul>
   </section>
@@ -60,6 +60,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger pull-left " ng-click="cancelTableReservation(reservationBeingViewed)">Cancelar Reserva</button>
+          <button type="button" class="btn btn-success pull-right" ng-click="editTableReservation(reservationBeingViewed)">Salvar</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
         </div>
       </div>

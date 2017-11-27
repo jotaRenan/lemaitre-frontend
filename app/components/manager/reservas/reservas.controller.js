@@ -15,7 +15,9 @@ angular.module('leMaitre')
   };
   const editTableReservation = reservation => {
     reservationFactory.editTableReservation(reservation)
-      .then() //todo
+      .then( response => {
+        console.log(response.data.content.map(reservationFactory.reverseRerservationSyntaxSugar)); 
+      }) 
       .catch( error => exhibitError(error) );
   };
   const cancelTableReservation = reservation => {
@@ -25,7 +27,9 @@ angular.module('leMaitre')
   };
   const retrieveNextReservations = () => {
     reservationFactory.retrieveNextReservations()
-      .then() //todo
+      .then( response => {
+        $scope.reservations = response.data.content.map(reservationFactory.reservationJSONSugar);
+      }) 
       .catch( error => exhibitError(error) );
   };
   const retrieveReservationByTableID = (tableId) => {
@@ -40,33 +44,7 @@ angular.module('leMaitre')
   };
 
   //array containing objects of reservations
-  $scope.reservations = [
-    {
-      date: 'Nov 23, 2017 12:00:00 AM',
-      nbrOfPeople: null,
-      table: {
-        id: 2
-      },
-      person: {
-        telephone: null,
-        cellphone: '31 97110-2764',
-        name: 'Jota renan',
-      }
-    },
-
-    {
-      date: 'Nov 23, 2017 13:00:00 AM',
-      nbrOfPeople: null,
-      table: {
-        id: 1
-      },
-      person: {
-        telephone: null,
-        cellphone: '31 97110-2765',
-        name: 'Breninho',
-      }
-    }
-  ];
+  $scope.reservations = [];
   // reservation to be displayed on a modal
   $scope.reservationBeingViewed = {};
   // object representing a clean reservation object
@@ -93,4 +71,7 @@ angular.module('leMaitre')
   $scope.retrieveNextReservations = retrieveNextReservations;
   $scope.retrieveReservationByDate = retrieveReservationByDate;
   $scope.retrieveReservationByTableID = retrieveReservationByTableID;
+
+  //BEGINS EXECUTION 
+  retrieveNextReservations();
 }]);
