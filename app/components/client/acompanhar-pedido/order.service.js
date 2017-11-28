@@ -1,5 +1,5 @@
 angular.module('leMaitre')
-.factory('orderManagementFactory', ['$http', '$localStorage', 'apiEndpoint', function($http, $localStorage, apiEndpoint){
+.factory('orderManagementFactory', ['$http', '$sessionStorage', 'apiEndpoint', function($http, $sessionStorage, apiEndpoint){
 
   const orderBaseURL = `${apiEndpoint}/webresources/order/`;
 
@@ -18,7 +18,7 @@ angular.module('leMaitre')
       });
     },
 
-    placeOrder: function(order, token = $localStorage.token ) {
+    placeOrder: function(order, token = $sessionStorage.token ) {
       return $http({
         method: 'POST',
         url: `${apiEndpoint}/OrdersCreate`,
