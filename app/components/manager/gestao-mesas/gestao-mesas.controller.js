@@ -82,6 +82,17 @@ angular.module('leMaitre')
 
   $scope.tableBeingViewed = {};
 
+  const listTokens = () => {
+    billManagementFactory.retrieveAllBills()
+      .then( response => {
+        $scope.availableTokens = response.data.content
+          .map(billManagementFactory.billJSONSugar)
+          .filter(bill => bill.status === 'O');
+          console.table($scope.availableTokens);
+      })
+      .catch( error => exhibitError(error) );
+  };
+
   $scope.getTableStatusClass = (status) => {
     switch (status) {
       case 'O': //occupied
@@ -104,6 +115,8 @@ angular.module('leMaitre')
     $scope.tableBeingViewed = table;
     if (table.status === 'R' || 'r' === table.status){
       retrieveReservationByTableID(table.id);
+    } else if (table.status === 'F' || 'f' === table.status) {
+      listTokens();
     }
   };
 
