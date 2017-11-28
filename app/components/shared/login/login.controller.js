@@ -51,7 +51,7 @@ angular.module('leMaitre')
       .then( response => {
         const tokenMatches = response.data.content
           .map(billManagementFactory.billJSONSugar)
-          .find(bill => bill.token === token);
+          .find(bill => bill.token === token && bill.status === 'O');
         if (tokenMatches) {
           $scope.$storage.isLogged = true;
           $scope.$storage.token = token;
