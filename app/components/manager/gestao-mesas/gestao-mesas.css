@@ -149,3 +149,8 @@
 .status-item {
   font-weight: bold;
 }
+
+.flex-space-around {
+  display: flex;
+  justify-content: space-around;
+}

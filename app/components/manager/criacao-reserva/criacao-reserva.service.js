@@ -1,56 +1,13 @@
 angular.module('leMaitre')
-.factory('reservationFactory', ['$http', 'apiEndpoint', function($http, apiEndpoint){
-
-  const reservationBaseUrl = `${apiEndpoint}/webresources/reservation`;
-
+.factory('createReservationFactory', ['$http', 'apiEndpoint', function($http, apiEndpoint){
   return {
     // CREATE
     makeReservation: function(reservation) {
+      const res = this.reverseRerservationSyntaxSugar(reservation)
       return $http({
         method: 'POST',
         url: `${apiEndpoint}/ReservationCreate`,
-        data: {reservation: reservation}
-      });
-    },
-    // UPDATE
-    editTableReservation: function(reservation) {
-      const res = this.reverseRerservationSyntaxSugar(reservation);
-      return $http({
-        method: 'POST',
-        url: `${apiEndpoint}/ReservationUpdate`,
         data: res
-      });
-    },
-    // DELETE
-    cancelTableReservation: function(reservation) {
-      const id = reservation.table.id,
-            date = reservation.date,
-            hour = reservation.hour;
-      return $http({
-        method: 'DELETE',
-        url: `${reservationBaseUrl}`,
-      });
-    },
-    // RETRIEVE MANY
-    retrieveNextReservations: function() {
-      return $http({
-        method: 'GET',
-        url: `${reservationBaseUrl}/`
-      });
-    },
-    // RETRIEVE BY DATE
-    retrieveReservationByDate: function(date) {
-      return $http({
-        method: 'GET',
-        url: `${apiEndpoint}/`,
-        data: {date: date}
-      });
-    },
-    // RETRIEVE BY TABLE ID
-    retrieveReservationByTableID: function(tableID) {
-      return $http({
-        method: 'GET',
-        url: `${reservationBaseUrl}/${tableID}`
       });
     },
 
@@ -77,7 +34,11 @@ angular.module('leMaitre')
       badSyntax.txtTelephone = reservation.person.telephone;
       const oldDate = new Date(reservation.date);
       badSyntax.datReservation = `${oldDate.getFullYear()}-${oldDate.getMonth()+1}-${oldDate.getDate()}`;
-      badSyntax.datHourReservation = reservation.hour;
+      const oldHour = new Date(reservation.hour);
+      let hours = oldHour.getHours();
+      let ampm = hours < 12 ? "AM" : "PM";
+      hours = (hours % 12) || 12;
+      badSyntax.datHourReservation = `${hours}:${oldHour.getMinutes()}:${oldHour.getSeconds()} ${ampm}`;
       badSyntax.nroPersons = reservation.nbrOfPeople;
       return badSyntax;
     }

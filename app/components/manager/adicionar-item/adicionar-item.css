@@ -67,6 +67,9 @@ h1 {
 
   .submit, .cancel {
     font-size: 16px;
-    margin: 4%;
+  }
+
+  .item-price {
+    display: block;
   }
 }
