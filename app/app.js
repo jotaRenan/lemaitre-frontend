@@ -36,11 +36,11 @@ angular.module("leMaitre", ["ui.router", 'xeditable', 'angular.filter', 'ngStora
 	      templateUrl: 'app/components/manager/adicionar-item/adicionar-item.html',
         controller: 'AddItemCtrl',
 	    })
-	    //Rota para a página Edição de Reserva
-	    .state('edicao-reserva', {
-	      url: '/edicao-reserva',
-	      templateUrl: 'app/components/manager/edicao-reserva/edicao-reserva.html',
-        controller: 'EdicaoReservaCtrl',
+	    //Rota para a página Criação de Reserva
+	    .state('criacao-reserva', {
+	      url: '/criacao-reserva',
+	      templateUrl: 'app/components/manager/criacao-reserva/criacao-reserva.html',
+        controller: 'CriacaoReservaCtrl',
 	    })
 	    //Rota para a página Gerador de Tokens
 	    .state('gerador-token', {

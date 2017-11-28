@@ -20,6 +20,29 @@ h1 {
   margin-bottom: 3%;
 }
 
+.item-form > div > input[type="text"],
+.item-form > div > input[type="text"],
+.item-form > div > textarea,
+.item-form select{
+  width: 100%;
+}
+
+.item-price,
+.item-category {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.item-price div,
+.item-category div {
+  width: 50%;
+}
+
+.item-category div:not(:first-of-type) {
+  padding: 0 0 0 5%;
+}
+
 .buttons {
   padding-left: 3%;
   padding-right: 3%;
@@ -44,6 +67,9 @@ h1 {
 
   .submit, .cancel {
     font-size: 16px;
-    margin: 4%;
+  }
+
+  .item-price {
+    display: block;
   }
 }

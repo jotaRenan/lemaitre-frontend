@@ -1,5 +1,5 @@
 angular.module('leMaitre-kitchen')
-.factory('orderManagementFactory', ['$http', 'apiEndpoint', function($http, apiEndpoint){
+.factory('orderManagementFactory', ['$http', 'apiEndpoint', 'itemManagementFactory', function($http, apiEndpoint, itemManagementFactory){
 
   const orderBaseURL = `${apiEndpoint}/webresources/order/`;
 
@@ -11,17 +11,31 @@ angular.module('leMaitre-kitchen')
       });
     },
 
+    updateOrder: function(order) {
+      return $http({
+        method: 'POST',
+        url: `${apiEndpoint}/OrderUpdate`,
+        data: {codToken: order.codToken, idtStatus: order.idtStatus, codItem: order.item.codItem, idtAvailable: order.item.idtAvailable}
+      });
+    },
+
     // ORDER SUGAR SYNTAX
     orderJSONSugar: function(badSyntax) {
-      let order = {}, item={};
+      let order = {};
       order.token = badSyntax.codToken;
       order.timestamp = new Date(badSyntax.datOrder);
       order.status = badSyntax.idtStatus;
       order.price = badSyntax.vlrPrice * badSyntax.qtdItem;
-      item.id = badSyntax.codItem;
-      item.quantity = badSyntax.qtdItem;
-      order.item = item;
+      order.item = badSyntax.item;
       return order;
+    },
+
+    reverseJSONSugar: function(goodSyntax) {
+      let badSyntax = {};
+      badSyntax.codToken = goodSyntax.token;
+      badSyntax.idtStatus = goodSyntax.status;
+      badSyntax.item = itemManagementFactory.reverseJSONSyntaxSugar(goodSyntax.item);
+      return badSyntax;
     }
   };
 }]);
