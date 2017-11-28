@@ -16,7 +16,7 @@
           <label for="price">Preço</label><br>
           <input id="price" type="number" min="0" step="0.01" name="" ng-model="item.price" value="" placeholder="Insira o preço" ng-required="required">
         </div>
-        <div class="checkbox-available">
+        <div class="">
           <label for="availability">Está disponivel</label>
           <input id="availability" type="checkbox" name="" ng-model="item.isAvailable" ng-required="required">
         </div>
@@ -24,6 +24,8 @@
       <div class="item-description">
         <label for="description">Descrição</label><br>
         <textarea id="description" name="" ng-model="item.description" rows="2" placeholder="Insira a descrição" ng-required="required"></textarea>
+      </div>
+      <div class="item-availability">
       </div>
       <div class="item-category">
         <div class="">

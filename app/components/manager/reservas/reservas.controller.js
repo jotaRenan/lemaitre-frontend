@@ -4,7 +4,7 @@ angular.module('leMaitre')
   // default error logging
   const exhibitError = error => {
     $scope.isLoading = false;
-    alert(`Erro ${error.status || error.name}: ${error.statusText || error.message}`);
+    alert(`Erro ${error.status}: ${error.statusText}`);
   };
 
   // definition of functions which call services
@@ -15,15 +15,7 @@ angular.module('leMaitre')
   };
   const editTableReservation = reservation => {
     reservationFactory.editTableReservation(reservation)
-      .then( response => {
-        $scope.isExhibitingResponse = true;
-        if (response.data.status === 'OK') {
-          $scope.responseStatus = 'Editado com sucesso! 😃';
-        } else {
-          $scope.responseStatus = 'Não foi possivel editar 🤷';
-          throw new Error('Não foi possivel editar 🤷');
-        }
-      })
+      .then() //todo
       .catch( error => exhibitError(error) );
   };
   const cancelTableReservation = reservation => {
@@ -33,9 +25,7 @@ angular.module('leMaitre')
   };
   const retrieveNextReservations = () => {
     reservationFactory.retrieveNextReservations()
-      .then( response => {
-        $scope.reservations = response.data.content.map(reservationFactory.reservationJSONSugar);
-      })
+      .then() //todo
       .catch( error => exhibitError(error) );
   };
   const retrieveReservationByTableID = (tableId) => {
@@ -50,7 +40,33 @@ angular.module('leMaitre')
   };
 
   //array containing objects of reservations
-  $scope.reservations = [];
+  $scope.reservations = [
+    {
+      date: 'Nov 23, 2017 12:00:00 AM',
+      nbrOfPeople: null,
+      table: {
+        id: 2
+      },
+      person: {
+        telephone: null,
+        cellphone: '31 97110-2764',
+        name: 'Jota renan',
+      }
+    },
+
+    {
+      date: 'Nov 23, 2017 13:00:00 AM',
+      nbrOfPeople: null,
+      table: {
+        id: 1
+      },
+      person: {
+        telephone: null,
+        cellphone: '31 97110-2765',
+        name: 'Breninho',
+      }
+    }
+  ];
   // reservation to be displayed on a modal
   $scope.reservationBeingViewed = {};
   // object representing a clean reservation object
@@ -68,7 +84,6 @@ angular.module('leMaitre')
   };
 
   $scope.exhibitReservation = (reservation) => {
-    $scope.isExhibitingResponse = false;
     $scope.reservationBeingViewed = reservation;
   };
   // exposes functions to scope
@@ -78,7 +93,4 @@ angular.module('leMaitre')
   $scope.retrieveNextReservations = retrieveNextReservations;
   $scope.retrieveReservationByDate = retrieveReservationByDate;
   $scope.retrieveReservationByTableID = retrieveReservationByTableID;
-
-  //BEGINS EXECUTION
-  retrieveNextReservations();
 }]);

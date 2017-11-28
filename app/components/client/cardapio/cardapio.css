@@ -21,45 +21,25 @@
 }
 
 .category-name {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(249, 249, 255, 0.6);
   padding: 5%;
   font-size: 1.1em;
   border-bottom: 2px solid;
   border-color: rgba(224, 224, 224, 0.5);
 }
 
-.subcategory-name {
-  background-color: rgba(224, 224, 224, 0.6);
-  padding: 4%;
-  padding-left: 8%;
-  padding-right: 8%;
-  font-size: 1.0em;
-  border-bottom: 1px solid;
+.categoria-cardapio > section {
+  padding: 7%;
+  border-bottom: 2px solid;
   border-color: rgba(224, 224, 224, 0.5);
 }
 
-.subcategoria-cardapio > section {
-  padding: 7%;
-  border-bottom: 2px solid;
-  border-color: rgba(179, 179, 179, 0.5);
-}
-
-.subcategoria-cardapio > div {
-  border-bottom: 2px solid;
-  border-color: rgba(179, 179, 179, 0.5);
-}
-
-.subcategoria-cardapio > section > div {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex: 1;
-  padding: 2%;
-}
-
-.subcategoria-cardapio > section > div > div {
-  width: 33%;
-  text-align: center;
+.categoria-cardapio > section > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex: 1;
+    padding: 2%;
 }
 
 .title {
@@ -71,13 +51,6 @@
   margin-bottom: 0;
 }
 
-form input[type="text"] {
-  width: 100%;
-}
-
-.big-text {
-  font-size: 2.2em;
-}
 
 @media only screen and (max-width: 480px) {
   .title {

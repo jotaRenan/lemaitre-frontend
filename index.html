@@ -34,17 +34,16 @@
             <a href="#" class="header__icon" id="header__icon"></a>
             <a href="#" class="header__logo"><span class="logo">Le Maître</span></a>
 
-            <nav ng-controller="navbarCtrl" class="menu">
+            <nav class="menu">
               <a ui-sref="home">Home</a>
-              <a ng-if="$storage.isLogged && (!$storage.isLogged)" ui-sref="acompanhar-pedido">Acompanhar Pedido</a>
-              <a ng-if="$storage.isLogged && (!$storage.isLogged)" ui-sref="finalizar-pedido">Finalizar Pedido</a>
-              <a ng-if="$storage.isManager" ui-sref="gestao-mesas">Gestão de Mesas</a>
-              <a ng-if="$storage.isManager" ui-sref="gerador-token">Gerar Token</a>
-              <a ng-if="$storage.isManager" ui-sref="adicionar-item">Adicionar Item</a>
+              <a ui-sref="acompanhar-pedido">Acompanhar Pedido</a>
+              <a ui-sref="finalizar-pedido">Finalizar Pedido</a>
+              <a ui-sref="gestao-mesas">Gestão de Mesas</a>
+              <a ui-sref="gerador-token">Gerar Token</a>
+              <a ui-sref="adicionar-item">Adicionar Item</a>
               <a ui-sref="cardapio">Cardápio</a>
-              <a ng-if="$storage.isManager" ui-sref="criacao-reserva">Criação de Reserva</a>
-              <a ng-if="$storage.isManager" ui-sref="reservas">Reservas</a>
-              <a ng-if="$storage.isLogged" ng-click="logout()">Sair</a>
+              <a ui-sref="edicao-reserva">Edicao Reserva</a>
+              <a ui-sref="reservas">Reservas</a>
             </nav>
 
           </div>
@@ -77,7 +76,7 @@
    <script src="app\components\client\finalizar-pedido\finalizar-pedido.controller.js" charset="utf-8"></script>
    <script src="app\components\kitchen\kitchen.controller.js" charset="utf-8"></script>
    <script src="app\components\manager\adicionar-item\adicionar-item.controller.js" charset="utf-8"></script>
-   <script src="app\components\manager\criacao-reserva\criacao-reserva.controller.js" charset="utf-8"></script>
+   <script src="app\components\manager\edicao-reserva\edicao-reserva.controller.js" charset="utf-8"></script>
    <script src="app\components\manager\gerador-token\gerador-token.controller.js" charset="utf-8"></script>
    <script src="app\components\manager\gestao-mesas\gestao-mesas.controller.js" charset="utf-8"></script>
    <script src="app\components\manager\status-mesa-livre\status-mesa-livre.controller.js" charset="utf-8"></script>
@@ -85,18 +84,15 @@
    <script src="app\components\manager\status-mesa-reservada\status-mesa-reservada.controller.js" charset="utf-8"></script>
    <script src="app\components\shared\login\login.controller.js" charset="utf-8"></script>
    <script src="app\components\manager\reservas\reservas.controller.js" charset="utf-8"></script>
-   <script src="app\components\shared\navbar.controller.js" charset="utf-8"></script>
+
     <!-- Services -->
     <script src="app\components\manager\gerador-token\gerador-token.service.js" charset="utf-8"></script>
     <script src="app\components\manager\reservas\reservas.service.js" charset="utf-8"></script>
     <script src="app\components\manager\gestao-mesas\gestao-mesas.service.js" charset="utf-8"></script>
-    <script src="app\components\manager\criacao-reserva\criacao-reserva.service.js" charset="utf-8"></script>
     <script src="app\components\manager\adicionar-item\category.service.js" charset="utf-8"></script>
     <script src="app\components\manager\adicionar-item\subcategory.service.js" charset="utf-8"></script>
     <script src="app\components\manager\adicionar-item\items.service.js" charset="utf-8"></script>
     <script src="app\components\client\acompanhar-pedido\order.service.js" charset="utf-8"></script>
     <script src="app\components\client\acompanhar-pedido\bill.service.js" charset="utf-8"></script>
-    <script src="app\components\shared\login\login.service.js" charset="utf-8"></script>
-    <script src="app\components\shared\token\token.service.js" charset="utf-8"></script>
   </body>
 </html>
