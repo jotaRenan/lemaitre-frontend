@@ -1,5 +1,7 @@
 angular.module('leMaitre')
 .controller('LoginCtrl', ['$timeout','$scope', '$sessionStorage', 'loginManagementFactory', 'tokenManagementFactory', function($timeout, $scope, $sessionStorage, loginManagementFactory, tokenManagementFactory){
+  const rightUser = 'manager';
+  const rightPass = '123';
 
   $scope.$storage = $sessionStorage;
 
@@ -26,14 +28,15 @@ angular.module('leMaitre')
     $scope.loginMessage = '';
     $timeout( () => {
       $scope.loading = false;
-      if ($scope.user.username === 'manager' && $scope.user.password === '123') {
+      if ($scope.user.username === rightUser && $scope.user.password === rightPass) {
         $scope.$storage.isManager = true;
+        $scope.$storage.isLogged = true;
         $scope.loginMessage = 'Login feito com sucesso';
         $('#workerLogin').modal('hide');
       } else {
         $scope.loginMessage = 'Login invalido';
-        resetUser();
       }
+      resetUser();
     }, 800);
   };
   const resetUser = () => {

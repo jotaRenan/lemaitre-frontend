@@ -12,7 +12,7 @@
       <input type="text" ng-model="generatedToken" ng-if="!!generatedToken" readonly>
     </div>
   </form>
-  <p data-toggle="modal" data-target="#workerLogin">Gerente</p>
+  <p ng-if="!$storage.isLogged" data-toggle="modal" data-target="#workerLogin">Gerente</p>
 
 </article>
 
