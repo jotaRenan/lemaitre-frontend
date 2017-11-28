@@ -1,5 +1,7 @@
 angular.module('leMaitre')
-.controller('LoginCtrl', ['$scope', 'loginManagementFactory', 'tokenManagementFactory', function($scope, loginManagementFactory, tokenManagementFactory){
+.controller('LoginCtrl', ['$timeout','$scope', '$sessionStorage', 'loginManagementFactory', 'tokenManagementFactory', function($timeout, $scope, $sessionStorage, loginManagementFactory, tokenManagementFactory){
+
+  $scope.$storage = $sessionStorage;
 
   const exhibitError = error => {
     $scope.isLoading = false;
@@ -19,7 +21,28 @@ angular.module('leMaitre')
       .catch(err => exhibitError(err));
   };
 
-  $scope.login = () => {
-
+  $scope.login = (user) => {
+    $scope.loading = true;
+    $scope.loginMessage = '';
+    $timeout( () => {
+      $scope.loading = false;
+      if ($scope.user.username === 'manager' && $scope.user.password === '123') {
+        $scope.$storage.isManager = true;
+        $scope.loginMessage = 'Login feito com sucesso';
+        $('#workerLogin').modal('hide');
+      } else {
+        $scope.loginMessage = 'Login invalido';
+        resetUser();
+      }
+    }, 800);
   };
+  const resetUser = () => {
+    $scope.user = {
+      username: '',
+      password: ''
+    };
+  };
+
+  // Begin execution
+  resetUser();
 }]);

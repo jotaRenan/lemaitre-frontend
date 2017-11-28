@@ -12,5 +12,32 @@
       <input type="text" ng-model="generatedToken" ng-if="!!generatedToken" readonly>
     </div>
   </form>
+  <p data-toggle="modal" data-target="#workerLogin">Gerente</p>
 
 </article>
+
+<!-- Modal2 -->
+<div class="modal fade" id="workerLogin" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        {{isLoading}}
+        <h3>Login</h3>
+      </div>
+      <div class="modal-footer">
+        <form ng-if="!loading" class="pure-form" ng-submit="login(user)">
+          <label for="username">Usuário:</label>
+          <input id="username" type="text" placeholder="usuario" ng-model="user.username" required>
+          <label for="password">Senha:</label>
+          <input id="password" type="password" placeholder="senha" ng-model="user.password" required>
+          <button class="btn btn-success pull-right" type="submit" name="button">Entrar</button>
+          <p>{{loginMessage}}</p>
+        </form>
+        <h3 ng-if="loading">Carregando...</h3>
+      </div>
+      <div class="modal-footer">
+        <button data-dismiss="modal" class="btn btn-default pull-right" type="button" name="button">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
