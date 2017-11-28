@@ -1,10 +1,10 @@
 <article>
 
   <h1>Seja bem-vindo!</h1>
-  <form class="item-form pure-form" ng-submit="login()">
+  <form class="item-form pure-form" ng-submit="checkToken(token)">
     <label for="token-input">Insira seu token aqui:</label>
     <input id="token-input" type="text" name="" ng-model="token" ng-value="generatedToken" ng-readonly="token.length === 16">
-    <button class="btn btn-success" type="submit" name="button" ng-if="token.length === 16">Entrar</button>
+    <button class="btn btn-success" type="submit" name="button" ng-disabled="token.length !== 16">Entrar</button>
     <div ng-if="!generatedToken">
       <p>ou...</p>
       <label for="token-generator">Clique para gerar um novo:</label>
