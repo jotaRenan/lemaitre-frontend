@@ -76,7 +76,7 @@ angular.module('leMaitre')
       badSyntax.txtCellphone = reservation.person.cellphone;
       badSyntax.txtTelephone = reservation.person.telephone;
       const oldDate = new Date(reservation.date);
-      badSyntax.datReservation = `${oldDate.getFullYear()}-${oldDate.getDate()}-${oldDate.getMonth()+1}`;
+      badSyntax.datReservation = `${oldDate.getFullYear()}-${oldDate.getMonth()+1}-${oldDate.getDate()}`;
       badSyntax.datHourReservation = reservation.hour;
       badSyntax.nroPersons = reservation.nbrOfPeople;
       return badSyntax;
