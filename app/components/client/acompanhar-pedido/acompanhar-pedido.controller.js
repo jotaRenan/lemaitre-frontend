@@ -36,5 +36,5 @@ angular.module('leMaitre').controller('AcompanharPedidoCtrl', ['$scope', 'orderM
     }
   };
 
-  retrieveBill('teste4321');
+  retrieveBill();
 }]);

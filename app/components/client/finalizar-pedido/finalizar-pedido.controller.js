@@ -31,5 +31,5 @@ angular.module('leMaitre')
   };
 
   //
-  retrieveBill('teste4321');
+  retrieveBill();
 }]);
