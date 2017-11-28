@@ -1,5 +1,5 @@
 angular.module('leMaitre')
-.controller('LoginCtrl', ['$timeout','$scope', '$sessionStorage', 'loginManagementFactory', 'tokenManagementFactory', function($timeout, $scope, $sessionStorage, loginManagementFactory, tokenManagementFactory){
+.controller('LoginCtrl', ['$timeout','$scope', '$sessionStorage', 'loginManagementFactory', 'tokenManagementFactory', 'billManagementFactory', '$state', function($timeout, $scope, $sessionStorage, loginManagementFactory, tokenManagementFactory, billManagementFactory, $state){
   const rightUser = 'manager';
   const rightPass = '123';
 
@@ -44,6 +44,23 @@ angular.module('leMaitre')
       username: '',
       password: ''
     };
+  };
+
+  $scope.checkToken = (token) => {
+    billManagementFactory.retrieveAllBills()
+      .then( response => {
+        const tokenMatches = response.data.content
+          .map(billManagementFactory.billJSONSugar)
+          .find(bill => bill.token === token);
+        if (tokenMatches) {
+          $scope.$storage.isLogged = true;
+          $scope.$storage.token = token;
+          $state.go('cardapio');
+        } else {
+          throw new Error('token doesnt match');
+        }
+      })
+      .catch(err => exhibitError(err));
   };
 
   // Begin execution
