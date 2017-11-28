@@ -36,8 +36,8 @@
 
             <nav ng-controller="navbarCtrl" class="menu">
               <a ui-sref="home">Home</a>
-              <a ng-if="$storage.isLogged && (!$storage.isLogged)" ui-sref="acompanhar-pedido">Acompanhar Pedido</a>
-              <a ng-if="$storage.isLogged && (!$storage.isLogged)" ui-sref="finalizar-pedido">Finalizar Pedido</a>
+              <a ng-if="$storage.isLogged && (!$storage.isManager)" ui-sref="acompanhar-pedido">Acompanhar Pedido</a>
+              <a ng-if="$storage.isLogged && (!$storage.isManager)" ui-sref="finalizar-pedido">Finalizar Pedido</a>
               <a ng-if="$storage.isManager" ui-sref="gestao-mesas">Gestão de Mesas</a>
               <a ng-if="$storage.isManager" ui-sref="adicionar-item">Adicionar Item</a>
               <a ui-sref="cardapio">Cardápio</a>
