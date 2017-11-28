@@ -34,16 +34,17 @@
             <a href="#" class="header__icon" id="header__icon"></a>
             <a href="#" class="header__logo"><span class="logo">Le Maître</span></a>
 
-            <nav class="menu">
+            <nav ng-controller="navbarCtrl" class="menu">
               <a ui-sref="home">Home</a>
-              <a ui-sref="acompanhar-pedido">Acompanhar Pedido</a>
-              <a ui-sref="finalizar-pedido">Finalizar Pedido</a>
-              <a ui-sref="gestao-mesas">Gestão de Mesas</a>
-              <a ui-sref="gerador-token">Gerar Token</a>
-              <a ui-sref="adicionar-item">Adicionar Item</a>
+              <a ng-if="$storage.isLogged" ui-sref="acompanhar-pedido">Acompanhar Pedido</a>
+              <a ng-if="$storage.isLogged" ui-sref="finalizar-pedido">Finalizar Pedido</a>
+              <a ng-if="$storage.isManager" ui-sref="gestao-mesas">Gestão de Mesas</a>
+              <a ng-if="$storage.isManager" ui-sref="gerador-token">Gerar Token</a>
+              <a ng-if="$storage.isManager" ui-sref="adicionar-item">Adicionar Item</a>
               <a ui-sref="cardapio">Cardápio</a>
-              <a ui-sref="criacao-reserva">Criação de Reserva</a>
-              <a ui-sref="reservas">Reservas</a>
+              <a ng-if="$storage.isManager" ui-sref="criacao-reserva">Criação de Reserva</a>
+              <a ng-if="$storage.isManager" ui-sref="reservas">Reservas</a>
+              <a ng-if="$storage.isLogged" ng-click="logout()">Sair</a>
             </nav>
 
           </div>
@@ -84,7 +85,7 @@
    <script src="app\components\manager\status-mesa-reservada\status-mesa-reservada.controller.js" charset="utf-8"></script>
    <script src="app\components\shared\login\login.controller.js" charset="utf-8"></script>
    <script src="app\components\manager\reservas\reservas.controller.js" charset="utf-8"></script>
-
+   <script src="app\components\shared\navbar.controller.js" charset="utf-8"></script>
     <!-- Services -->
     <script src="app\components\manager\gerador-token\gerador-token.service.js" charset="utf-8"></script>
     <script src="app\components\manager\reservas\reservas.service.js" charset="utf-8"></script>
