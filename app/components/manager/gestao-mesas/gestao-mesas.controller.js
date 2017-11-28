@@ -1,5 +1,5 @@
 angular.module('leMaitre')
-.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', 'orderManagementFactory', 'billManagementFactory', 'tokenManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory, orderManagementFactory, billManagementFactory, tokenManagementFactory){
+.controller('GestaoMesasCtrl', ['$scope', '$state', 'tableManagementFactory', 'reservationFactory', 'categoryManagementFactory', 'itemManagementFactory', 'subcategoryManagementFactory', 'orderManagementFactory', 'billManagementFactory', function($scope, $state, tableManagementFactory, reservationFactory, categoryManagementFactory, itemManagementFactory, subcategoryManagementFactory, orderManagementFactory, billManagementFactory){
 
   let tokenBeingExhibited;
   $scope.tokenBeingExhibited = tokenBeingExhibited;
@@ -210,53 +210,6 @@ angular.module('leMaitre')
         }, []);
         bill.price = bill.orders.reduce( (total, order) => total + order.price, 0);
         $scope.bill = bill;
-      })
-      .catch(error => exhibitError(error));
-  };
-
-  $scope.associateTableToToken = (table, token) => {
-    $scope.isLoading = true;
-    tokenManagementFactory.associateTableToToken(table.id, token)
-      .then( response => {
-        $scope.isLoading = false;
-        switch (response.data.status) {
-          case 'OK':
-            $scope.generatedToken = response.data.content.codToken;
-            $scope.token = $scope.generatedToken;
-            retrieveTablesGeneralStatus();
-            $('#myModal').modal('hide');
-            break;
-          case 'BAD REQUEST':
-            if (response.data.content === 'CodIDBill is not in the persistence') {
-              throw new Error('token inválido.');
-            } else if (response.data.content === 'CodIDTablem is not in the persistence') {
-              throw new Error('código de mesa inválido');
-            } else {
-              throw new Error(response.data.content);
-            }
-            break;
-          default:
-            throw new Error(response.data.status);
-        }
-
-      })
-      .catch(error => exhibitError(error));
-  };
-
-  $scope.toggleAreYouSureModal = () => {
-    $('#areYouSureModal').modal('toggle');
-  };
-
-  $scope.definetelyFreeTable = (table) => {
-    const editedTable = {...table}; //copies object so it isnt passed as a reference
-    editedTable.status = 'F';
-    tableManagementFactory.editTable(editedTable)
-      .then( response => {
-        if (response.data.status === 'OK') {
-          retrieveTablesGeneralStatus();
-        } else {
-          throw new Error();
-        }
       })
       .catch(error => exhibitError(error));
   };

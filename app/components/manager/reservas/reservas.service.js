@@ -14,11 +14,10 @@ angular.module('leMaitre')
     },
     // UPDATE
     editTableReservation: function(reservation) {
-      const res = this.reverseRerservationSyntaxSugar(reservation);
       return $http({
-        method: 'POST',
-        url: `${apiEndpoint}/ReservationUpdate`,
-        data: res
+        method: 'UPDATE',
+        url: `${apiEndpoint}/`,
+        data: {reservation: reservation}
       });
     },
     // DELETE

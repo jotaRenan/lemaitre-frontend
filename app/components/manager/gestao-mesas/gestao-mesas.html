@@ -78,10 +78,10 @@
               <ul>
                 <li ng-repeat="item in itemsOrderedSoFar" >{{item.name}}</li>
               </ul>
-              <p>Preço parcial: {{bill.price | number:2}}</p>
+              <p>Preço parcial: {{bill.price}}</p>
             </div>
-            <!-- <button type="button" class="btn btn-primary" name="button" ng-click="requestBill(tableBeingViewed.id)">Fechar conta</button> -->
-            <button type="button" class="btn btn-primary" name="button" ng-click="toggleAreYouSureModal()">Fechar conta</button>
+            <button type="button" class="btn btn-primary" name="button" ng-click="requestBill(tableBeingViewed.id)">Fechar conta</button>
+
           </div>
 
           <div class="" ng-if=" tableBeingViewed.status == 'F' ">
@@ -97,35 +97,33 @@
           </div>
 
           <div class=" " ng-if=" tableBeingViewed.status == 'R' ">
-            <div class="flex-space-around">
-              <div ng-repeat="reservation in tableBeingViewed.reservations">
+          <!-- <div class=" " ng-if="true"> -->
+            <div ng-repeat="reservation in tableBeingViewed.reservations">
 
-                <p>
-                  <span class="status-item">Nome:</span>
-                  {{ reservation.person.name || 'Vazio' }}
-                </p>
-                <p>
-                  <span class="status-item">Numero de Pessoas:</span>
-                  {{ reservation.nbrOfPeople || 'Vazio' }}
-                </p>
-                <p>
-                  <span class="status-item">Telefone fixo:</span>
-                  {{ reservation.person.telephone || 'Vazio' }}
-                </p>
-                <p>
-                  <span class="status-item">Celular:</span>
-                  {{ reservation.person.cellphone || 'Vazio' }}
-                </p>
-                <p>
-                  <span class="status-item">Data:</span>
-                  {{ reservation.date || 'Vazio' }}
-                </p>
-                <p>
-                  <span class="status-item">Horário:</span>
-                  {{ reservation.hour || 'Vazio' }}
-                </p>
-              </div>
-
+              <p>
+                <span class="status-item">Nome:</span>
+                {{ reservation.person.name || 'Vazio' }}
+              </p>
+              <p>
+                <span class="status-item">Numero de Pessoas:</span>
+                {{ reservation.nbrOfPeople || 'Vazio' }}
+              </p>
+              <p>
+                <span class="status-item">Telefone fixo:</span>
+                {{ reservation.person.telephone || 'Vazio' }}
+              </p>
+              <p>
+                <span class="status-item">Celular:</span>
+                {{ reservation.person.cellphone || 'Vazio' }}
+              </p>
+              <p>
+                <span class="status-item">Data:</span>
+                {{ reservation.date || 'Vazio' }}
+              </p>
+              <p>
+                <span class="status-item">Horário:</span>
+                {{ reservation.hour || 'Vazio' }}
+              </p>
             </div>
             <button type="button" class="btn btn-default" name="button" data-dismiss="modal" ng-click="editReservations()">Editar Reservas</button>
           </div>
@@ -133,22 +131,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal2 -->
-<div class="modal fade" id="areYouSureModal" role="dialog">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Confirmar liberação de mesa?</h2>
-      </div>
-      <div class="modal-footer">
-        <button type="button" name="button" class="btn btn-danger pull-left" ng-click="toggleAreYouSureModal()">Cancelar</button>
-        <button type="button" name="button" class="btn btn-warning pull-right" data-dismiss="modal" ng-click="definetelyFreeTable(tableBeingViewed)">Liberar</button>
-
       </div>
     </div>
   </div>
