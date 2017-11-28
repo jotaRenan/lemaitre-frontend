@@ -15,6 +15,10 @@
   - Cristiano Maffort
   - Glívia Barbosa
 
+- ## Banca avaliadora:
+  - Flávio Roberto Coutinho
+  - Daniel Hasan Dalip
+  
 # Tecnologias utilizadas:
    <img src="http://www.mrc-productivity.com/blog/wp-content/uploads/2013/06/HTML5_SupportingElements_51.png" width="200">
    <img src="http://d29a1ukyxzvzgv.cloudfront.net/images/svg/css3.svg" width="200">
